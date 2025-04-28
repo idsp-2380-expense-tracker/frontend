@@ -30,7 +30,7 @@ Backend (Render Web Service)
 ↓  
 Aiven MySQL Database
 
-## API Fetch Logic (front-end)
+## Front-end fetch Logic
 
 ```tsx
 // fakeDB path -> public/fakeDB_***.json
@@ -46,28 +46,28 @@ const getData = async (endpoint: string) => {
   return data;
 };
 
-getData("budget");
+export { getData };
 ```
 
-## API Fetch Logic (back-end)
+## Back-end router
 
 ```ts
-const fetch = require("node-fetch");
-require("dotenv").config();
+// routes/budgetRouter.ts
+const express = require("express");
+const router = express.Router();
+const { getAllBudgets } = require("../services/budgetService");
 
-const IS_HOSTED = process.env.IS_HOSTED === "true";
-const API_BASE = IS_HOSTED
-  ? "https://backend-nqq1.onrender.com/api"
-  : "http://localhost:3000/api";
+router.get("/", async (req, res) => {
+  try {
+    const budgets = await getAllBudgets();
+    res.status(200).json(budgets);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to fetch budget data" });
+  }
+});
 
-const getBudgetData = async (endpoint: string) => {
-  const path = `${API_BASE}/${endpoint}`;
-  const response = await fetch(path);
-  const data = await response.json();
-  return data;
-};
-
-module.exports = { getBudgetData };
+module.exports = router;
 ```
 
 ## src/ Folder Structure
