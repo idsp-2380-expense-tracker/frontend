@@ -1,21 +1,17 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { budgetService } from "../../services/budgetService";
 
-function Budget() {
+export default function Budget() {
+  const [data, setData] = useState<any>(null);
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("https://backend-nqq1.onrender.com/api/budget/data");
-        const data = await response.json();
-        console.log("Budget.tsx:", data);
-      } catch (error) {
-        console.error("Fetch error:", error);
-      }
-    };
-
-    fetchData();
+    budgetService
+      .getBudgetData()
+      .then(setData)
+      .catch(console.error);
   }, []);
 
-  return <div>Budget Page</div>;
-}
+  console.log("Budget data:", data);
 
-export default Budget;
+  return <div>Budget For Test Log</div>;
+}

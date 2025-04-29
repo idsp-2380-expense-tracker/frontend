@@ -1,41 +1,31 @@
-import { SignInButton, useClerk, useUser } from "@clerk/clerk-react";
+import { SignOutButton } from "@clerk/clerk-react";
+import { SignInButton, useAuthService } from "../services/authService";
 
-interface User {
-  firstName: string;
-  lastName: string;
-  email: string;
-}
-
-interface HeaderProps {
-  userDB: {
-    [key: string]: User;
-  } | null;
-}
-
-export default function Header({ userDB }: HeaderProps) {
-  const { openUserProfile } = useClerk();
-  const { isSignedIn } = useUser();
+export default function Header() {
+  const { openUserProfile, isSignedIn, user } = useAuthService();
+  const displayName = isSignedIn && user ? user.firstName : "Guest";
 
   return (
     <header>
-      <h1>Hello, {userDB?.["0"]?.firstName ?? "Guest"}</h1>
-
+      <h1>Hello, {displayName}</h1>
       {isSignedIn ? (
-        <img
-          src="src/assets/user_icon.png"
-          alt="User icon"
-          className="userIcon"
-          onClick={() => openUserProfile()}
-          style={{ cursor: "pointer" }}
-        />
-      ) : (
-        <SignInButton>
+        <>
           <img
             src="src/assets/user_icon.png"
+            alt="User icon"
+            onClick={() => openUserProfile()}
+            style={{ cursor: "pointer" }}
+          />
+          <SignOutButton>
+            (FOR TEST)sign_out
+          </SignOutButton>
+        </>
+      ) : (
+        <SignInButton>
+          <img 
+            src="src/assets/user_icon.png" 
             alt="Login icon"
-            className="userIcon"
-            style={{ cursor: "pointer", opacity: 0.6 }}
-            title="Click to sign in"
+            style={{ cursor: "pointer" }}
           />
         </SignInButton>
       )}
