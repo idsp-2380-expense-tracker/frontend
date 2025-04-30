@@ -1,10 +1,8 @@
-import { BudgetData } from "../types/types";
-import { ApiService } from "./apiService";
+import { userDataService } from "./userDataService";
 
-export class BudgetService extends ApiService {
-    async getBudgetDataByUser(userId: string): Promise<BudgetData[]> {
-        const data: BudgetData[] = await this.getData("budget");
-        return data.filter(item => item.fk_userData.toString() === userId)
+export class BudgetService {
+    public getBudgetData() {
+        return userDataService.userData?.budget;
     }
 }
 

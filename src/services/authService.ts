@@ -6,9 +6,9 @@ import {
 } from "@clerk/clerk-react";
 
 export function useAuthService() {
-    const { openUserProfile, signOut } = useClerk();
+    const { openSignIn, openUserProfile, signOut } = useClerk();
     const { isSignedIn, user } = useUser();
-    return { openUserProfile, signOut, isSignedIn, user };
+    return { openSignIn, openUserProfile, signOut, isSignedIn, user };
 }
 
 // UI Components

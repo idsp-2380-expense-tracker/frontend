@@ -1,13 +1,13 @@
 export class ApiService {
     private isHosted: boolean = import.meta.env.VITE_IS_HOSTED === "true";
-    private apiBase: string = "https://backend-nqq1.onrender.com/api";
+    private apiBase: string = import.meta.env.BASE_URL;
 
-    protected async getData(endpoint: string) {
+    protected async getData() {
         const path = this.isHosted
-            ? `${this.apiBase}/${endpoint}`
-            : `/fakeDB_Model/fakeDB_${endpoint}.json`;
+            ? `${this.apiBase}/userData`
+            : `/fakeDB.json`;
         const response = await fetch(path);
-        if (!response.ok) throw new Error(`Failed to fetch ${endpoint}`);
+        if (!response.ok) throw new Error(`Failed to fetch userData`);
         return response.json();
     }
 

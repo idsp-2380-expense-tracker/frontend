@@ -1,0 +1,57 @@
+{
+    "tracking": [
+        {
+            "category": "food",
+            "paymentMethod": "cash",
+            "amount": 100,
+            "dateOfPayment": "2025-05-01",
+            "repeat": false,
+            "title": "",
+            "note": "",
+            "fk_userData": 0
+        },
+        {
+            "category": "groceries",
+            "paymentMethod": "card",
+            "amount": 200,
+            "dateOfPayment": "2025-06-01",
+            "repeat": false,
+            "title": "",
+            "note": "",
+            "fk_userData": 0
+        }
+    ],
+    "budget": [
+        {
+            "age": 20,
+            "goalAmount": 1000,
+            "fk_userData": 0,
+            "period": {
+                "income": 1000,
+                "periodRange": "weekly",
+                "fk_budgetData": 0
+            },
+            "distribution": {
+                "needs": 10,
+                "wants": 20,
+                "save": 50,
+                "fk_budgetData": 0
+            }
+        },
+        {
+            "age": 25,
+            "goalAmount": 2000,
+            "fk_userData": 0
+        }
+    ],
+    "rewards": [
+        {
+            "points": 300,
+            "fk_userData": 0
+        },
+        {
+            "points": 500,
+            "fk_userData": 0
+        }
+    ]
+}
