@@ -1,8 +1,8 @@
-@import "../styles/base/typography";
-@import "../styles/utils/variables";
-@import "../pages/Home/Home.module.scss";
+@use "../styles/base/typography";
+@use "../styles/utils/variables";
+@use "../pages/Home/Home.module.scss";
 
 html {
-  background-color: $bg-colour;
+  background-color: variables.$bg-colour;
   color: white;
 }
