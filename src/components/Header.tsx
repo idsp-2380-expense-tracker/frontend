@@ -1,5 +1,4 @@
-import { SignOutButton } from "@clerk/clerk-react";
-import { SignInButton, useAuthService } from "../services/authService";
+import { SignInButton, SignOutButton, useAuthService } from "../services/authService";
 
 export default function Header() {
   const { openUserProfile, isSignedIn, user } = useAuthService();

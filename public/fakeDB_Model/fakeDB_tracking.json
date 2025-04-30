@@ -1,5 +1,5 @@
-{
-  "0": {
+[
+  {
     "category": "food",
     "paymentMethod": "cash",
     "amount": 100,
@@ -9,8 +9,7 @@
     "note": "",
     "fk_userData": 0
   },
-
-  "1": {
+  {
     "category": "groceries",
     "paymentMethod": "card",
     "amount": 200,
@@ -20,4 +19,4 @@
     "note": "",
     "fk_userData": 0
   }
-}
+]
