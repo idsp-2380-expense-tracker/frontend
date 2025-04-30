@@ -1,0 +1,62 @@
+// ------------------------------
+// Typography
+// ------------------------------
+$font-family-base: "Rubik", sans-serif;
+
+// Title Main (25/27) | h1
+$font-size-title-main: 1.563rem;
+$font-weight-title-main: 800;
+$line-height-title-main: 1.688rem;
+
+// SubText Main (24/26) | h2
+$font-size-subtext-main: 1.5rem;
+$font-weight-subtext-main: 400;
+$line-height-subtext-main: 1.625rem;
+
+// Section Headings & Page Title (18/20) | h3
+$font-size-section-headings: 1.125rem;
+$font-weight-section-headings: 600;
+$line-height-section-headings: 1.25rem;
+
+// Body Bold (14/16) | body, p
+$font-size-body-bold: 0.875rem;
+$font-weight-body-bold: 700;
+$line-height-body-bold: 1rem;
+
+// Body & Body linked (14/16) | body, p, a
+$font-size-body: 0.875rem;
+$font-weight-body: 400;
+$line-height-body: 1rem;
+
+// SubText Bold (12/16)
+$font-size-subtext-bold: 0.75rem;
+$font-weight-subtext-bold: 700;
+$line-height-subtext-bold: 1rem;
+
+// SubText (12/16)
+$font-size-subtext: 0.75rem;
+$font-weight-subtext: 400;
+$line-height-subtext: 1rem;
+
+// NavBar (10/20)
+$font-size-navbar: 0.625rem;
+$font-weight-navbar: 400;
+$line-height-navbar: 1.25rem;
+
+// ------------------------------
+// Color Palette
+// ------------------------------
+$primary-colour: #cef24a;
+$secondary-colour: #38355b;
+$tertiary-colour: #7624f3;
+$bg-colour: #181626;
+$box-background: #333053;
+$input-box-colour: #282641;
+
+// ------------------------------
+// Border Radius
+// ------------------------------
+$border-radius-sm: 12px;
+$border-radius-md: 16px;
+$border-radius-lg: 19px;
+$border-radius-overlay: 50px;

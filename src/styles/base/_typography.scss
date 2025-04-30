@@ -1,0 +1,65 @@
+@import "../utils/variables";
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+
+// Headings
+h1,
+.h1 {
+  font-family: $font-family-base;
+  font-size: $font-size-title-main;
+  font-weight: $font-weight-title-main;
+  line-height: $line-height-title-main;
+}
+
+h2,
+.h2 {
+  font-family: $font-family-base;
+  font-size: $font-size-subtext-main;
+  font-weight: $font-weight-subtext-main;
+  line-height: $line-height-subtext-main;
+}
+
+h3,
+.h3 {
+  font-family: $font-family-base;
+  font-size: $font-size-section-headings;
+  font-weight: $font-weight-section-headings;
+  line-height: $line-height-section-headings;
+}
+
+// Body Text
+body,
+p {
+  font-family: $font-family-base;
+  font-size: $font-size-body;
+  font-weight: $font-weight-body;
+  line-height: $line-height-body;
+}
+
+// Utility Classes
+.body-bold {
+  font-family: $font-family-base;
+  font-size: $font-size-body-bold;
+  font-weight: $font-weight-body-bold;
+  line-height: $line-height-body-bold;
+}
+
+.subtext-bold {
+  font-family: $font-family-base;
+  font-size: $font-size-subtext-bold;
+  font-weight: $font-weight-subtext-bold;
+  line-height: $line-height-subtext-bold;
+}
+
+.subtext {
+  font-family: $font-family-base;
+  font-size: $font-size-subtext;
+  font-weight: $font-weight-subtext;
+  line-height: $line-height-subtext;
+}
+
+.navbar {
+  font-family: $font-family-base;
+  font-size: $font-size-navbar;
+  font-weight: $font-weight-navbar;
+  line-height: $line-height-navbar;
+}

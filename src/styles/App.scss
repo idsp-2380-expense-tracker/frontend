@@ -1,0 +1,8 @@
+@import "../styles/base/typography";
+@import "../styles/utils/variables";
+@import "../styles/layout/header";
+
+html {
+  background-color: $bg-colour;
+  color: white;
+}
