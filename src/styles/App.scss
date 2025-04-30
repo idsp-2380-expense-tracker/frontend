@@ -1,6 +1,6 @@
 @import "../styles/base/typography";
 @import "../styles/utils/variables";
-@import "../styles/layout/header";
+@import "../pages/Home/Home.module.scss";
 
 html {
   background-color: $bg-colour;
