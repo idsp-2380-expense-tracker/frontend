@@ -9,8 +9,25 @@ export class UserDataService extends ApiService {
     }
 
     public async fetchUserData(): Promise<void> {
-        this._userData = (await super.getData()) as UserData;
-        console.log(this._userData);
+        this._userData = await super.getData();
+        console.log("User data:", this._userData);
+    }
+
+    public async saveUserData<K extends keyof UserData>(endpoint: K): Promise<void> {
+        if (!this._userData) return;
+
+        const payload = this._userData[endpoint];
+        if (!payload) {
+            console.warn(`No data found for endpoint: ${endpoint}`);
+            return;
+        }
+
+        try {
+            await this.postData(endpoint, payload);
+            console.log(`Saved ${endpoint} data successfully.`);
+        } catch (error) {
+            console.error(`Failed to save ${endpoint} data:`, error);
+        }
     }
 
     public clearCache(): void {
