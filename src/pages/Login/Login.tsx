@@ -1,22 +1,31 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuthService } from "../../services/authService";
+import SignIn from "../../services/authService";
 
 export default function Login() {
-  const { isSignedIn, openSignIn } = useAuthService();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (isSignedIn) {
-      navigate("/loading");
-      return;
-    }
-    openSignIn();
-  }, [isSignedIn, openSignIn, navigate]);
-
   return (
-    <>
-      <button onClick={() => window.location.reload()}>Refresh</button>
-    </>
+    <div style={{ display: "flex", justifyContent: "center", paddingTop: "10vh" }}>
+      <SignIn
+        path="/login"
+        routing="path"
+        afterSignInUrl="/loading"
+        appearance={{
+          variables: {
+            // "#cef24a"
+            colorPrimary: "#7624f3",
+            colorBackground: "#181626",
+            colorText: "#ffffff"
+          },
+          elements: {
+            input: {
+              backgroundColor: "#333053",
+              color: "#ffffff"
+            },
+            socialButtonsBlockButton: {
+              backgroundColor: "#333053",
+              color: "#ffffff"
+            }
+          }
+        }}
+      />
+    </div>
   );
 }

@@ -1,6 +1,7 @@
 import {
     SignInButton as ClerkSignInButton,
     SignOutButton as ClerkSignOutButton,
+    SignIn,
     useClerk,
     useUser,
 } from "@clerk/clerk-react";
@@ -12,5 +13,6 @@ export function useAuthService() {
 }
 
 // UI Components
+export default SignIn;
 export const SignInButton = ClerkSignInButton;
 export const SignOutButton = ClerkSignOutButton;
