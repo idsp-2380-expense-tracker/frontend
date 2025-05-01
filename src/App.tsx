@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import Home from "../src/pages/Home/Home";
-import "../src/styles/App.scss";
+import AppRouter from "./routes/AppRouter";
 import { useAuthService } from "./services/authService";
 import { userDataService } from "./services/userDataService";
+import "./styles/App.scss";
 
 export default function App() {
   const { isSignedIn, openSignIn } = useAuthService();
@@ -29,5 +29,5 @@ export default function App() {
     return <div>Loading data…</div>;
   }
 
-  return <Home />;
+  return <AppRouter />;
 }

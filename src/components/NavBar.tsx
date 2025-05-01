@@ -1,21 +1,23 @@
+import { NavLink } from 'react-router-dom';
+
 export default function NavBar() {
   return (
     <nav className="navbar" aria-label="Main navigation">
       <div className="nav-home">
         <img src="src/assets/Nav-Icons/HouseSimple.svg" alt="Home" />
-        <a href="/home">Home</a>
+        <NavLink to="/home">Home</NavLink>
       </div>
       <div className="nav-tracking">
         <img src="src/assets/Nav-Icons/Invoice.svg" alt="Tracking" />
-        <a href="/home">Tracking</a>
+        <NavLink to="/tracking">Tracking</NavLink>
       </div>
       <div className="nav-budget">
         <img src="src/assets/Nav-Icons/Wallet.svg" alt="Budget" />
-        <a href="/home">Budget</a>
+        <NavLink to="/budget">Budget</NavLink>
       </div>
       <div className="nav-rewards">
         <img src="src/assets/Nav-Icons/Trophy.svg" alt="Rewards" />
-        <a href="/home">Rewards</a>
+        <NavLink to="/rewards">Rewards</NavLink>
       </div>
     </nav>
   );
