@@ -17,7 +17,6 @@ export default function NavBar() {
           }
           alt="Home"
         />
-        {/* <a href="/home">Home</a> */}
         <Link to="/home">Home</Link>
       </div>
 
@@ -30,7 +29,6 @@ export default function NavBar() {
           }
           alt="Tracking"
         />
-        {/* <a href="/tracking">Tracking</a> */}
         <Link to="/tracking">Tracking</Link>
       </div>
 
@@ -43,7 +41,6 @@ export default function NavBar() {
           }
           alt="Budget"
         />
-        {/* <a href="/budget">Budget</a> */}
         <Link to="/budget">Budget</Link>
       </div>
 
@@ -56,7 +53,6 @@ export default function NavBar() {
           }
           alt="Rewards"
         />
-        {/* <a href="/rewards">Rewards</a> */}
         <Link to="/rewards">Rewards</Link>
       </div>
     </nav>
