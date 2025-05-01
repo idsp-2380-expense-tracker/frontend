@@ -1,60 +1,51 @@
-import { Link, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import homeIconActive from "../assets/Nav-Icons/HouseSimple-Active.svg";
+import homeIcon from "../assets/Nav-Icons/HouseSimple.svg";
+import trackingIconActive from "../assets/Nav-Icons/Invoice-Active.svg";
+import trackingIcon from "../assets/Nav-Icons/Invoice.svg";
+import rewardsIconActive from "../assets/Nav-Icons/Trophy-Active.svg";
+import rewardsIcon from "../assets/Nav-Icons/Trophy.svg";
+import budgetIconActive from "../assets/Nav-Icons/Wallet-Active.svg";
+import budgetIcon from "../assets/Nav-Icons/Wallet.svg";
 
 export default function NavBar() {
-  const location = useLocation();
-  const path = location.pathname;
-
-  const isActive = (route: string) => path === route;
-
   return (
     <nav className="navbar" aria-label="Main navigation">
-      <div className="nav-home">
-        <img
-          src={
-            isActive("/home")
-              ? "src/assets/Nav-Icons/HouseSimple-Active.svg"
-              : "src/assets/Nav-Icons/HouseSimple.svg"
-          }
-          alt="Home"
-        />
-        <Link to="/home">Home</Link>
-      </div>
+      <NavLink to="/home" end className="nav-home">
+        {({ isActive }) => (
+          <>
+            <img src={isActive ? homeIconActive : homeIcon} alt="Home" />
+            <span>Home</span>
+          </>
+        )}
+      </NavLink>
 
-      <div className="nav-tracking">
-        <img
-          src={
-            isActive("/tracking")
-              ? "src/assets/Nav-Icons/Invoice-Active.svg"
-              : "src/assets/Nav-Icons/Invoice.svg"
-          }
-          alt="Tracking"
-        />
-        <Link to="/tracking">Tracking</Link>
-      </div>
+      <NavLink to="/tracking" className="nav-tracking">
+        {({ isActive }) => (
+          <>
+            <img src={isActive ? trackingIconActive : trackingIcon} alt="Tracking" />
+            <span>Tracking</span>
+          </>
+        )}
+      </NavLink>
 
-      <div className="nav-budget">
-        <img
-          src={
-            isActive("/budget")
-              ? "src/assets/Nav-Icons/Wallet-Active.svg"
-              : "src/assets/Nav-Icons/Wallet.svg"
-          }
-          alt="Budget"
-        />
-        <Link to="/budget">Budget</Link>
-      </div>
+      <NavLink to="/budget" className="nav-budget">
+        {({ isActive }) => (
+          <>
+            <img src={isActive ? budgetIconActive : budgetIcon} alt="Budget" />
+            <span>Budget</span>
+          </>
+        )}
+      </NavLink>
 
-      <div className="nav-rewards">
-        <img
-          src={
-            isActive("/rewards")
-              ? "src/assets/Nav-Icons/Trophy-Active.svg"
-              : "src/assets/Nav-Icons/Trophy.svg"
-          }
-          alt="Rewards"
-        />
-        <Link to="/rewards">Rewards</Link>
-      </div>
+      <NavLink to="/rewards" className="nav-rewards">
+        {({ isActive }) => (
+          <>
+            <img src={isActive ? rewardsIconActive : rewardsIcon} alt="Rewards" />
+            <span>Rewards</span>
+          </>
+        )}
+      </NavLink>
     </nav>
   );
 }
