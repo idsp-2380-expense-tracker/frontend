@@ -11,7 +11,7 @@ import budgetIcon from "../assets/Nav-Icons/Wallet.svg";
 export default function NavBar() {
   return (
     <nav className="navbar" aria-label="Main navigation">
-      <NavLink to="/home" end className="nav-item">
+      <NavLink to="/home" end className="nav-home">
         {({ isActive }) => (
           <>
             <img src={isActive ? homeIconActive : homeIcon} alt="Home" />
@@ -20,7 +20,7 @@ export default function NavBar() {
         )}
       </NavLink>
 
-      <NavLink to="/tracking" className="nav-item">
+      <NavLink to="/tracking" className="nav-tracking">
         {({ isActive }) => (
           <>
             <img src={isActive ? trackingIconActive : trackingIcon} alt="Tracking" />
@@ -29,7 +29,7 @@ export default function NavBar() {
         )}
       </NavLink>
 
-      <NavLink to="/budget" className="nav-item">
+      <NavLink to="/budget" className="nav-budget">
         {({ isActive }) => (
           <>
             <img src={isActive ? budgetIconActive : budgetIcon} alt="Budget" />
@@ -38,7 +38,7 @@ export default function NavBar() {
         )}
       </NavLink>
 
-      <NavLink to="/rewards" className="nav-item">
+      <NavLink to="/rewards" className="nav-rewards">
         {({ isActive }) => (
           <>
             <img src={isActive ? rewardsIconActive : rewardsIcon} alt="Rewards" />
