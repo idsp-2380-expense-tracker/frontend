@@ -1,21 +1,63 @@
+import { Link, useLocation } from "react-router-dom";
+
 export default function NavBar() {
+  const location = useLocation();
+  const path = location.pathname;
+
+  const isActive = (route: string) => path === route;
+
   return (
     <nav className="navbar" aria-label="Main navigation">
       <div className="nav-home">
-        <img src="src/assets/Nav-Icons/HouseSimple.svg" alt="Home" />
-        <a href="/home">Home</a>
+        <img
+          src={
+            isActive("/home")
+              ? "src/assets/Nav-Icons/HouseSimple-Active.svg"
+              : "src/assets/Nav-Icons/HouseSimple.svg"
+          }
+          alt="Home"
+        />
+        {/* <a href="/home">Home</a> */}
+        <Link to="/home">Home</Link>
       </div>
+
       <div className="nav-tracking">
-        <img src="src/assets/Nav-Icons/Invoice.svg" alt="Tracking" />
-        <a href="/home">Tracking</a>
+        <img
+          src={
+            isActive("/tracking")
+              ? "src/assets/Nav-Icons/Invoice-Active.svg"
+              : "src/assets/Nav-Icons/Invoice.svg"
+          }
+          alt="Tracking"
+        />
+        {/* <a href="/tracking">Tracking</a> */}
+        <Link to="/tracking">Tracking</Link>
       </div>
+
       <div className="nav-budget">
-        <img src="src/assets/Nav-Icons/Wallet.svg" alt="Budget" />
-        <a href="/home">Budget</a>
+        <img
+          src={
+            isActive("/budget")
+              ? "src/assets/Nav-Icons/Wallet-Active.svg"
+              : "src/assets/Nav-Icons/Wallet.svg"
+          }
+          alt="Budget"
+        />
+        {/* <a href="/budget">Budget</a> */}
+        <Link to="/budget">Budget</Link>
       </div>
+
       <div className="nav-rewards">
-        <img src="src/assets/Nav-Icons/Trophy.svg" alt="Rewards" />
-        <a href="/home">Rewards</a>
+        <img
+          src={
+            isActive("/rewards")
+              ? "src/assets/Nav-Icons/Trophy-Active.svg"
+              : "src/assets/Nav-Icons/Trophy.svg"
+          }
+          alt="Rewards"
+        />
+        {/* <a href="/rewards">Rewards</a> */}
+        <Link to="/rewards">Rewards</Link>
       </div>
     </nav>
   );
