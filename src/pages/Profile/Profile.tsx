@@ -1,18 +1,48 @@
-import { useAuthService } from "../../services/authService";
+import { useNavigate } from "react-router-dom";
+import { SignOutButton, useAuthService } from "../../services/authService";
 import leftArrow from "../../assets/left_arrow.png";
 import profilePic from "../../assets/profile_pic.svg";
+import accountCircle from "../../assets/account_circle.svg";
+import arrowInCircle from "../../assets/arrow_in_circle.svg";
+import logOutIcon from "../../assets/log_out_icon.svg";
 
 export default function Profile() {
-  const { isSignedIn, user } = useAuthService();
+  const { openUserProfile, isSignedIn, user } = useAuthService();
   const displayName = isSignedIn && user ? user.firstName : "Guest";
+  const navigate = useNavigate();
 
   return (
     <>
-      <img src={leftArrow} alt="Back button" className="back-button" />
-      <section className="profile">
+      <img
+        src={leftArrow}
+        alt="Back button"
+        className="back-button"
+        onClick={() => navigate("/home")}
+      />
+
+      <div className="profile">
         <img src={profilePic} alt="Profile picture" />
         <h1>{displayName}</h1>
-      </section>
+      </div>
+
+      <div className="my-account" onClick={() => openUserProfile()}>
+        <div className="menu-item">
+          <img src={accountCircle} alt="Account icon" id="account-circle" />
+          <span className="body-bold ">My Account</span>
+        </div>
+        <img
+          src={arrowInCircle}
+          alt="Right arrow in circle"
+          id="arrow-in-circle"
+        />
+      </div>
+
+      <SignOutButton>
+        <div id="log-out">
+          <img src={logOutIcon} alt="Log out icon" id="log-out-icon" />
+          <span id="log-out-btn">Log Out</span>
+        </div>
+      </SignOutButton>
     </>
   );
 }

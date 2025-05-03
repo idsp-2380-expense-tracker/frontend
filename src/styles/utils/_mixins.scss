@@ -1,6 +1,18 @@
+@use "./variables";
+
 @mixin center-flex($direction: column) {
   display: flex;
   flex-direction: $direction;
   justify-content: center;
   align-items: center;
+}
+
+@mixin border-line() {
+  display: flex;
+  border-top: 1px solid variables.$border-line-colour;
+  border-bottom: 1px solid variables.$border-line-colour;
+  padding: 0px 20px;
+  width: 90%;
+  height: 70px;
+  margin: 0 auto;
 }

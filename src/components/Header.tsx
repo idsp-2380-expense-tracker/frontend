@@ -1,9 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import {
-  SignInButton,
-  SignOutButton,
-  useAuthService,
-} from "../services/authService";
+import { SignInButton, useAuthService } from "../services/authService";
 import profileIcon from "../assets/profile_icon.png";
 
 export default function Header() {
@@ -22,7 +18,6 @@ export default function Header() {
             onClick={() => navigate("/profile")}
             style={{ cursor: "pointer" }}
           />
-          <SignOutButton>(FOR TEST)sign_out</SignOutButton>
         </>
       ) : (
         <SignInButton>
