@@ -12,6 +12,15 @@
   border-top: 1px solid variables.$border-line-colour;
   border-bottom: 1px solid variables.$border-line-colour;
   padding: 0px 20px;
+  width: 90% !important;
+  height: 70px;
+  margin: 0 auto;
+}
+@mixin logout-border-line() {
+  display: flex;
+  border-top: 1px solid variables.$border-line-colour;
+  border-bottom: 1px solid variables.$border-line-colour;
+  padding: 0px 20px;
   width: 90%;
   height: 70px;
   margin: 0 auto;

@@ -21,29 +21,33 @@ export default function Profile() {
         onClick={() => navigate("/home")}
       />
 
-      <div className="profile">
-        <img src={profilePic} alt="Profile picture" />
-        <h1>{displayName}</h1>
-      </div>
+      <div className="content-background">
+        <div className="content">
+          <div className="profile">
+            <img src={profilePic} alt="Profile picture" />
+            <h1>{displayName}</h1>
+          </div>
 
-      <div className="my-account" onClick={() => openUserProfile()}>
-        <div className="menu-item">
-          <img src={accountCircle} alt="Account icon" id="account-circle" />
-          <span className="body-bold ">My Account</span>
-        </div>
-        <img
-          src={arrowInCircle}
-          alt="Right arrow in circle"
-          id="arrow-in-circle"
-        />
-      </div>
+          <div className="my-account" onClick={() => openUserProfile()}>
+            <div className="menu-item">
+              <img src={accountCircle} alt="Account icon" id="account-circle" />
+              <span className="body-bold ">My Account</span>
+            </div>
+            <img
+              src={arrowInCircle}
+              alt="Right arrow in circle"
+              id="arrow-in-circle"
+            />
+          </div>
 
-      <SignOutButton>
-        <div id="log-out">
-          <img src={logOutIcon} alt="Log out icon" id="log-out-icon" />
-          <span id="log-out-btn">Log Out</span>
+          <SignOutButton>
+            <div id="log-out">
+              <img src={logOutIcon} alt="Log out icon" id="log-out-icon" />
+              <span id="log-out-btn">Log Out</span>
+            </div>
+          </SignOutButton>
         </div>
-      </SignOutButton>
+      </div>
     </>
   );
 }
