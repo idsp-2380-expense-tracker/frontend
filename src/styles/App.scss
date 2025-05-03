@@ -2,8 +2,11 @@
 @use "../styles/utils/variables";
 @use "../pages/Home/Home.module.scss";
 @use "../pages/Splash/Splash.module.scss";
+@use "../pages/Profile/Profile.module.scss";
+@use "../pages/Login/Login.module.scss";
 
 html {
   background-color: variables.$bg-colour;
   color: variables.$text-colour;
+  margin: 0 1rem;
 }

@@ -1,13 +1,21 @@
+@use "../utils/variables";
+
 a {
   color: white;
   text-decoration: none;
 }
 
 .navbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: variables.$bg-colour;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 12px 0px;
+  z-index: 1;
 
   .nav-home,
   .nav-tracking,
