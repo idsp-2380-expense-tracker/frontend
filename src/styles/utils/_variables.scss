@@ -44,14 +44,23 @@ $font-weight-navbar: 400;
 $line-height-navbar: 1.25rem;
 
 // ------------------------------
-// Color Palette
+// Colour Palette
 // ------------------------------
 $primary-colour: #cef24a;
 $secondary-colour: #38355b;
 $tertiary-colour: #7624f3;
 $bg-colour: #181626;
-$box-background: #333053;
-$input-box-colour: #282641;
+$input-box-colour: #333053;
+$text-colour: white;
+
+// ------------------------------
+// Colour Buttons
+// ------------------------------
+$btn-background: #282641;
+$btn-primary-active: #cef24a;
+$btn-primary-disabled: #e8f9ac;
+$btn-secondary-active: #ffffff;
+$btn-secondary-disabled: #c1c0cc;
 
 // ------------------------------
 // Border Radius

@@ -2,28 +2,32 @@ import SignIn from "../../services/authService";
 
 export default function Login() {
   return (
-    <div style={{ display: "flex", justifyContent: "center", paddingTop: "10vh" }}>
+    <div
+      style={{ display: "flex", justifyContent: "center", paddingTop: "10vh" }}
+    >
       <SignIn
         path="/login"
         routing="path"
         afterSignInUrl="/loading"
         appearance={{
           variables: {
-            // "#cef24a"
-            colorPrimary: "#7624f3",
-            colorBackground: "#181626",
-            colorText: "#ffffff"
+            colorPrimary: "#cef24a",
+            colorBackground: "#38355b",
+            colorText: "#ffffff",
           },
           elements: {
             input: {
-              backgroundColor: "#333053",
-              color: "#ffffff"
+              backgroundColor: "#282641",
+              color: "#ffffff",
+            },
+            button: {
+              color: "black",
             },
             socialButtonsBlockButton: {
-              backgroundColor: "#333053",
-              color: "#ffffff"
-            }
-          }
+              backgroundColor: "#282641",
+              color: "#ffffff",
+            },
+          },
         }}
       />
     </div>

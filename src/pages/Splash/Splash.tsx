@@ -12,19 +12,15 @@ export default function Splash() {
       return;
     }
 
-    const timer = setTimeout(() => navigate("/login"), 3000); //2000
+    const timer = setTimeout(() => navigate("/login"), 3000);
     return () => clearTimeout(timer);
   }, [isSignedIn, navigate]);
 
   return (
     <>
-      <div className="splash-logo">
-        <img
-          src="src/assets/montro_logo.png"
-          alt="Montro logo"
-          className="bounce-in-top"
-        />
-        <h1 className="bounce-in-fwd">Budgeting, made interesting.</h1>
+      <div className="splash-logo bounce-in-fwd">
+        <img src="src/assets/montro_logo.png" alt="Montro logo" />
+        <h1>Budgeting, made interesting.</h1>
       </div>
     </>
   );
