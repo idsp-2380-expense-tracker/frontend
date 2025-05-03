@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthService } from "../../services/authService";
+import logo from "../../assets/montro_logo.png";
 
 export default function Splash() {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ export default function Splash() {
   return (
     <>
       <div className="splash-logo bounce-in-fwd">
-        <img src="src/assets/montro_logo.png" alt="Montro logo" />
+        <img src={logo} alt="Montro logo" />
         <h1>Budgeting, made interesting.</h1>
       </div>
     </>
