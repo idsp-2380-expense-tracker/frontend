@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { SignOutButton, useAuthService } from "../../services/authService";
+// Image Sources
 import leftArrow from "../../assets/left_arrow.png";
 import profilePic from "../../assets/profile_pic.svg";
 import accountCircle from "../../assets/account_circle.svg";

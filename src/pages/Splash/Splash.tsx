@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthService } from "../../services/authService";
+// Image Sources
 import logo from "../../assets/montro_logo.png";
 
 export default function Splash() {
