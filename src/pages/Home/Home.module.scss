@@ -1,2 +1,66 @@
 @use "../../styles/layout/header";
 @use "../../styles/layout/navbar";
+@use "../../styles/utils/mixins";
+@use "../../styles/utils/variables";
+
+#home-layout {
+  @include mixins.center-flex(column);
+
+  #insights {
+    @include mixins.box(60px);
+    justify-content: space-between;
+
+    #insights-title {
+      display: flex;
+      align-items: center;
+    }
+
+    #insightIcon {
+      padding-right: 20px;
+    }
+  }
+
+  #spending-limit {
+    @include mixins.box(156px);
+    display: flex;
+    flex-direction: column;
+
+    #spent-stats {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+
+      #percentage-spending {
+        color: variables.$primary-colour;
+        font-size: 36px;
+
+        span {
+          font-size: variables.$font-size-body;
+          font-weight: 100;
+          color: white;
+        }
+      }
+
+      #spending-description {
+        text-align: right;
+
+        #spent {
+          color: variables.$primary-colour;
+          font-size: 18px;
+          font-weight: 600;
+
+          span {
+            font-size: variables.$font-size-body;
+            font-weight: 100;
+          }
+        }
+
+        p {
+          margin-block-start: 3px;
+          margin-block-end: 3px;
+        }
+      }
+    }
+  }
+}
