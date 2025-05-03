@@ -1,0 +1,5 @@
+@use "../../styles/utils/mixins";
+
+.profile {
+  @include mixins.center-flex(column);
+}

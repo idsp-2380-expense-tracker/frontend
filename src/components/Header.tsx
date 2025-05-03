@@ -1,8 +1,14 @@
-import { SignInButton, SignOutButton, useAuthService } from "../services/authService";
+import { useNavigate } from "react-router-dom";
+import {
+  SignInButton,
+  SignOutButton,
+  useAuthService,
+} from "../services/authService";
 
 export default function Header() {
-  const { openUserProfile, isSignedIn, user } = useAuthService();
+  const { isSignedIn, user } = useAuthService();
   const displayName = isSignedIn && user ? user.firstName : "Guest";
+  const navigate = useNavigate();
 
   return (
     <header>
@@ -12,17 +18,15 @@ export default function Header() {
           <img
             src="src/assets/user_icon.png"
             alt="User icon"
-            onClick={() => openUserProfile()}
+            onClick={() => navigate("/profile")}
             style={{ cursor: "pointer" }}
           />
-          <SignOutButton>
-            (FOR TEST)sign_out
-          </SignOutButton>
+          <SignOutButton>(FOR TEST)sign_out</SignOutButton>
         </>
       ) : (
         <SignInButton>
-          <img 
-            src="src/assets/user_icon.png" 
+          <img
+            src="src/assets/user_icon.png"
             alt="Login icon"
             style={{ cursor: "pointer" }}
           />
