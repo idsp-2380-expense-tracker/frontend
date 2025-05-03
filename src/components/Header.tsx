@@ -4,6 +4,7 @@ import {
   SignOutButton,
   useAuthService,
 } from "../services/authService";
+import profileIcon from "../assets/profile_icon.png";
 
 export default function Header() {
   const { isSignedIn, user } = useAuthService();
@@ -16,8 +17,8 @@ export default function Header() {
       {isSignedIn ? (
         <>
           <img
-            src="src/assets/user_icon.png"
-            alt="User icon"
+            src={profileIcon}
+            alt="Profile icon"
             onClick={() => navigate("/profile")}
             style={{ cursor: "pointer" }}
           />
