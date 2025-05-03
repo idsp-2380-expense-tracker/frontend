@@ -3,3 +3,9 @@
 .profile {
   @include mixins.center-flex(column);
 }
+
+.back-button {
+  justify-content: left;
+  margin-top: 5rem;
+  margin-left: 2rem;
+}
