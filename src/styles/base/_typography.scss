@@ -63,3 +63,9 @@ p {
   font-weight: variables.$font-weight-navbar;
   line-height: variables.$line-height-navbar;
 }
+
+.text-price {
+  color: variables.$text-price-colour;
+  font-size: variables.$font-size-price;
+  font-weight: variables.$font-weight-price;
+}

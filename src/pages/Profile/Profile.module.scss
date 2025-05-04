@@ -58,24 +58,16 @@
   }
 }
 
-html,
-body {
-  // margin: 0 !important;
-  overflow: hidden;
-  height: 100%;
-}
-
 .content-background {
   background-color: variables.$secondary-colour;
   margin-top: 5rem;
   width: 100%;
-  min-height: 100vh;
+  min-height: 86vh;
   height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  // z-index: -1000;
 }
 
 .content {

@@ -6,6 +6,7 @@
 #home-layout {
   @include mixins.center-flex(column);
 
+  // Insights section
   #insights {
     @include mixins.box(60px);
     justify-content: space-between;
@@ -20,6 +21,7 @@
     }
   }
 
+  // Spending Limit section
   #spending-limit {
     @include mixins.box(156px);
     display: flex;
@@ -59,6 +61,109 @@
         p {
           margin-block-start: 3px;
           margin-block-end: 3px;
+        }
+      }
+    }
+  }
+
+  // Spending Summary section
+  #spending-summary {
+    @include mixins.box(60px);
+
+    span {
+      color: variables.$primary-colour;
+    }
+  }
+
+  // Recent Expenses
+  #recent-expenses {
+    width: 100%;
+
+    #expense-list {
+      display: flex;
+      justify-content: space-between;
+      align-self: center;
+    }
+
+    #expense-list-btn {
+      text-align: right;
+    }
+
+    h1,
+    p {
+      margin-block-start: 3px;
+      margin-block-end: 3px;
+    }
+  }
+
+  // Challenge & Rewards section
+  #rewards-section {
+    @include mixins.center-flex(row);
+    width: 100%;
+
+    #challenge-progress {
+      @include mixins.box(203px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: left;
+    }
+
+    #logged-in {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    #streak {
+      align-self: flex-start;
+      width: 100%;
+
+      h1 {
+        color: variables.$primary-colour;
+        font-size: 48px;
+        margin-block-start: 0.5em;
+        margin-block-end: 0;
+      }
+      p {
+        text-align: left;
+      }
+    }
+
+    #earned-points {
+      @include mixins.box(203px);
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      #coins-btn {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-top: 1rem;
+      }
+
+      h2 {
+        align-self: flex-start;
+        font-size: 18px;
+        font-weight: 600;
+        width: 100%;
+      }
+
+      h1 {
+        color: variables.$primary-colour;
+        font-size: 48px;
+        margin-block-start: 0.5em;
+        margin-block-end: 0;
+        text-align: right;
+
+        span {
+          color: white;
+          font-size: 18px;
+          font-weight: 600;
         }
       }
     }

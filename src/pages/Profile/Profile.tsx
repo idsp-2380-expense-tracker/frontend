@@ -4,7 +4,7 @@ import { SignOutButton, useAuthService } from "../../services/authService";
 import leftArrow from "../../assets/left_arrow.png";
 import profilePic from "../../assets/profile_pic.svg";
 import accountCircle from "../../assets/account_circle.svg";
-import arrowInCircle from "../../assets/arrow_in_circle.svg";
+import arrowInCircleYellow from "../../assets/arrow_in_circle_yellow.svg";
 import logOutIcon from "../../assets/log_out_icon.svg";
 
 export default function Profile() {
@@ -34,7 +34,7 @@ export default function Profile() {
               <span className="body-bold ">My Account</span>
             </div>
             <img
-              src={arrowInCircle}
+              src={arrowInCircleYellow}
               alt="Right arrow in circle"
               id="arrow-in-circle"
             />
