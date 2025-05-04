@@ -10,11 +10,12 @@ a {
   bottom: 0;
   left: 0;
   width: 100%;
+  height: 60px;
   background-color: variables.$bg-colour;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 12px 0px;
+  padding-bottom: 12px;
   z-index: 1;
 
   .nav-home,

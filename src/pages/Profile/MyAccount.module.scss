@@ -1,0 +1,84 @@
+@use "../../styles/utils/mixins";
+@use "../../styles/utils/variables";
+
+.profile {
+  @include mixins.center-flex(column);
+  margin-bottom: 3rem;
+
+  a {
+    text-decoration: underline;
+  }
+}
+
+.back-button {
+  margin: 1rem 1rem;
+  cursor: pointer;
+}
+
+.content-background {
+  background-color: variables.$secondary-colour;
+  margin-top: 5rem;
+  width: 100%;
+  min-height: 86vh;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.content {
+  position: absolute;
+  width: 90%;
+  margin: 0;
+  top: -5rem;
+}
+
+#my-account-header {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  h1 {
+    color: variables.$text-menu-colour;
+  }
+}
+
+#edit-profile {
+  @include mixins.box(300px);
+  background-color: #1f1d32;
+
+  form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+    width: 100%;
+
+    input {
+      @include mixins.box(48px);
+      border-radius: 8px;
+      color: #7a7891;
+      font-size: 14px;
+      border: 1px solid #37355b;
+      width: auto;
+    }
+
+    #firstName {
+      margin-right: 16px;
+    }
+    #email-label,
+    #register-btn {
+      margin-top: 1rem;
+    }
+
+    #email,
+    #register-btn {
+      grid-column: span 2;
+    }
+
+    #register-btn {
+      @include mixins.button(48px);
+      width: auto;
+      background-color: variables.$primary-colour;
+    }
+  }
+}

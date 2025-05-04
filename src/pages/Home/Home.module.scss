@@ -1,2 +1,200 @@
 @use "../../styles/layout/header";
 @use "../../styles/layout/navbar";
+@use "../../styles/utils/mixins";
+@use "../../styles/utils/variables";
+
+#home-layout {
+  @include mixins.center-flex(column);
+  margin-bottom: 80px;
+
+  // Insights section
+  #insights {
+    @include mixins.box(60px);
+    justify-content: space-between;
+
+    #insights-title {
+      display: flex;
+      align-items: center;
+    }
+
+    #insightIcon {
+      padding-right: 20px;
+    }
+  }
+
+  // Spending Limit section
+  #spending-limit {
+    @include mixins.box(156px);
+    display: flex;
+    flex-direction: column;
+
+    #spent-stats {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+
+      #percentage-spending {
+        color: variables.$primary-colour;
+        font-size: 36px;
+
+        span {
+          font-size: variables.$font-size-body;
+          font-weight: 100;
+          color: white;
+        }
+      }
+
+      #spending-description {
+        text-align: right;
+
+        #spent {
+          color: variables.$primary-colour;
+          font-size: 18px;
+          font-weight: 600;
+
+          span {
+            font-size: variables.$font-size-body;
+            font-weight: 100;
+          }
+        }
+
+        p {
+          margin-block-start: 3px;
+          margin-block-end: 3px;
+        }
+      }
+    }
+  }
+
+  // Spending Summary section
+  #spending-summary {
+    @include mixins.box(60px);
+
+    span {
+      color: variables.$primary-colour;
+    }
+  }
+
+  // Recent Expenses
+  #recent-expenses {
+    width: 100%;
+
+    #expense-list {
+      display: flex;
+      justify-content: space-between;
+      align-self: center;
+    }
+
+    #expense-list-btn {
+      text-align: right;
+    }
+
+    h1,
+    p {
+      margin-block-start: 3px;
+      margin-block-end: 3px;
+    }
+  }
+
+  // Challenge & Rewards section
+  #rewards-section {
+    @include mixins.center-flex(row);
+    width: 100%;
+
+    #challenge-progress {
+      @include mixins.box(203px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: left;
+    }
+
+    #logged-in {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    #streak {
+      align-self: flex-start;
+      width: 100%;
+
+      h1 {
+        color: variables.$primary-colour;
+        font-size: 48px;
+        margin-block-start: 0.5em;
+        margin-block-end: 0;
+      }
+      p {
+        text-align: left;
+      }
+    }
+
+    #earned-points {
+      @include mixins.box(203px);
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      #coins-btn {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-top: 1rem;
+      }
+
+      h2 {
+        align-self: flex-start;
+        font-size: 18px;
+        font-weight: 600;
+        width: 100%;
+      }
+
+      h1 {
+        color: variables.$primary-colour;
+        font-size: 48px;
+        margin-block-start: 0.5em;
+        margin-block-end: 0;
+        text-align: right;
+
+        span {
+          color: white;
+          font-size: 18px;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+  //Articles
+  #article {
+    @include mixins.box(160px);
+    display: flex;
+    flex-direction: column;
+
+    #article-link {
+      color: variables.$primary-colour;
+      cursor: pointer;
+
+      .link-text {
+        text-decoration: underline;
+        display: flex;
+        align-items: center;
+
+        img {
+          padding-left: 8px;
+        }
+      }
+    }
+
+    #article-by {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+}

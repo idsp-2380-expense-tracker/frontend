@@ -9,7 +9,7 @@ export default function Header() {
 
   return (
     <header>
-      <h1>Hello, {displayName}</h1>
+      <h1 style={{ fontWeight: 200 }}>Hello, {displayName}!</h1>
       {isSignedIn ? (
         <>
           <img

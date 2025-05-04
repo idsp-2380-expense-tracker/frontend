@@ -7,7 +7,7 @@
 }
 
 .back-button {
-  margin-top: 1rem;
+  margin: 1rem 1rem;
   cursor: pointer;
 }
 
@@ -15,6 +15,36 @@
   @include mixins.border-line();
   display: flex;
   align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  cursor: pointer;
+
+  .menu-item {
+    display: flex;
+    align-items: center;
+  }
+
+  #account-circle {
+    width: 24px;
+    height: 24px;
+    margin-right: 20px;
+  }
+
+  .body-bold {
+    color: variables.$text-menu-colour;
+  }
+
+  #arrow-in-circle {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.security-settings {
+  @include mixins.border-line();
+  display: flex;
+  align-items: center;
+  width: 100%;
   justify-content: space-between;
   cursor: pointer;
 
@@ -40,8 +70,8 @@
 }
 
 #log-out {
-  @include mixins.border-line();
-  position: absolute;
+  @include mixins.logout-border-line();
+  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -55,4 +85,23 @@
   #log-out-icon {
     margin-right: 20px;
   }
+}
+
+.content-background {
+  background-color: variables.$secondary-colour;
+  margin-top: 5rem;
+  width: 100%;
+  min-height: 86vh;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.content {
+  position: absolute;
+  width: 90%;
+  margin: 0;
+  top: -5rem;
 }
