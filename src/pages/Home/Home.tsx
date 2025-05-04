@@ -6,20 +6,22 @@ import rightArrow from "../../assets/right_arrow.svg";
 import spendGraph from "../../assets/spending-graph.svg";
 import arrowInCircleGrey from "../../assets/arrow_in_circle_grey.svg";
 import coinsIcon from "../../assets/reward_icon.svg";
+import linkIcon from "../../assets/link_icon.svg";
 
 export default function Home() {
   return (
     <>
       <Header />
       <div id="home-layout">
-        <div id="insights">
+        <section id="insights">
           <div id="insights-title">
             <img src={insightIcon} alt="Insight icon" id="insightIcon" />
             <span>Check your March insights! </span>
           </div>
           <img src={rightArrow} alt="Right arrow" />
-        </div>
-        <div id="spending-limit">
+        </section>
+
+        <section id="spending-limit">
           <div id="spent-stats">
             <h1 id="percentage-spending">
               71% <span>left</span>
@@ -34,14 +36,15 @@ export default function Home() {
           </div>
 
           <img src={spendGraph} alt="" />
-        </div>
-        <div id="spending-summary">
+        </section>
+
+        <section id="spending-summary">
           <p>
             You spent <span>18% less</span> on party this month. Keep it up! 😉
           </p>
-        </div>
+        </section>
 
-        <div id="recent-expenses">
+        <section id="recent-expenses">
           <h1 style={{ paddingBottom: "1rem" }}>Recent Expenses</h1>
 
           <div id="expense-list">
@@ -71,7 +74,7 @@ export default function Home() {
               <p id="expense-date">Yesterday, 8:09PM</p>
             </div>
           </div>
-        </div>
+        </section>
 
         {/* <div id="recent-expenses">
           {expenses.map((expense) => (
@@ -89,7 +92,7 @@ export default function Home() {
           ))}
         </div> */}
 
-        {/* Needs Implementation
+        {/* Needs to fetch from DB
         type Expense = {
           id: string;
           amount: number;
@@ -103,7 +106,7 @@ export default function Home() {
         ];
          */}
 
-        <div id="rewards-section">
+        <section id="rewards-section">
           <div id="challenge-progress">
             <div id="logged-in">
               <p>You've logged in</p>
@@ -127,7 +130,32 @@ export default function Home() {
               230 <span>pt</span>
             </h1>
           </div>
-        </div>
+        </section>
+
+        <section id="article-list">
+          <div id="article">
+            <h3 id="article-link">
+              <a
+                href="https://www.forbes.com/sites/truetamplin/2025/01/15/the-benefits-of-expense-tracking-and-how-you-can-do-it-effectively/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link-text"
+              >
+                The Benefits Of Expense Tracking And How You Can Do It
+                Effectively
+              </a>
+              <br />
+              <span className="link-text">
+                Read more <img src={linkIcon} alt="Link icon" />
+              </span>
+            </h3>
+
+            <div id="article-by">
+              <p id="expense-list-category">Forbes</p>
+              <p>by True Tamplin</p>
+            </div>
+          </div>
+        </section>
       </div>
       <NavBar />
     </>

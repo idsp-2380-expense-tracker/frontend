@@ -5,6 +5,7 @@
 
 #home-layout {
   @include mixins.center-flex(column);
+  margin-bottom: 80px;
 
   // Insights section
   #insights {
@@ -166,6 +167,34 @@
           font-weight: 600;
         }
       }
+    }
+  }
+
+  //Articles
+  #article {
+    @include mixins.box(160px);
+    display: flex;
+    flex-direction: column;
+
+    #article-link {
+      color: variables.$primary-colour;
+      cursor: pointer;
+
+      .link-text {
+        text-decoration: underline;
+        display: flex;
+        align-items: center;
+
+        img {
+          padding-left: 8px;
+        }
+      }
+    }
+
+    #article-by {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
     }
   }
 }
