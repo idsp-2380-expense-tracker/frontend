@@ -37,3 +37,16 @@
   background-color: variables.$input-box-colour;
   border-radius: variables.$border-radius-md;
 }
+
+@mixin button($height: 60px) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: variables.$font-size-body-bold;
+  font-weight: variables.$font-weight-body-bold;
+  padding: 0 1.5rem;
+  width: 90%;
+  height: $height;
+  background-color: variables.$input-box-colour;
+  border-radius: variables.$border-radius-overlay;
+}

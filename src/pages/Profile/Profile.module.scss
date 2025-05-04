@@ -40,6 +40,35 @@
   }
 }
 
+.security-settings {
+  @include mixins.border-line();
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  cursor: pointer;
+
+  .menu-item {
+    display: flex;
+    align-items: center;
+  }
+
+  #account-circle {
+    width: 24px;
+    height: 24px;
+    margin-right: 20px;
+  }
+
+  .body-bold {
+    color: variables.$text-menu-colour;
+  }
+
+  #arrow-in-circle {
+    width: 32px;
+    height: 32px;
+  }
+}
+
 #log-out {
   @include mixins.logout-border-line();
   position: fixed;
