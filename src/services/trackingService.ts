@@ -1,3 +1,4 @@
+import { useAuthService } from "./authService";
 import { userDataService } from "./userDataService";
 
 export class TrackingService {
@@ -5,8 +6,14 @@ export class TrackingService {
         return userDataService.userData?.tracking;
     }
 
-    public saveTrackingData() {
-        userDataService.saveUserData("tracking");
+    public async saveTrackingData() {
+        const { getToken } = useAuthService();
+        const token = await getToken();
+        if (token) {
+            await userDataService.saveUserData("tracking", token);
+        } else {
+            throw new Error("No auth token");
+        }
     }
 }
 

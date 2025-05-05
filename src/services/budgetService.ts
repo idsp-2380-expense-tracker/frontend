@@ -1,3 +1,4 @@
+import { DB_Budget } from "../interfaces/dbStructure";
 import { userDataService } from "./userDataService";
 
 export class BudgetService {
@@ -5,8 +6,8 @@ export class BudgetService {
         return userDataService.userData?.budget;
     }
 
-    public saveBudgetData() {
-        userDataService.saveUserData("budget");
+    public async saveBudgetData(payload: DB_Budget[]) {
+        await userDataService.saveUserData("budget", payload);
     }
 }
 

@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
+import { ApiService } from '../services/apiService';
+import { useAuthService } from '../services/authService';
+import { userDataService } from '../services/userDataService';
+
 import Budget from '../pages/Budget/Budget';
 import Home from '../pages/Home/Home';
 import Loading from '../pages/Loading/Loading';
@@ -8,27 +12,29 @@ import Profile from '../pages/Profile/Profile';
 import Rewards from '../pages/Rewards/Rewards';
 import Splash from '../pages/Splash/Splash';
 import Tracking from '../pages/Tracking/Tracking';
-import { useAuthService } from '../services/authService';
-import { userDataService } from '../services/userDataService';
 
 export default function AppRouter() {
-  const { isSignedIn } = useAuthService();
+  const { getToken, isSignedIn } = useAuthService();
   const [dataLoaded, setDataLoaded] = useState(false);
   const routeStage =
     !isSignedIn ? "guest":
     !dataLoaded ? "loading" : "authenticated";
 
-  useEffect(() => {
-    if (routeStage === "loading") {
-      userDataService.clearCache();
-      userDataService
-        .fetchUserData()
-        .then(() => setDataLoaded(true))
-        .catch((err) => {
-          console.error("Failed to load user data:", err);
-        });
-    }
-  }, [routeStage]);
+    useEffect(() => {
+      ApiService.setToken(getToken);
+    }, [getToken]);
+
+    useEffect(() => {
+      if (routeStage === 'loading') {
+        userDataService.clearCache();
+        userDataService
+          .fetchUserData()
+          .then(() => setDataLoaded(true))
+          .catch((error) => {
+            console.error("Failed to load user data:", error);
+          });
+      }
+    }, [routeStage, getToken]);
   
   return (
     <Routes>

@@ -2,14 +2,25 @@ import {
     SignInButton as ClerkSignInButton,
     SignOutButton as ClerkSignOutButton,
     SignIn,
+    useAuth,
     useClerk,
-    useUser,
+    useUser
 } from "@clerk/clerk-react";
 
 export function useAuthService() {
     const { openSignIn, openUserProfile, signOut } = useClerk();
-    const { isSignedIn, user } = useUser();
-    return { openSignIn, openUserProfile, signOut, isSignedIn, user };
+    const { getToken, isLoaded, isSignedIn } = useAuth();
+    const { user } = useUser();
+
+    return {
+        openSignIn,
+        openUserProfile,
+        signOut,
+        getToken,
+        isLoaded,
+        isSignedIn,
+        user,
+    };
 }
 
 // UI Components

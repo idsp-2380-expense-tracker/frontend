@@ -1,3 +1,4 @@
+import { useAuthService } from "./authService";
 import { userDataService } from "./userDataService";
 
 export class RewardsService {
@@ -5,8 +6,14 @@ export class RewardsService {
         return userDataService.userData?.rewards;
     }
 
-    public saveRewardsData() {
-        userDataService.saveUserData("rewards");
+    public async saveRewardsData() {
+        const { getToken } = useAuthService();
+        const token = await getToken();
+        if (token) {
+            await userDataService.saveUserData("rewards", token);
+        } else {
+            throw new Error("No auth token");
+        }
     }
 }
 
