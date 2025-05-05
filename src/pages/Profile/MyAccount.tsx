@@ -69,7 +69,7 @@ export default function MyAccount({ onBack }: OnBackProps) {
               />
 
               <button id="register-btn" type="submit">
-                Change
+                Update
               </button>
             </form>
           </div>

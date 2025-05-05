@@ -5,11 +5,13 @@
 @use "../pages/Profile/Profile.module.scss";
 @use "../pages/Profile/MyAccount.module.scss";
 @use "../pages/Login/Login.module.scss";
+@use "../pages/Tracking/Tracking.module.scss";
 
 html {
   background-color: variables.$bg-colour;
   color: variables.$text-colour;
   margin: 0;
+  max-width: auto;
 }
 
 body {
