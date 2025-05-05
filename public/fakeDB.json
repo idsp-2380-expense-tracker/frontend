@@ -39,12 +39,7 @@
             "save": 60
         }
     ],
-    "rewards": [
-        {
-            "points": 300
-        },
-        {
-            "points": 500
-        }
-    ]
+    "rewards": {
+        "points": 300
+    }
 }

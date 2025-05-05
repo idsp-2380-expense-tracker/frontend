@@ -1,19 +1,20 @@
-import { UserData } from "../types/dbStructure";
+import { DB_User } from "../interfaces/dbStructure";
 import { ApiService } from "./apiService";
 
 export class UserDataService extends ApiService {
-    private _userData: UserData | null = null;
+    private _userData: DB_User | null = null;
+    private _initialized = false;
 
-    public get userData(): UserData | null {
-        return this._userData;
-    }
+    public get userData(): DB_User | null { return this._userData; }
+    public get isInitialized(): boolean { return this._initialized; }
 
     public async fetchUserData(): Promise<void> {
         this._userData = await super.getData();
+        this._initialized = true;
         console.log("User data:", this._userData);
     }
 
-    public async saveUserData<K extends keyof UserData>(endpoint: K): Promise<void> {
+    public async saveUserData<K extends keyof DB_User>(endpoint: K): Promise<void> {
         if (!this._userData) return;
 
         const payload = this._userData[endpoint];
@@ -32,6 +33,7 @@ export class UserDataService extends ApiService {
 
     public clearCache(): void {
         this._userData = null;
+        this._initialized = false;
     }
 }
 

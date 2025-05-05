@@ -1,42 +1,42 @@
-{
-  "user_id_0": [
-    {
-      "age": 20,
-      "goalAmount": 1000,
-      "income": 1000,
-      "periodRange": "weekly",
-      "needs": 10,
-      "wants": 20,
-      "save": 50
-    },
-    {
-      "age": 25,
-      "goalAmount": 2000,
-      "income": 1500,
-      "periodRange": "monthly",
-      "needs": 20,
-      "wants": 30,
-      "save": 60
-    }
-  ],
-  "user_id_1": [
-    {
-      "age": 20,
-      "goalAmount": 1000,
-      "income": 1000,
-      "periodRange": "weekly",
-      "needs": 10,
-      "wants": 20,
-      "save": 50
-    },
-    {
-      "age": 25,
-      "goalAmount": 2000,
-      "income": 1500,
-      "periodRange": "monthly",
-      "needs": 20,
-      "wants": 30,
-      "save": 60
-    }
-  ]
-}
+[
+  {
+    "age": 20,
+    "goalAmount": 1000,
+    "income": 1000,
+    "periodRange": "weekly",
+    "needs": 10,
+    "wants": 20,
+    "save": 50,
+    "userid": "user_id_0"
+  },
+  {
+    "age": 25,
+    "goalAmount": 2000,
+    "income": 1500,
+    "periodRange": "monthly",
+    "needs": 20,
+    "wants": 30,
+    "save": 60,
+    "userid": "user_id_3"
+  },
+  {
+    "age": 20,
+    "goalAmount": 1000,
+    "income": 1000,
+    "periodRange": "weekly",
+    "needs": 10,
+    "wants": 20,
+    "save": 50,
+    "userid": "user_id_1"
+  },
+  {
+    "age": 25,
+    "goalAmount": 2000,
+    "income": 1500,
+    "periodRange": "monthly",
+    "needs": 20,
+    "wants": 30,
+    "save": 60,
+    "userid": "user_id_0"
+  }
+]

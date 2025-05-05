@@ -1,10 +1,24 @@
-import { useNavigate } from "react-router-dom";
+import { FormEvent } from "react";
+import { OnBackProps } from "../../interfaces/uiProps";
+import { useAuthService } from "../../services/authService";
+import { profileService } from "../../services/profileService";
 // Image Sources
 import leftArrow from "../../assets/left_arrow.png";
-import profilePic from "../../assets/profile_pic.svg";
 
-export default function MyAccount() {
-  const navigate = useNavigate();
+export default function MyAccount({ onBack }: OnBackProps) {
+  const { user } = useAuthService();
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form: HTMLFormElement = e.currentTarget;
+    const data: FormData = new FormData(form);
+    await profileService.updateUserProfile({
+      firstName: data.get("firstName") as string,
+      lastName: data.get("lastName") as string,
+      email: data.get("email") as string,
+    });
+    onBack();
+  };
 
   return (
     <div id="my-account-layout">
@@ -13,7 +27,7 @@ export default function MyAccount() {
           src={leftArrow}
           alt="Back button"
           className="back-button"
-          onClick={() => navigate("/profile")}
+          onClick={onBack}
         />
         <h1>My Account</h1>
       </div>
@@ -21,17 +35,27 @@ export default function MyAccount() {
       <div className="content-background">
         <div className="content">
           <div className="profile">
-            <img src={profilePic} alt="Profile picture" />
+          <img 
+              src={user?.imageUrl}
+              alt="Profile picture"
+              style={{
+                cursor: "pointer",
+                width: 120,
+                height: 120,
+                borderRadius: "50%"
+              }}
+            />
             <a href="#">Change profile picture</a>
           </div>
 
           <div id="edit-profile">
-            <form action="" method="POST">
+            <form onSubmit={handleSubmit}>
               <label htmlFor="firstName">First Name</label>
               <label htmlFor="lastName">Last Name</label>
 
-              <input type="text" id="firstName" placeholder="John" required />
-              <input type="text" id="lastName" placeholder="Doe" required />
+              <input type="text" id="firstName" name="firstName" placeholder={user?.firstName ?? "John"} required />
+              <input type="text" id="lastName" name="lastName" placeholder={user?.lastName ?? "Doe"} required />
+              
 
               <label id="email-label" htmlFor="email">
                 Email
@@ -39,12 +63,13 @@ export default function MyAccount() {
               <input
                 type="email"
                 id="email"
-                placeholder="john.doe@email.com"
+                name="email"
+                placeholder={user?.primaryEmailAddress?.emailAddress ?? "john.doe@email.com"}
                 required
               />
 
               <button id="register-btn" type="submit">
-                Register
+                Change
               </button>
             </form>
           </div>

@@ -10,7 +10,7 @@ export default function Splash() {
 
   useEffect(() => {
     if (isSignedIn) {
-      navigate("/home");
+      navigate("/loading");
       return;
     }
 

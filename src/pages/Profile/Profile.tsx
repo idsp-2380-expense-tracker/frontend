@@ -1,17 +1,24 @@
 import { useNavigate } from "react-router-dom";
 import { SignOutButton, useAuthService } from "../../services/authService";
 // Image Sources
-import leftArrow from "../../assets/left_arrow.png";
-import profilePic from "../../assets/profile_pic.svg";
+import { useState } from "react";
 import accountCircle from "../../assets/account_circle.svg";
 import arrowInCircleYellow from "../../assets/arrow_in_circle_yellow.svg";
+import leftArrow from "../../assets/left_arrow.png";
 import logOutIcon from "../../assets/log_out_icon.svg";
 import settingsIcon from "../../assets/settings_icon.svg";
+import MyAccount from "./MyAccount";
 
 export default function Profile() {
   const { openUserProfile, isSignedIn, user } = useAuthService();
   const displayName = isSignedIn && user ? user.firstName : "Guest";
   const navigate = useNavigate();
+
+  const [view, setView] = useState<"profile" | "myAccount">("profile");
+
+  if (view === "myAccount") {
+    return <MyAccount onBack={() => setView("profile")} />;
+  }
 
   return (
     <div id="profile-layout">
@@ -25,11 +32,20 @@ export default function Profile() {
       <div className="content-background">
         <div className="content">
           <div className="profile">
-            <img src={profilePic} alt="Profile picture" />
+            <img 
+              src={user?.imageUrl}
+              alt="Profile picture"
+              style={{
+                cursor: "pointer",
+                width: 120,
+                height: 120,
+                borderRadius: "50%"
+              }}
+            />
             <h1>{displayName}</h1>
           </div>
 
-          <div className="my-account" onClick={() => navigate("/my-account")}>
+          <div className="my-account" onClick={() => setView("myAccount")}>
             <div className="menu-item">
               <img src={accountCircle} alt="Account icon" id="account-circle" />
               <span className="body-bold ">My Account</span>
