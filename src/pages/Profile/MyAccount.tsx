@@ -28,9 +28,9 @@ export default function MyAccount() {
           <div id="edit-profile">
             <form action="" method="POST">
               <label htmlFor="firstName">First Name</label>
-              <label htmlFor="lastName">Last Name</label>
-
               <input type="text" id="firstName" placeholder="John" required />
+
+              <label htmlFor="lastName">Last Name</label>
               <input type="text" id="lastName" placeholder="Doe" required />
 
               <label id="email-label" htmlFor="email">
