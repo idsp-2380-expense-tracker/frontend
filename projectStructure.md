@@ -20,8 +20,8 @@
 
 ## API Router (Front + Back)
 
-- **GET**: `/api/userData` – retrieves the full user dataset
-- **POST**: `/api/user`, `/api/budget`, `/api/tracking`, `/api/rewards`
+- **GET**: `/api/user/data` – retrieves the full user dataset
+- **POST**: `/api/user/edit`, `/api/user/edit-image`, `/api/budget`, `/api/tracking`, `/api/rewards`
 
 ## Flow Structure
 

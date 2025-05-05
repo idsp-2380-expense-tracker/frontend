@@ -35,14 +35,14 @@ export default function MyAccount({ onBack }: OnBackProps) {
       <div className="content-background">
         <div className="content">
           <div className="profile">
-          <img 
+            <img
               src={user?.imageUrl}
               alt="Profile picture"
               style={{
                 cursor: "pointer",
                 width: 120,
                 height: 120,
-                borderRadius: "50%"
+                borderRadius: "50%",
               }}
             />
             <a href="#">Change profile picture</a>
@@ -51,11 +51,20 @@ export default function MyAccount({ onBack }: OnBackProps) {
           <div id="edit-profile">
             <form onSubmit={handleSubmit}>
               <label htmlFor="firstName">First Name</label>
-              <label htmlFor="lastName">Last Name</label>
+              <input
+                type="text"
+                id="firstName"
+                name="firstName"
+                placeholder={user?.firstName ?? "John"}
+              />
 
-              <input type="text" id="firstName" name="firstName" placeholder={user?.firstName ?? "John"} required />
-              <input type="text" id="lastName" name="lastName" placeholder={user?.lastName ?? "Doe"} required />
-              
+              <label htmlFor="lastName">Last Name</label>
+              <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                placeholder={user?.lastName ?? "Doe"}
+              />
 
               <label id="email-label" htmlFor="email">
                 Email
@@ -64,8 +73,10 @@ export default function MyAccount({ onBack }: OnBackProps) {
                 type="email"
                 id="email"
                 name="email"
-                placeholder={user?.primaryEmailAddress?.emailAddress ?? "john.doe@email.com"}
-                required
+                placeholder={
+                  user?.primaryEmailAddress?.emailAddress ??
+                  "john.doe@email.com"
+                }
               />
 
               <button id="register-btn" type="submit">
