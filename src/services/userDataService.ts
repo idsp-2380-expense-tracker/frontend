@@ -14,14 +14,21 @@ export class UserDataService extends ApiService {
         console.log("User data:", this._userData);
     }
 
-    public async saveUserData<K extends keyof DB_User>(endpoint: K, payload: DB_User[K]) {
-        if (!payload) {
-            throw new Error(`No data found for endpoint: ${endpoint}`);
+    public async saveUserData<K extends keyof DB_User>(endpoint: K, partialPayload: Partial<DB_User[K]>) {
+        const current = this._userData?.[endpoint];
+
+        if (!current) {
+            throw new Error(`No existing data found for endpoint: ${endpoint}`);
         }
 
+        const fullPayload = {
+            ...current,
+            ...partialPayload
+        };
+
         try {
-            await this.postData(endpoint, payload);
-            this.updateLocalData(endpoint, payload);
+            await this.postData(endpoint, fullPayload);
+            this.updateLocalData(endpoint, fullPayload);
             console.log(`Saved ${endpoint} data successfully.`);
         } catch (error) {
             console.error(`Failed to save ${endpoint} data:`, error);

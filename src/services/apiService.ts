@@ -29,6 +29,8 @@ export class ApiService {
   }
 
   protected async postData<K extends keyof DB_User>(endpoint: K, payload: DB_User[K]) {
+    if (!this.isHosted) return;
+
     const headers = await this.checkToken();
     const path = `${this.apiBase}/${endpoint}`;
 

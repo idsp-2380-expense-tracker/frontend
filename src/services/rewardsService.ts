@@ -6,7 +6,7 @@ export class RewardsService {
         return userDataService.userData?.rewards;
     }
 
-    public async saveRewardsData(payload: DB_Rewards) {
+    public async saveRewardsData(payload: Partial<DB_Rewards>) {
         await userDataService.saveUserData("rewards", payload);
     }
 }

@@ -6,7 +6,7 @@ export class BudgetService {
         return userDataService.userData?.budget;
     }
 
-    public async saveBudgetData(payload: DB_Budget[]) {
+    public async saveBudgetData(payload: Partial<DB_Budget[]>) {
         await userDataService.saveUserData("budget", payload);
     }
 }

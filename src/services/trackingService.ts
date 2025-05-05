@@ -6,7 +6,7 @@ export class TrackingService {
         return userDataService.userData?.tracking;
     }
 
-    public async saveTrackingData(payload: DB_Tracking[]) {
+    public async saveTrackingData(payload: Partial<DB_Tracking[]>) {
         await userDataService.saveUserData("tracking", payload);
     }
 }
