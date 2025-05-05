@@ -6,7 +6,7 @@ export class ProfileService extends ApiService {
         lastName?: string;
         email?: string;
     }) {
-        return this.postData("user/update", params);
+        return this.postData("user", params);
     }
 }
 
