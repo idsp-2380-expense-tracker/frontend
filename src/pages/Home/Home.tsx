@@ -1,7 +1,7 @@
 import Header from "../../components/Header";
 import NavBar from "../../components/NavBar";
 // Image Sources
-import insightIcon from "../../assets/Party.svg";
+import insightIcon from "../../assets/party.svg";
 import rightArrow from "../../assets/right_arrow.svg";
 import spendGraph from "../../assets/spending-graph.svg";
 import arrowInCircleGrey from "../../assets/arrow_in_circle_grey.svg";
