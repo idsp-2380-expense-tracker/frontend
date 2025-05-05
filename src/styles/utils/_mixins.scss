@@ -44,9 +44,11 @@
   justify-content: center;
   font-size: variables.$font-size-body-bold;
   font-weight: variables.$font-weight-body-bold;
+  color: black;
   padding: 0 1.5rem;
   width: 90%;
   height: $height;
   background-color: variables.$input-box-colour;
+  border: 0;
   border-radius: variables.$border-radius-overlay;
 }
