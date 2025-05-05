@@ -81,6 +81,8 @@
       @include mixins.button(48px);
       background-color: variables.$primary-colour;
       width: 100%;
+      border: 1px sold variables.$primary-colour;
+      color: black;
     }
   }
 }
