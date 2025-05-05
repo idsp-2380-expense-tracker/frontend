@@ -1,4 +1,4 @@
-import { useAuthService } from "./authService";
+import { DB_Rewards } from "../interfaces/dbStructure";
 import { userDataService } from "./userDataService";
 
 export class RewardsService {
@@ -6,14 +6,8 @@ export class RewardsService {
         return userDataService.userData?.rewards;
     }
 
-    public async saveRewardsData() {
-        const { getToken } = useAuthService();
-        const token = await getToken();
-        if (token) {
-            await userDataService.saveUserData("rewards", token);
-        } else {
-            throw new Error("No auth token");
-        }
+    public async saveRewardsData(payload: DB_Rewards) {
+        await userDataService.saveUserData("rewards", payload);
     }
 }
 

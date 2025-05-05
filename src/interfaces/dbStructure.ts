@@ -37,5 +37,5 @@ export interface DB_Rewards {
 export interface DB_User {
     tracking: DB_Tracking[];
     budget: DB_Budget[];
-    rewards: DB_Rewards[];
+    rewards: DB_Rewards;
 }

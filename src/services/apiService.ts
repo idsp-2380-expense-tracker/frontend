@@ -29,14 +29,8 @@ export class ApiService {
   }
 
   protected async postData<K extends keyof DB_User>(endpoint: K, payload: DB_User[K]) {
-    const token = await ApiService.getToken();
-    if (!token) throw new Error("No auth token available");
-
+    const headers = await this.checkToken();
     const path = `${this.apiBase}/${endpoint}`;
-    const headers = {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    };
 
     try {
       const response = await axios.post(path, payload, { headers });
@@ -44,5 +38,28 @@ export class ApiService {
     } catch (error) {
       throw new Error(`Failed to post to ${endpoint}`);
     }
+  }
+
+  protected async postRaw(path: string, payload: any) {
+    const headers = await this.checkToken();
+
+    try {
+      const response = await axios.post(`${this.apiBase}/${path}`, payload, { headers });
+      return response.data;
+    } catch (error) {
+      throw new Error(`Failed to post to ${path}`);
+    }
+  }
+
+  private async checkToken() {
+    const token = await ApiService.getToken();
+    if (!token) throw new Error("No auth token available");
+
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    };
+
+    return headers;
   }
 }
