@@ -29,10 +29,10 @@ export default function TrackingDrawer({
     >
       <div className="tracking-drawer-content">
         <div className="drawer-handle">
-          <p onClick={onToggle}>--------------------------------------------------</p>
+          <div id="handle-bar" onClick={onToggle}></div>
         </div>
         <p>TEST_DRAWER</p>
-        <p>{selectedDate ? selectedDate.toDateString() : ""}</p>
+        <h3>{selectedDate ? selectedDate.toDateString() : ""}</h3>
       </div>
     </SwipeableDrawer>
   );

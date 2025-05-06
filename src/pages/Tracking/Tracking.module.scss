@@ -1,66 +1,174 @@
+@use "../../styles/utils/variables";
+@use "../../styles/utils/mixins";
+
 #tracking-calendar {
-    position: relative;
-    z-index: 1300;
+  position: relative;
+  z-index: 1300;
 
-    &.under-drawer {
-        z-index: 0;
+  &.under-drawer {
+    z-index: 0;
+  }
+
+  .react-datepicker__navigation-icon::before {
+    border-color: white;
+  }
+
+  .react-datepicker__header {
+    background-color: variables.$bg-colour;
+
+    h2 {
+      color: white;
     }
 
-    .react-datepicker {
-        width: 99.75%;
-
-        .react-datepicker__month-container {
-            width: 100%;
-        }
-
-        .react-datepicker__day {
-            width: 13%;
-
-            &.marked-day {
-                position: relative;
-
-                &::before {
-                    content: "";
-                    position: absolute;
-                    border-radius: 50%;
-                    transform: translateX(-50%);
-                    top: 1px;
-                    left: 50%;
-                    width: 4px;
-                    height: 4px;
-                    background: red;
-                }
-            }
-        }
+    .react-datepicker__day-name {
+      color: #a3a2b4;
     }
+
+    .react-datepicker__day-name:nth-child(1) {
+      // Set Sunday to red
+      color: red;
+    }
+  }
+
+  .react-datepicker__month {
+    color: white;
+  }
+
+  .react-datepicker__week {
+    .react-datepicker__day--selected {
+      color: black !important;
+      background-color: variables.$primary-colour;
+    }
+
+    .react-datepicker__day:hover {
+      color: white;
+      background-color: variables.$btn-background;
+    }
+  }
+
+  .react-datepicker {
+    width: 100%;
+    border: 0;
+
+    .react-datepicker__month-container {
+      background-color: variables.$bg-colour;
+      width: 100%;
+    }
+
+    .react-datepicker__day-names {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .react-datepicker__day {
+      width: 13%;
+      color: white;
+      padding: 5% 0px;
+      align-items: center;
+
+      &.marked-day {
+        position: relative;
+
+        &::before {
+          content: "";
+          position: absolute;
+          border-radius: 50%;
+          transform: translateX(-50%);
+          bottom: 13px;
+          left: 50%;
+          width: 4px;
+          height: 4px;
+          background: red;
+        }
+      }
+    }
+  }
 }
 
 .tracking-drawer {
-    &.collapsed {
-        height: 50vh;
-    }
+  padding: 1rem 2rem;
 
-    &.expanded {
-        height: 90vh;
-    }
+  &.collapsed {
+    height: 45vh;
+    background-color: variables.$secondary-colour;
+    @include mixins.top-border-radius(variables.$border-radius-overlay);
+    position: fixed;
+    z-index: 2000;
+    color: white;
+  }
+
+  &.expanded {
+    height: 95vh;
+    background-color: variables.$secondary-colour;
+    @include mixins.top-border-radius(variables.$border-radius-overlay);
+  }
 }
 
 .drawer-handle {
-    pointer-events: auto;
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 0;
 
-    p {
-        cursor: pointer;
-    }
+  #handle-bar {
+    width: 80px;
+    height: 5px;
+    background-color: #605d7c;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    cursor: pointer;
+  }
 }
 
 .nav-bar {
-    position: fixed;
-    z-index: 1300;
+  position: fixed;
+  z-index: 3000;
 }
 
 #tracking-option {
-    position: fixed;
-    right: 16px;
-    bottom: 80px;
-    z-index: 1300;
+  position: fixed;
+  right: 1rem;
+  bottom: 80px;
+  z-index: 1300;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 0.5rem;
+
+  #options-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 0;
+    color: #92ac35;
+    background-color: variables.$btn-primary-disabled;
+  }
+
+  #tracking-btn {
+    width: auto;
+    height: 60px;
+    border-radius: 50px;
+    border: 0;
+    padding: 1rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: end;
+
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+
+    &.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    img {
+      margin-left: 1rem;
+    }
+  }
 }

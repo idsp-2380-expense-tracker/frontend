@@ -1,3 +1,7 @@
+// Image Sources
+import barcodeIcon from "../../assets/barcode_icon.svg";
+import notePencilIcon from "../../assets/note_pencil_icon.svg";
+
 interface TrackingOptionsProps {
   showOptions: boolean;
   onToggleOptions: () => void;
@@ -12,14 +16,26 @@ export default function TrackingOptions({
   onScan,
 }: TrackingOptionsProps) {
   return (
-    <div id="tracking-option">
-      {showOptions && (
-        <>
-          <button onClick={() => onScan && onScan()}>Scan to Track</button>
-          <button onClick={onManualFormOpen}>Manual Tracking</button>
-        </>
-      )}
+    <div id="tracking-option" className={showOptions ? "show" : ""}>
       <button
+        id="tracking-btn"
+        className={showOptions ? "show" : ""}
+        onClick={() => onScan && onScan()}
+      >
+        <span>Scan to Track</span>
+        <img src={barcodeIcon} alt="Barcode icon" />
+      </button>
+      <button
+        id="tracking-btn"
+        className={showOptions ? "show" : ""}
+        onClick={onManualFormOpen}
+      >
+        <span>Manual Tracking</span>
+        <img src={notePencilIcon} alt="Note Pencil icon" />
+      </button>
+
+      <button
+        id="options-btn"
         onClick={onToggleOptions}
         style={{ fontSize: 24, cursor: "pointer" }}
       >
