@@ -10,6 +10,13 @@ export class UserDataService extends ApiService {
 
     public async fetchUserData() {
         this._userData = await super.getData();
+
+        this._userData = {
+            tracking: this._userData?.tracking ?? [],
+            budget: this._userData?.budget ?? [],
+            rewards: this._userData?.rewards ?? {} as DB_User["rewards"],
+        };
+
         this._initialized = true;
         console.log("User data:", this._userData);
     }
