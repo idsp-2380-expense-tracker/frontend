@@ -1,9 +1,10 @@
 import { FormEvent } from "react";
 import { OnBackProps } from "../../interfaces/uiProps";
 import { useAuthService } from "../../services/authService";
-import { profileService } from "../../services/profileService";
 // Image Sources
 import leftArrow from "../../assets/left_arrow.png";
+import { profileService } from "../../services/profileService";
+import UserProfileUploader from "./UserProfileUploader";
 
 export default function MyAccount({ onBack }: OnBackProps) {
   const { user } = useAuthService();
@@ -12,13 +13,27 @@ export default function MyAccount({ onBack }: OnBackProps) {
     e.preventDefault();
     const form: HTMLFormElement = e.currentTarget;
     const data: FormData = new FormData(form);
-    await profileService.updateUserProfile({
-      firstName: data.get("firstName") as string,
-      lastName: data.get("lastName") as string,
-      email: data.get("email") as string,
-    });
-    onBack();
+    try {
+      await profileService.updateUserProfile(
+        user,
+        data.get("firstName") as string || "",
+        data.get("lastName") as string || ""
+      );
+    } catch (error) {
+      console.error(`Profile Update Failed: ${error}`);
+    } finally {
+      onBack();
+    }
   };
+
+  const handleImageSelect = async (file: File) => {
+    if (!user) return
+    try {
+      await user.setProfileImage({ file })
+    } catch (err) {
+      console.error(`Image upload failed: ${err}`);
+    }
+  }
 
   return (
     <div id="my-account-layout">
@@ -45,7 +60,7 @@ export default function MyAccount({ onBack }: OnBackProps) {
                 borderRadius: "50%",
               }}
             />
-            <a href="#">Change profile picture</a>
+            <UserProfileUploader onFileSelect={handleImageSelect} />
           </div>
 
           <div id="edit-profile">
@@ -55,7 +70,7 @@ export default function MyAccount({ onBack }: OnBackProps) {
                 type="text"
                 id="firstName"
                 name="firstName"
-                placeholder={user?.firstName ?? "John"}
+                placeholder={user?.firstName ?? ""}
               />
 
               <label htmlFor="lastName">Last Name</label>
@@ -63,7 +78,7 @@ export default function MyAccount({ onBack }: OnBackProps) {
                 type="text"
                 id="lastName"
                 name="lastName"
-                placeholder={user?.lastName ?? "Doe"}
+                placeholder={user?.lastName ?? ""}
               />
 
               <label id="email-label" htmlFor="email">
@@ -73,10 +88,8 @@ export default function MyAccount({ onBack }: OnBackProps) {
                 type="email"
                 id="email"
                 name="email"
-                placeholder={
-                  user?.primaryEmailAddress?.emailAddress ??
-                  "john.doe@email.com"
-                }
+                defaultValue={user?.primaryEmailAddress?.emailAddress ?? ""}
+                readOnly
               />
 
               <button id="register-btn" type="submit">

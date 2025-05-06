@@ -66,6 +66,16 @@
       color: #7a7891;
       font-size: 14px;
       border: 1px solid #37355b;
+
+      &:read-only {
+        color: white;
+        cursor: not-allowed;
+
+        &:focus {
+          outline: none;
+          box-shadow: none;
+        }
+      }
     }
 
     label {

@@ -3,8 +3,10 @@
 - **Tech**: Vite + React + TypeScript + SASS + PWA
 - **Render**: Static Site
 - **Authentication**: Clerk (Frontend Integration)
-- **Calendar Feature**: react-datepicker
-- **Drawer UI**: MUI `SwipeableDrawer`
+- **Image Uploader**: react-images-uploading
+
+<!-- - **Calendar Feature**: react-datepicker
+- **Drawer UI**: MUI `SwipeableDrawer` -->
 
 ## Back-end
 
