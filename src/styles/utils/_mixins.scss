@@ -52,3 +52,8 @@
   border: 0;
   border-radius: variables.$border-radius-overlay;
 }
+
+@mixin top-border-radius($radius: 0px) {
+  border-top-right-radius: $radius;
+  border-top-left-radius: $radius;
+}

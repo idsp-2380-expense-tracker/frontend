@@ -19,31 +19,24 @@ export default function Tracking() {
 
   return (
     <>
-      <h1>TEST_TRACKING</h1>
-
       <TrackingCalendar
         selectedDate={selectedDate}
         onDateChange={setSelectedDate}
         markedDates={markedDates}
         wrapperClassName={!drawerExpanded ? "above-drawer" : "under-drawer"}
       />
-
       <TrackingDrawer
         expanded={drawerExpanded}
         onToggle={() => setDrawerExpanded((prev) => !prev)}
         selectedDate={selectedDate}
       />
-
       <TrackingOptions
         showOptions={showOptions}
         onToggleOptions={() => setShowOptions((prev) => !prev)}
         onManualFormOpen={() => setShowManualForm(true)}
         onScan={() => {}}
       />
-
-      <div className="nav-bar">
-        <NavBar />
-      </div>
+      <NavBar />
     </>
   );
 }
