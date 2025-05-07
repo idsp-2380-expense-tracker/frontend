@@ -28,8 +28,9 @@ export class UserDataService extends ApiService {
         const today = dayjs().format("YYYY-MM-DD");
         const payload = { date: today };
 
-        await this.postRaw("user/login-streak", payload);
-        await user.reload();
+        // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@TEST
+        // await this.postRaw("user/login-streak", payload);
+        // await user.reload();
     }
 
     public async saveUserData<K extends keyof DB_User>(endpoint: K, partialPayload: Partial<DB_User[K]>) {
