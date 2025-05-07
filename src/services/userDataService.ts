@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { DB_User } from "../interfaces/dbStructure";
 import { ApiService } from "./apiService";
 
@@ -19,6 +20,16 @@ export class UserDataService extends ApiService {
 
         this._initialized = true;
         console.log("User data:", this._userData);
+    }
+
+    public async syncLoginStreak(user: any) {
+        if (!user) return;
+
+        const today = dayjs().format("YYYY-MM-DD");
+        const payload = { date: today };
+
+        await this.postRaw("user/login-streak", payload);
+        await user.reload();
     }
 
     public async saveUserData<K extends keyof DB_User>(endpoint: K, partialPayload: Partial<DB_User[K]>) {

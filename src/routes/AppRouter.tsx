@@ -14,7 +14,7 @@ import Splash from '../pages/Splash/Splash';
 import Tracking from '../pages/Tracking/Tracking';
 
 export default function AppRouter() {
-  const { getToken, isSignedIn } = useAuthService();
+  const { getToken, isSignedIn, user } = useAuthService();
   const [dataLoaded, setDataLoaded] = useState(false);
   const routeStage =
     !isSignedIn ? "guest":
@@ -29,6 +29,7 @@ export default function AppRouter() {
         userDataService.clearCache();
         userDataService
           .fetchUserData()
+          .then(() => userDataService.syncLoginStreak(user))
           .then(() => setDataLoaded(true))
           .catch((error) => {
             console.error("Failed to load user data:", error);
