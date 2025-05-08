@@ -14,6 +14,7 @@ export default function App() {
       style={{
         backgroundColor: theme.other.backgroundColor,
         minHeight: "100vh",
+        paddingTop: "1rem",
         color: theme.other.textColor,
       }}
     >
