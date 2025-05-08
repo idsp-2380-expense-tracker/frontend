@@ -65,28 +65,34 @@ export default function TrackingForm({ onBack }: OnBackProps) {
           <hr id="trans-underline" />
         </div>
       </section>
-      <section id="trans-category"></section>
-      <Menu
-        onOpen={() => setOpened(true)}
-        onClose={() => setOpened(false)}
-        radius="md"
-        width="target"
-        withinPortal
-      >
-        <Menu.Target>
-          <UnstyledButton
-            className={classes.control}
-            data-expanded={opened || undefined}
-          >
-            <Group gap="xs">
-              {/* <Image src={selected.image} w={22} h={22} /> */}
-              <span className={classes.label}>{selected.label}</span>
-            </Group>
-            <IconChevronDown size={16} className={classes.icon} stroke={1.5} />
-          </UnstyledButton>
-        </Menu.Target>
-        <Menu.Dropdown>{items}</Menu.Dropdown>
-      </Menu>
+
+      <section id="trans-category">
+        <Menu
+          onOpen={() => setOpened(true)}
+          onClose={() => setOpened(false)}
+          radius="md"
+          width="target"
+          withinPortal
+        >
+          <Menu.Target>
+            <UnstyledButton
+              className={classes.control}
+              data-expanded={opened || undefined}
+            >
+              <Group gap="xs">
+                {/* <Image src={selected.image} w={22} h={22} /> */}
+                <span className={classes.label}>{selected.label}</span>
+              </Group>
+              <IconChevronDown
+                size={16}
+                className={classes.icon}
+                stroke={1.5}
+              />
+            </UnstyledButton>
+          </Menu.Target>
+          <Menu.Dropdown>{items}</Menu.Dropdown>
+        </Menu>
+      </section>
     </div>
   );
 }
