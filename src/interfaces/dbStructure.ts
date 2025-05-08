@@ -11,23 +11,18 @@ export interface DB_Tracking {
     userid: string;
 };
 
+export type PeriodRange = "Weekly" | "Biweekly" | "Monthly";
+
 export interface DB_Budget {
     id: number;
-
-    //From Frontend
-    age: number;
-    periodRange: string;
+    periodRange: PeriodRange;
     income: number;
-    goalName: string;
-    goalAmount: number;
-
-    //From Backend
     needs: number;
     wants: number;
     save: number;
     createdAt: string;
     userid: string;
-};
+}
 
 export interface DB_Rewards {
     id: number;
@@ -38,6 +33,6 @@ export interface DB_Rewards {
 
 export interface DB_User {
     tracking: DB_Tracking[];
-    budget: DB_Budget[];
+    budget: DB_Budget;
     rewards: DB_Rewards;
 }

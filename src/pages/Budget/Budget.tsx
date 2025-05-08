@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { budgetService } from "../../services/budgetService";
+
 import NavBar from "../../components/NavBar";
 import BudgetForm from "./BudgetForm";
 import BudgetMain from "./BudgetMain";
@@ -26,8 +28,12 @@ export default function Budget() {
       {stage === "form" && (
         <>
           <BudgetForm onSubmit={(data) => {
-            console.log(data);  // Test
-            // userDataService.saveUserData("budget", data);
+            const distro = budgetService.calculateDistribution(data.income);
+            budgetService.saveBudgetData({
+              income:      data.income,
+              periodRange: data.periodRange,
+              ...distro,
+            });
             setStage("main");
           }} />
           <NavBar />

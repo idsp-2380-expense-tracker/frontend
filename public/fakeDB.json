@@ -19,26 +19,13 @@
             "note": ""
         }
     ],
-    "budget": [
-        {
-            "age": 20,
-            "goalAmount": 1000,
-            "income": 1000,
-            "periodRange": "weekly",
-            "needs": 10,
-            "wants": 20,
-            "save": 50
-        },
-        {
-            "age": 25,
-            "goalAmount": 2000,
-            "income": 1500,
-            "periodRange": "monthly",
-            "needs": 20,
-            "wants": 30,
-            "save": 60
-        }
-    ],
+    "budget": {
+        "periodRange": "weekly",
+        "income": 1000,
+        "needs": 2000,
+        "wants": 1200,
+        "save": 800
+    },
     "rewards": {
         "points": 300
     }
