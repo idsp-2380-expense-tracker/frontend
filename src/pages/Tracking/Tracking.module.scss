@@ -71,7 +71,6 @@
     // Month Title
     .react-datepicker__month-container {
       background-color: variables.$bg-colour;
-      // padding: 0.1rem 0;
       width: 100%;
     }
 
@@ -133,7 +132,6 @@
 
 .tracking-drawer-content {
   .drawer-handle {
-    // pointer-events: auto;
     padding-top: 8px;
     left: 50%;
     position: fixed;
@@ -247,7 +245,6 @@ hr {
   #spending-title {
     display: flex;
     justify-content: space-between;
-    // margin-bottom: 1rem;
   }
 
   .tag-payment {
