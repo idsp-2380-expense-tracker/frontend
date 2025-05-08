@@ -28,9 +28,8 @@ export class UserDataService extends ApiService {
         const today = dayjs().format("YYYY-MM-DD");
         const payload = { date: today };
 
-        // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@TEST
-        // await this.postRaw("user/login-streak", payload);
-        // await user.reload();
+        await this.postRaw("user/login-streak", payload);
+        await user.reload();
     }
 
     public async saveUserData<K extends keyof DB_User>(endpoint: K, partialPayload: Partial<DB_User[K]>) {
@@ -50,7 +49,7 @@ export class UserDataService extends ApiService {
             this.updateLocalData(endpoint, fullPayload);
             console.log(`Saved ${endpoint} data successfully.`);
         } catch (error) {
-            console.error(`Failed to save ${endpoint} data:`, error);
+            console.error(`Failed to save ${endpoint} data (${error})`);
         }
     }
 

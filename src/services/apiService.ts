@@ -24,7 +24,7 @@ export class ApiService {
       const response = await axios.get(path, { headers });
       return response.data;
     } catch (error) {
-      throw new Error(`Failed to fetch userData: ${error}`);
+      console.error(`Failed to fetch userData (${error})`);
     }
   }
 
@@ -38,7 +38,7 @@ export class ApiService {
       const response = await axios.post(path, payload, { headers });
       return response.data;
     } catch (error) {
-      throw new Error(`Failed to post to ${endpoint}`);
+      console.error(`Failed to post to ${endpoint} (${error})`);
     }
   }
 
@@ -49,7 +49,7 @@ export class ApiService {
       const response = await axios.post(`${this.apiBase}/${path}`, payload, { headers });
       return response.data;
     } catch (error) {
-      throw new Error(`Failed to post to ${path}`);
+      console.error(`Failed to post to ${path} (${error})`);
     }
   }
 
