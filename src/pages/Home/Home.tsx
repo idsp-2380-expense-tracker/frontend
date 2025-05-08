@@ -1,12 +1,13 @@
 import Header from "../../components/Header";
 import NavBar from "../../components/NavBar";
+import SpendingStatsBar from "../../components/SpendingStatsBar";
+import ArticleCarousel from "../../components/ArticleCarousel";
+
 // Image Sources
 import insightIcon from "../../assets/party.svg";
 import rightArrow from "../../assets/right_arrow.svg";
-import spendGraph from "../../assets/spending-graph.svg";
 import arrowInCircleGrey from "../../assets/arrow_in_circle_grey.svg";
 import coinsIcon from "../../assets/reward_icon.svg";
-import linkIcon from "../../assets/link_icon.svg";
 
 export default function Home() {
   return (
@@ -35,7 +36,7 @@ export default function Home() {
             </div>
           </div>
 
-          <img src={spendGraph} alt="" />
+          <SpendingStatsBar />
         </section>
 
         <section id="spending-summary">
@@ -132,7 +133,15 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="article-list">
+        <ArticleCarousel />
+      </div>
+      <NavBar />
+    </>
+  );
+}
+
+{
+  /* <section id="article-list">
           <div id="article">
             <h3 id="article-link">
               <a
@@ -155,9 +164,5 @@ export default function Home() {
               <p>by True Tamplin</p>
             </div>
           </div>
-        </section>
-      </div>
-      <NavBar />
-    </>
-  );
+        </section> */
 }

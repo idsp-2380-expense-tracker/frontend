@@ -5,12 +5,15 @@
 
 #home-layout {
   @include mixins.center-flex(column);
-  margin-bottom: 80px;
+  margin-top: 1rem;
+  margin-bottom: 50px;
 
   // Insights section
   #insights {
     @include mixins.box(60px);
+    display: flex;
     justify-content: space-between;
+    align-items: center;
 
     #insights-title {
       display: flex;
@@ -33,6 +36,7 @@
       justify-content: space-between;
       align-items: center;
       width: 100%;
+      padding: 1rem 0;
 
       #percentage-spending {
         color: variables.$primary-colour;
@@ -70,6 +74,8 @@
   // Spending Summary section
   #spending-summary {
     @include mixins.box(60px);
+    display: flex;
+    align-items: center;
 
     span {
       color: variables.$primary-colour;
@@ -156,10 +162,10 @@
 
       h1 {
         color: variables.$primary-colour;
-        font-size: 48px;
+        font-size: 40px;
         margin-block-start: 0.5em;
         margin-block-end: 0;
-        text-align: right;
+        text-align: center;
 
         span {
           color: white;
@@ -197,4 +203,17 @@
       justify-content: space-between;
     }
   }
+}
+
+// Spending Progress Card
+.progressTrack {
+  background-color: var(--mantine-color-gray-6) !important;
+}
+
+.progressSection {
+  background-color: variables.$progress-bar-colour !important;
+}
+
+.mantine-Progress-root {
+  margin-top: 0 !important;
 }
