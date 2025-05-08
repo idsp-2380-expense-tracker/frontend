@@ -9,15 +9,23 @@
     z-index: 0;
   }
 
+  // Set Navigation icon colour
   .react-datepicker__navigation-icon::before {
     border-color: white;
   }
 
+  // Set Navigation icon height
+  .react-datepicker__navigation {
+    margin: 1rem;
+  }
+
+  // Header config
   .react-datepicker__header {
     background-color: variables.$bg-colour;
 
     h2 {
       color: white;
+      font-size: 1.2rem;
     }
 
     .react-datepicker__day-name {
@@ -58,26 +66,32 @@
     width: 100%;
     border: 0;
 
+    // Month Title
     .react-datepicker__month-container {
       background-color: variables.$bg-colour;
+      padding: 1rem 0;
       width: 100%;
     }
 
+    // Week Title
     .react-datepicker__day-names {
       display: flex;
+      margin-top: 1rem;
       justify-content: space-evenly;
     }
 
+    // Day Selector
     .react-datepicker__day {
-      width: 13%;
+      width: 12%;
       color: white;
-      padding: 4% 0px;
+      padding: 12px 0px;
       border-radius: 15px;
       align-items: center;
 
       &.marked-day {
         position: relative;
 
+        // Red Marker
         &::before {
           content: "";
           position: absolute;
@@ -98,7 +112,7 @@
   padding: 1rem 2rem;
 
   &.collapsed {
-    height: 45vh;
+    height: 40%;
     background-color: variables.$btn-background;
     @include mixins.top-border-radius(variables.$border-radius-overlay);
     position: fixed;
@@ -130,11 +144,6 @@
     margin-bottom: 1rem;
     cursor: pointer;
   }
-}
-
-.nav-bar {
-  position: fixed;
-  z-index: 9999;
 }
 
 #tracking-option {
