@@ -27,15 +27,18 @@ export default function Budget() {
 
       {stage === "form" && (
         <>
-          <BudgetForm onSubmit={(data) => {
-            const distro = budgetService.calculateDistribution(data.income);
-            budgetService.saveBudgetData({
-              income:      data.income,
-              periodRange: data.periodRange,
-              ...distro,
-            });
-            setStage("main");
-          }} />
+          <BudgetForm 
+            onSubmit={(data) => {
+              const distro = budgetService.calculateDistribution(data.income);
+              budgetService.saveBudgetData({
+                income:      data.income,
+                periodRange: data.periodRange,
+                ...distro,
+              });
+              setStage("main");
+            }}
+            onBack={() => setStage("main")}
+          />
           <NavBar />
         </>
       )}

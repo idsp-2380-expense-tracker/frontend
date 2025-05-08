@@ -2,9 +2,9 @@ import { useState } from "react";
 import { DB_Budget, PeriodRange } from "../../interfaces/dbStructure";
 
 type BudgetData = Pick<DB_Budget, "periodRange" | "income">;
-interface BudgetFormProps { onSubmit(data: BudgetData): void; }
+interface BudgetFormProps { onSubmit(data: BudgetData): void; onBack(): void; }
 
-export default function BudgetForm({ onSubmit }: BudgetFormProps) {
+export default function BudgetForm({ onSubmit, onBack }: BudgetFormProps) {
   const [periodRange, setPeriodRange] = useState<PeriodRange>("Weekly");
   const [income, setIncome] = useState<string>("");
   const PERIOD_OPTIONS: PeriodRange[] = ["Weekly", "Biweekly", "Monthly"];
@@ -16,28 +16,28 @@ export default function BudgetForm({ onSubmit }: BudgetFormProps) {
 
   return (
     <>
+      <button onClick={onBack}>BACK</button>
       <h1>Budget Setup</h1>
+      <p>The Ideal Budget will be generated based on your Income.</p>
+      picture
+      <h2>Income</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Period</label>
-          <div>
-            {PERIOD_OPTIONS.map((p) => (
-              <button
-                key={p}
-                type="button"
-                onClick={() => setPeriodRange(p)}
-                style={{
-                  fontWeight: periodRange === p ? "bold" : "normal"
-                }}
-              >
-                {p}
-              </button>
-            ))}
-          </div>
+          {PERIOD_OPTIONS.map((p) => (
+            <button
+              key={p}
+              type="button"
+              onClick={() => setPeriodRange(p)}
+              style={{  // TEST
+                fontWeight: periodRange === p ? "bold" : "normal"
+              }}
+            >
+              {p}
+            </button>
+          ))}
         </div>
 
         <div>
-          <label htmlFor="income">Income</label>
           <input
             id="income"
             type="number"
@@ -46,6 +46,7 @@ export default function BudgetForm({ onSubmit }: BudgetFormProps) {
             required
           />
         </div>
+        <p>If you input monthly income, it will be set up Monthly Budget.</p>
 
         <button type="submit">Submit</button>
       </form>

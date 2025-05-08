@@ -1,0 +1,1 @@
+export const formatNumber = (n: any): string => Number(n).toLocaleString();
