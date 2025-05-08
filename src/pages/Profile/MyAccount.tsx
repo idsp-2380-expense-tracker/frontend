@@ -1,7 +1,7 @@
 import { FormEvent } from "react";
 import { OnBackProps } from "../../interfaces/uiProps";
 import { useAuthService } from "../../services/authService";
-// Image Sources
+// Image Source
 import leftArrow from "../../assets/left_arrow.png";
 import { profileService } from "../../services/profileService";
 import UserProfileUploader from "./UserProfileUploader";
@@ -16,8 +16,8 @@ export default function MyAccount({ onBack }: OnBackProps) {
     try {
       await profileService.updateUserProfile(
         user,
-        data.get("firstName") as string || "",
-        data.get("lastName") as string || ""
+        (data.get("firstName") as string) || "",
+        (data.get("lastName") as string) || ""
       );
     } catch (error) {
       console.error(`Profile Update Failed: ${error}`);
@@ -27,13 +27,13 @@ export default function MyAccount({ onBack }: OnBackProps) {
   };
 
   const handleImageSelect = async (file: File) => {
-    if (!user) return
+    if (!user) return;
     try {
-      await user.setProfileImage({ file })
+      await user.setProfileImage({ file });
     } catch (err) {
       console.error(`Image upload failed: ${err}`);
     }
-  }
+  };
 
   return (
     <div id="my-account-layout">

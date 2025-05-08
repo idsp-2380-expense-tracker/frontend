@@ -21,6 +21,7 @@ export default function TrackingOptions({
         id="tracking-btn"
         className={showOptions ? "show" : ""}
         onClick={() => onScan && onScan()}
+        style={{ color: "black", cursor: "pointer" }}
       >
         <span>Scan to Track</span>
         <img src={barcodeIcon} alt="Barcode icon" />
@@ -29,6 +30,7 @@ export default function TrackingOptions({
         id="tracking-btn"
         className={showOptions ? "show" : ""}
         onClick={onManualFormOpen}
+        style={{ color: "black", cursor: "pointer" }}
       >
         <span>Manual Tracking</span>
         <img src={notePencilIcon} alt="Note Pencil icon" />

@@ -6,7 +6,7 @@ import { userDataService } from "../../services/userDataService";
 export default function Rewards() {
   const handleClick = async () => {
     const newReward: Partial<DB_Rewards> = {
-      points: 250
+      points: 250,
     };
 
     try {
@@ -17,12 +17,12 @@ export default function Rewards() {
       console.error(`Failed to update rewards: ${error}`);
     }
   };
-  
-    return (
-      <>
-        <h1>TEST_REWARDS</h1>
-        <button onClick={handleClick}>TEST_Set Rewards to 250</button>
-        <NavBar />
-      </>
-    );
+
+  return (
+    <>
+      <h1>TEST_REWARDS</h1>
+      <button onClick={handleClick}>TEST_Set Rewards to 250</button>
+      <NavBar />
+    </>
+  );
 }
