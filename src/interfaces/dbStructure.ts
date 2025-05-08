@@ -1,6 +1,5 @@
 export interface DB_Tracking {
     id: number;
-    userId: number;
     category: string;
     paymentMethod: string;
     amount: number;
@@ -14,11 +13,15 @@ export interface DB_Tracking {
 
 export interface DB_Budget {
     id: number;
-    userId: number;
+
+    //From Frontend
     age: number;
-    goalAmount: number;
-    income: number;
     periodRange: string;
+    income: number;
+    goalName: string;
+    goalAmount: number;
+
+    //From Backend
     needs: number;
     wants: number;
     save: number;
@@ -28,7 +31,6 @@ export interface DB_Budget {
 
 export interface DB_Rewards {
     id: number;
-    userId: number;
     points: number;
     createdAt: string;
     userid: string;

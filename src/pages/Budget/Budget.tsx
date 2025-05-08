@@ -25,7 +25,11 @@ export default function Budget() {
 
       {stage === "form" && (
         <>
-          <BudgetForm onSubmit={() => setStage("main")} />
+          <BudgetForm onSubmit={(data) => {
+            console.log(data);  // Test
+            // userDataService.saveUserData("budget", data);
+            setStage("main");
+          }} />
           <NavBar />
         </>
       )}
