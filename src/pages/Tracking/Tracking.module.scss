@@ -130,20 +130,18 @@
   }
 }
 
-.tracking-drawer-content {
-  .drawer-handle {
-    padding-top: 8px;
-    left: 50%;
-    position: fixed;
-    transform: translateX(-50%);
+.drawer-handle {
+  padding-top: 8px;
+  left: 50%;
+  position: fixed;
+  transform: translateX(-50%);
 
-    #handle-bar {
-      width: 80px;
-      height: 5px;
-      background-color: variables.$handle-colour;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+  #handle-bar {
+    width: 80px;
+    height: 5px;
+    background-color: variables.$handle-colour;
+    border-radius: 5px;
+    cursor: pointer;
   }
 }
 
