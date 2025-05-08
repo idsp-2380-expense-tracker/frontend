@@ -38,7 +38,9 @@ export default function TrackingDrawer({
         <div className="drawer-handle">
           <div id="handle-bar" onClick={onToggle}></div>
         </div>
-        <h3 style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
+        <h3
+          style={{ fontSize: "1.5rem", fontWeight: "bold", marginTop: "3rem" }}
+        >
           {selectedDate ? selectedDate.toDateString() : ""}
         </h3>
       </div>

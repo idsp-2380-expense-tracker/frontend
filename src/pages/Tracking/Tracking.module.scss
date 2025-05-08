@@ -64,6 +64,7 @@
 
   .react-datepicker {
     width: 100%;
+    margin-top: 2rem;
     border: 0;
 
     // Month Title
@@ -129,20 +130,21 @@
   }
 }
 
-.drawer-handle {
-  pointer-events: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 8px 0;
+.tracking-drawer-content {
+  .drawer-handle {
+    pointer-events: auto;
+    padding-top: 8px;
+    left: 50%;
+    position: fixed;
+    transform: translateX(-50%);
 
-  #handle-bar {
-    width: 80px;
-    height: 5px;
-    background-color: variables.$handle-colour;
-    border-radius: 5px;
-    margin-bottom: 1rem;
-    cursor: pointer;
+    #handle-bar {
+      width: 80px;
+      height: 5px;
+      background-color: variables.$handle-colour;
+      border-radius: 5px;
+      cursor: pointer;
+    }
   }
 }
 
