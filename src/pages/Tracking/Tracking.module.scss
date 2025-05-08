@@ -16,7 +16,8 @@
 
   // Set Navigation icon height
   .react-datepicker__navigation {
-    margin: 1rem;
+    margin: 0.3rem 1rem;
+    // margin: 0.5rem 1rem;
   }
 
   // Header config
@@ -64,13 +65,13 @@
 
   .react-datepicker {
     width: 100%;
-    margin-top: 5px;
+    margin-top: 2px;
     border: 0;
 
     // Month Title
     .react-datepicker__month-container {
       background-color: variables.$bg-colour;
-      padding: 1rem 0;
+      // padding: 0.1rem 0;
       width: 100%;
     }
 
@@ -113,7 +114,7 @@
   padding: 1rem 2rem;
 
   &.collapsed {
-    height: 40%;
+    height: 30%;
     background-color: variables.$btn-background;
     @include mixins.top-border-radius(variables.$border-radius-overlay);
     position: fixed;
