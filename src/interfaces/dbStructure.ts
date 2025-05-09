@@ -1,3 +1,5 @@
+import { PeriodRange } from "./types";
+
 export interface DB_Tracking {
     id: number;
     category: string;
@@ -11,22 +13,41 @@ export interface DB_Tracking {
     userid: string;
 };
 
-export type PeriodRange = "Weekly" | "Biweekly" | "Monthly";
+// export interface DB_Budget {
+//     id: number;
+//     periodRange: PeriodRange;
+//     income: number;
+//     needs: number;
+//     wants: number;
+//     save: number;
+//     createdAt: string;
+//     userid: string;
+// }
 
 export interface DB_Budget {
     id: number;
+    age: number;
     periodRange: PeriodRange;
     income: number;
+    goalName: string;
+    goalAmount: number;
     needs: number;
     wants: number;
     save: number;
     createdAt: string;
     userid: string;
-}
+};
 
 export interface DB_Rewards {
     id: number;
     points: number;
+    streakStartDate: string;
+    dailyCollected: boolean;
+    weeklyCollected: boolean;
+    monthlyCollected: boolean;
+    dailyLoginCount: number;
+    weeklyLoginCount: number;
+    monthlyLoginCount: number;
     createdAt: string;
     userid: string;
 };

@@ -1,7 +1,8 @@
 import { DB_Tracking } from "../interfaces/dbStructure";
+import { ApiService } from "./apiService";
 import { userDataService } from "./userDataService";
 
-export class TrackingService {
+export class TrackingService extends ApiService {
     public getTrackingData() {
         return userDataService.userData?.tracking;
     }

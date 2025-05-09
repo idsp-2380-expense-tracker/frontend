@@ -29,7 +29,8 @@ export default function AppRouter() {
         userDataService.clearCache();
         userDataService
           .fetchUserData()
-          .then(() => userDataService.syncLoginStreak(user))
+          .then(() => console.log(`TEST_METADB_loginStreak: ${user?.publicMetadata.loginStreak} days in a row`))
+          // .then(() => userDataService.syncLoginStreak(user))
           .then(() => setDataLoaded(true))
           .catch((error) => {
             console.error("Failed to load user data:", error);

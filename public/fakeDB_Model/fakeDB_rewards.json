@@ -1,14 +1,35 @@
 [
   {
     "points": 300,
+    "streakStartDate": "2025-04-10",
+    "dailyCollected": true,
+    "weeklyCollected": false,
+    "monthlyCollected": false,
+    "dailyLoginCount": 1,
+    "weeklyLoginCount": 7,
+    "monthlyLoginCount": 15,
     "userid": "user_id_0"
   },
   {
-    "points": 500,
+    "points": 300,
+    "streakStartDate": "2025-04-10",
+    "dailyCollected": true,
+    "weeklyCollected": false,
+    "monthlyCollected": false,
+    "dailyLoginCount": 1,
+    "weeklyLoginCount": 7,
+    "monthlyLoginCount": 15,
     "userid": "user_id_3"
   },
   {
     "points": 300,
+    "streakStartDate": "2025-04-10",
+    "dailyCollected": true,
+    "weeklyCollected": false,
+    "monthlyCollected": false,
+    "dailyLoginCount": 1,
+    "weeklyLoginCount": 7,
+    "monthlyLoginCount": 15,
     "userid": "user_id_2"
   }
 ]

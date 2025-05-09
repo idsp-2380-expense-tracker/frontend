@@ -27,6 +27,13 @@
         "save": 800
     },
     "rewards": {
-        "points": 300
+        "points": 300,
+        "streakStartDate": "2025-04-10",
+        "dailyCollected": true,
+        "weeklyCollected": false,
+        "monthlyCollected": false,
+        "dailyLoginCount": 1,
+        "weeklyLoginCount": 7,
+        "monthlyLoginCount": 15
     }
 }
