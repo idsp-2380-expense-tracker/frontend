@@ -1,3 +1,5 @@
+import { ChallengeType } from "../../interfaces/types";
+
 export enum Status {
     Incomplete = "incomplete",
     Ready = "ready",
@@ -5,12 +7,14 @@ export enum Status {
 }
 
 interface LoginChallengeProps {
+    type: ChallengeType; 
     title: string;
     gain: number;
     current: number;
     total?: number;
     openUntil?: string;
     status: Status;
+    onCollect?: (type: ChallengeType) => void;
 }
   
 export default function LoginChallenge(c: LoginChallengeProps) {
@@ -24,7 +28,7 @@ export default function LoginChallenge(c: LoginChallengeProps) {
       )}
 
       {c.status === Status.Ready && (
-        <button>Collect Points</button>
+        <button onClick={() => c.onCollect?.(c.type)}>Collect Points</button>
       )}
 
       {c.status === Status.Collected && c.openUntil && (

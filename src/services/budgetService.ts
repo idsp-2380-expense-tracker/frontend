@@ -1,8 +1,10 @@
-import { DB_Budget, PeriodRange } from "../interfaces/dbStructure";
+import { DB_Budget } from "../interfaces/dbStructure";
+import { PeriodRange } from "../interfaces/types";
 import { round2 } from "../utils/helpers";
+import { ApiService } from "./apiService";
 import { userDataService } from "./userDataService";
 
-export class BudgetService {
+export class BudgetService extends ApiService {
     public getBudgetData(): DB_Budget | null {
         return userDataService.userData?.budget ?? null;
     }

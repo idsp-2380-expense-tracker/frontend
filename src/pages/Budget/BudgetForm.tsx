@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { DB_Budget, PeriodRange } from "../../interfaces/dbStructure";
+import { DB_Budget } from "../../interfaces/dbStructure";
+import { PeriodRange } from "../../interfaces/types";
 
 type BudgetData = Pick<DB_Budget, "periodRange" | "income">;
 interface BudgetFormProps { onSubmit(data: BudgetData): void; onBack(): void; }
