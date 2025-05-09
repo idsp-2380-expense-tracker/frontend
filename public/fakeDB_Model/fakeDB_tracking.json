@@ -1,42 +1,38 @@
 [
   {
+    "id": 0,
     "category": "food",
     "paymentMethod": "cash",
     "amount": 100,
     "dateOfPayment": "2025-05-01",
     "repeat": false,
-    "title": "",
-    "note": "",
     "userid": "user_id_0"
   },
   {
+    "id": 1,
     "category": "groceries",
     "paymentMethod": "card",
     "amount": 200,
     "dateOfPayment": "2025-06-01",
     "repeat": false,
-    "title": "",
-    "note": "",
     "userid": "user_id_3"
   },
   {
+    "id": 2,
     "category": "food",
     "paymentMethod": "cash",
     "amount": 100,
     "dateOfPayment": "2025-05-01",
     "repeat": false,
-    "title": "",
-    "note": "",
     "userid": "user_id_2"
   },
   {
+    "id": 3,
     "category": "groceries",
     "paymentMethod": "card",
     "amount": 200,
     "dateOfPayment": "2025-06-01",
     "repeat": false,
-    "title": "",
-    "note": "",
     "userid": "user_id_0"
   }
 ]

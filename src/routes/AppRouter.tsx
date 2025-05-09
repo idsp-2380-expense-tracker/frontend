@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { ApiService } from '../services/apiService';
 import { useAuthService } from '../services/authService';
@@ -11,7 +11,7 @@ import Login from '../pages/Login/Login';
 import Profile from '../pages/Profile/Profile';
 import Rewards from '../pages/Rewards/Rewards';
 import Splash from '../pages/Splash/Splash';
-const Tracking = lazy(() => import("../pages/Tracking/Tracking"));  // Test Tracking Slow
+import Tracking from '../pages/Tracking/Tracking';
 
 export default function AppRouter() {
   const { getToken, isSignedIn, user } = useAuthService();
@@ -39,32 +39,29 @@ export default function AppRouter() {
     }, [routeStage, getToken]);
   
   return (
-    // Test <Suspense>
-    <Suspense fallback={<div>Loading…</div>}>
-      <Routes>
-        {routeStage === "guest" && (
-          <>
-            <Route path="/login" element={<Login />} />
-            <Route path="/splash" element={<Splash />} />
-            <Route path="*" element={<Navigate to="/splash" replace />} />
-          </>
-        )}
+    <Routes>
+      {routeStage === "guest" && (
+        <>
+          <Route path="/login" element={<Login />} />
+          <Route path="/splash" element={<Splash />} />
+          <Route path="*" element={<Navigate to="/splash" replace />} />
+        </>
+      )}
 
-        {routeStage === "loading" && (
-          <Route path="*" element={<Loading />} />
-        )}
+      {routeStage === "loading" && (
+        <Route path="*" element={<Loading />} />
+      )}
 
-        {routeStage === "authenticated" && (
-          <>
-            <Route path="/home" element={<Home />} />
-            <Route path="/tracking" element={<Tracking />} />
-            <Route path="/budget" element={<Budget />} />
-            <Route path="/rewards" element={<Rewards />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="*" element={<Navigate to="/home" replace />} />
-          </>
-        )}
-      </Routes>
-    </Suspense>
+      {routeStage === "authenticated" && (
+        <>
+          <Route path="/home" element={<Home />} />
+          <Route path="/tracking" element={<Tracking />} />
+          <Route path="/budget" element={<Budget />} />
+          <Route path="/rewards" element={<Rewards />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="*" element={<Navigate to="/home" replace />} />
+        </>
+      )}
+    </Routes>
   );
 }

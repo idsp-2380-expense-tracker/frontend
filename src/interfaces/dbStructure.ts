@@ -7,36 +7,20 @@ export interface DB_Tracking {
     amount: number;
     dateOfPayment: string;
     repeat: boolean;
-    title?: string;
-    note?: string;
     createdAt: string;
     userid: string;
 };
 
-// export interface DB_Budget {
-//     id: number;
-//     periodRange: PeriodRange;
-//     income: number;
-//     needs: number;
-//     wants: number;
-//     save: number;
-//     createdAt: string;
-//     userid: string;
-// }
-
 export interface DB_Budget {
     id: number;
-    age: number;
     periodRange: PeriodRange;
     income: number;
-    goalName: string;
-    goalAmount: number;
     needs: number;
     wants: number;
     save: number;
     createdAt: string;
     userid: string;
-};
+}
 
 export interface DB_Rewards {
     id: number;
