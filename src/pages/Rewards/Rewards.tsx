@@ -1,14 +1,10 @@
 import dayjs from "dayjs";
 import NavBar from "../../components/NavBar";
 import { rewardsService } from "../../services/rewardsService";
+import { calcTotalDaysInMonth, formatOffsetDate } from "../../utils/helpers";
 import LoginChallenge, { Status } from "./RewardsLoginChallenge";
 
 export default function Rewards() {
-  const tomorrow = dayjs().add(1, "day").format("YYYY-MM-DD");
-  const nextWeek = dayjs().add(1, "week").startOf("week").format("YYYY-MM-DD");
-  const nextMonth = dayjs().add(1, "month").startOf("month").format("YYYY-MM-DD");
-  const daysInMonth = dayjs().daysInMonth();
-
   const rewardsData = rewardsService.getRewardsData()!;
   const { 
     points: userPoints = 0,
@@ -20,6 +16,12 @@ export default function Rewards() {
     monthlyCollected,
     streakStartDate
   } = rewardsData;
+
+  const start = dayjs(streakStartDate);
+  const tomorrow  = formatOffsetDate(start, "day");
+  const nextWeek  = formatOffsetDate(start, "week");
+  const nextMonth = formatOffsetDate(start, "month", 1);
+  const daysInMonth = calcTotalDaysInMonth(start);
 
   return (
     <>
