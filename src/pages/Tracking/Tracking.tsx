@@ -1,5 +1,6 @@
 import { useState } from "react";
 import NavBar from "../../components/NavBar";
+import { trackingService } from "../../services/trackingService";
 import TrackingCalendar from "./TrackingCalendar";
 import TrackingDrawer from "./TrackingDrawer";
 import TrackingForm from "./TrackingForm";
@@ -11,7 +12,8 @@ export default function Tracking() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [drawerExpanded, setDrawerExpanded] = useState(false);
 
-  const markedDates = ["2025-05-01", "2025-05-10"]; // TEST
+  const trackingData = trackingService.getTrackingData() ?? [];
+  const markedDates = trackingData.map((item) => item.dateOfPayment);
 
   if (showManualForm) {
     return <TrackingForm onBack={() => setShowManualForm(false)} />;
