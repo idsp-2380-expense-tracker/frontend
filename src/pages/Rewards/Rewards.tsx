@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import NavBar from "../../components/NavBar";
 import { useAuthService } from "../../services/authService";
 import { rewardsService } from "../../services/rewardsService";
 import LoginChallenge, { Status } from "./RewardsLoginChallenge";
@@ -12,9 +13,9 @@ export default function Rewards() {
   const daysInMonth = dayjs().daysInMonth();
 
   const userPoints = rewardsService.getRewardsData()?.points || 0;
-  const monthlyLoginCount  = Number(user?.publicMetadata.monthlyLoginCount) || 0;
-  const weeklyLoginCount   = Number(user?.publicMetadata.weeklyLoginCount) || 0;
-  const dailyLoginCount    = Number(user?.publicMetadata.dailyLoginCount) || 0;
+  const monthlyLoginCount = Number(user?.publicMetadata.monthlyLoginCount) || 0;
+  const weeklyLoginCount = Number(user?.publicMetadata.weeklyLoginCount) || 0;
+  const dailyLoginCount = Number(user?.publicMetadata.dailyLoginCount) || 0;
 
   return (
     <>
@@ -54,6 +55,8 @@ export default function Rewards() {
         openUntil={tomorrow}
         status={dailyLoginCount >= 1 ? Status.Ready : Status.Incomplete}
       />
+
+      <NavBar />
     </>
   );
 }
