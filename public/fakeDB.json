@@ -2,19 +2,19 @@
     "tracking": [
         {
             "id": 0,
-            "category": "food",
-            "paymentMethod": "cash",
+            "category": "Food",
+            "paymentMethod": "Cash",
             "amount": 100,
             "dateOfPayment": "2025-05-15",
             "repeat": false
         },
         {
             "id": 3,
-            "category": "groceries",
-            "paymentMethod": "card",
+            "category": "Groceries",
+            "paymentMethod": "Card",
             "amount": 200,
             "dateOfPayment": "2025-05-20",
-            "repeat": false
+            "repeat": true
         }
     ],
     "budget": {

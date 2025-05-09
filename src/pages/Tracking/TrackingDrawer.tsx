@@ -1,22 +1,26 @@
+import { Box, Button } from "@mantine/core";
 import { SwipeableDrawer } from "@mui/material";
-import { useState } from "react";
-import { Slider, Text, Box, Button } from "@mantine/core";
 // Image Source
 import walletIcon from "../../assets/wallet_icon.svg";
+import { DB_Tracking } from "../../interfaces/dbStructure";
 
 interface TrackingDrawerProps {
   expanded: boolean;
   onToggle: () => void;
   selectedDate: Date | null;
+  data: DB_Tracking[];
+  onEdit: (item: DB_Tracking) => void;
 }
 
 export default function TrackingDrawer({
   expanded,
   onToggle,
   selectedDate,
+  data,
+  onEdit
 }: TrackingDrawerProps) {
-  const [value, setValue] = useState(50);
-  const [endValue, setEndValue] = useState(50);
+  // const [value, setValue] = useState(50);
+  // const [endValue, setEndValue] = useState(50);
 
   return (
     <SwipeableDrawer
@@ -45,7 +49,7 @@ export default function TrackingDrawer({
         </h3>
       </div>
 
-      <Box maw={400} mx="auto" className="box-size">
+      {/* <Box maw={400} mx="auto" className="box-size">
         <Slider
           color="#9150F5"
           size={15}
@@ -64,59 +68,32 @@ export default function TrackingDrawer({
             <span>Earnings</span>
           </Text>
         </Box>
-      </Box>
+      </Box> */}
 
-      <Box className="box-item">
-        <hr />
-        <div id="spending-title">
-          <h3>Food</h3>
-          <h3>$-23</h3>
-        </div>
-
-        <div className="tag-payment">
-          <div id="tag-btn">
-            <Button className="tag-types" size="compact-md">
-              <span>Spending</span>
-            </Button>
-            <Button className="tag-category" size="compact-md">
-              <span>Food</span>
-            </Button>
+      {data.map((item) => (
+        <Box className="box-item" key={item.id}>
+          <hr />
+          <div id="spending-title">
+            <h3>{item.category}</h3>
+            <h3>${item.amount}</h3>
+            <button onClick={() => onEdit(item)}>Edit</button>
           </div>
-
-          <div id="credit-debit-cash">
-            <h3>Credit</h3>
-            <img src={walletIcon} alt="Wallet icon" />
+          <div className="tag-payment">
+            <div id="tag-btn">
+              <Button className="tag-types" size="compact-md">
+                <span>{item.repeat ? "Repeating" : "Spending"}</span>
+              </Button>
+              <Button className="tag-category" size="compact-md">
+                <span>{item.category}</span>
+              </Button>
+            </div>
+            <div id="credit-debit-cash">
+              <h3>{item.paymentMethod}</h3>
+              <img src={walletIcon} alt="Wallet icon" />
+            </div>
           </div>
-        </div>
-
-        <h3 id="spending-note">Note: -</h3>
-      </Box>
-
-      <Box className="box-item">
-        <hr />
-        <div id="spending-title">
-          <h3>Food</h3>
-          <h3>$-23</h3>
-        </div>
-
-        <div className="tag-payment">
-          <div id="tag-btn">
-            <Button className="tag-types" size="compact-md">
-              <span>Spending</span>
-            </Button>
-            <Button className="tag-category" size="compact-md">
-              <span>Food</span>
-            </Button>
-          </div>
-
-          <div id="credit-debit-cash">
-            <h3>Credit</h3>
-            <img src={walletIcon} alt="Wallet icon" />
-          </div>
-        </div>
-
-        <h3 id="spending-note">Note: -</h3>
-      </Box>
+        </Box>
+      ))}
     </SwipeableDrawer>
   );
 }

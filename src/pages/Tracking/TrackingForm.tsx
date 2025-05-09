@@ -9,15 +9,20 @@ import {
 import { DateInput } from "@mantine/dates";
 import { IconChevronDown } from "@tabler/icons-react";
 import dayjs from "dayjs";
-import { useState } from "react";
-import { OnBackProps } from "../../interfaces/uiProps";
+import { useEffect, useState } from "react";
 import classes from "./Tracking.module.scss";
 // Image Source
 import barcodeIcon from "../../assets/barcode_icon_white.svg";
 // import handDownGreyIcon from "../../assets/hand_arrow_down_grey.svg";
 import handUpYellowIcon from "../../assets/hand_arrow_up_yellow.svg";
 import leftArrow from "../../assets/left_arrow_2.svg";
+import { DB_Tracking } from "../../interfaces/dbStructure";
 import { trackingService } from "../../services/trackingService";
+
+interface TrackingFormProps {
+  onBack: () => void;
+  editItem?: DB_Tracking | null;
+}
 
 const categoryData = [
   { label: "Food" },
@@ -33,13 +38,30 @@ const categoryData = [
 
 const paymentOptions = [{ label: "Cash" }, { label: "Card" }];
 
-export default function TrackingForm({ onBack }: OnBackProps) {
-  const [opened, setOpened] = useState(false);
-  const [selected, setSelected] = useState(categoryData[0]);
-  const [selectedPayment, setSelectedPayment] = useState(paymentOptions[0]);
-  const [checked, setChecked] = useState(false);
-  const [amount, setAmount] = useState<number>(0);
-  const [date, setDate] = useState<string | null>(dayjs().format("YYYY-MM-DD"));
+export default function TrackingForm({ onBack, editItem }: TrackingFormProps) {
+  const [categoryMenuOpened, setCategoryMenuOpened] = useState(false);
+  const [paymentMenuOpened, setPaymentMenuOpened] = useState(false);
+  const [selected, setSelected] = useState(
+    categoryData.find((c) => c.label === editItem?.category) ?? categoryData[0]
+  );
+  const [selectedPayment, setSelectedPayment] = useState(
+    paymentOptions.find((p) => p.label === editItem?.paymentMethod) ?? paymentOptions[0]
+  );
+  const [checked, setChecked] = useState(editItem?.repeat ?? false);
+  const [date, setDate] = useState<Date | null>(
+    editItem?.dateOfPayment ? new Date(editItem.dateOfPayment) : new Date()
+  );
+  const [amount, setAmount] = useState<number>(editItem?.amount ?? 0);
+
+  useEffect(() => {
+    if (!editItem) return;
+
+    setSelected(categoryData.find((c) => c.label === editItem.category) ?? categoryData[0]);
+    setSelectedPayment(paymentOptions.find((p) => p.label === editItem.paymentMethod) ?? paymentOptions[0]);
+    setChecked(editItem.repeat);
+    setDate(editItem.dateOfPayment ? new Date(editItem.dateOfPayment) : new Date());
+    setAmount(editItem.amount);
+  }, [editItem]);
 
   const categoryItems = categoryData.map((item) => (
     <Menu.Item onClick={() => setSelected(item)} key={item.label}>
@@ -57,16 +79,14 @@ export default function TrackingForm({ onBack }: OnBackProps) {
     <form onSubmit={async (e) => {
         e.preventDefault();
         if (amount <= 0) return;
-        await trackingService.saveTrackingData(
-          {
-            id: -1,   // new data
-            category: selected.label,
-            paymentMethod: selectedPayment.label,
-            amount,
-            dateOfPayment: date ?? "",
-            repeat: checked
-          }
-        );
+        await trackingService.saveTrackingData({
+          id: editItem?.id ?? -1,
+          category: selected.label,
+          paymentMethod: selectedPayment.label,
+          amount,
+          dateOfPayment: date ? dayjs(date).format("YYYY-MM-DD") : "",
+          repeat: checked
+        });
         onBack();
       }}
     >
@@ -79,7 +99,7 @@ export default function TrackingForm({ onBack }: OnBackProps) {
             onClick={onBack}
           />
 
-          <h2>ADD TRANSACTION</h2>
+          <h2>{editItem ? "EDIT TRANSACTION" : "ADD TRANSACTION"}</h2>
           <img src={barcodeIcon} alt="Barcode icon" />
         </section>
 
@@ -106,8 +126,8 @@ export default function TrackingForm({ onBack }: OnBackProps) {
         <section id="trans-category">
           <h4>Category</h4>
           <Menu
-            onOpen={() => setOpened(true)}
-            onClose={() => setOpened(false)}
+            onOpen={() => setCategoryMenuOpened(true)}
+            onClose={() => setCategoryMenuOpened(false)}
             radius="md"
             width="target"
             withinPortal
@@ -115,7 +135,7 @@ export default function TrackingForm({ onBack }: OnBackProps) {
             <Menu.Target>
               <UnstyledButton
                 className={classes.control}
-                data-expanded={opened || undefined}
+                data-expanded={categoryMenuOpened || undefined}
               >
                 <Group gap="xs">
                   <span className={classes.label}>{selected.label}</span>
@@ -135,8 +155,8 @@ export default function TrackingForm({ onBack }: OnBackProps) {
           <div id="payment-method">
             <h4>Payment Method</h4>
             <Menu
-              onOpen={() => setOpened(true)}
-              onClose={() => setOpened(false)}
+              onOpen={() => setPaymentMenuOpened(true)}
+              onClose={() => setPaymentMenuOpened(false)}
               radius="md"
               width="target"
               withinPortal
@@ -144,7 +164,7 @@ export default function TrackingForm({ onBack }: OnBackProps) {
               <Menu.Target>
                 <UnstyledButton
                   className={classes.control}
-                  data-expanded={opened || undefined}
+                  data-expanded={paymentMenuOpened || undefined}
                 >
                   <Group gap="xs">
                     <span className={classes.label}>{selectedPayment.label}</span>
@@ -180,7 +200,7 @@ export default function TrackingForm({ onBack }: OnBackProps) {
           <DateInput
             clearable
             value={date}
-            onChange={(val) => setDate(val)}
+            onChange={(val) => setDate(val ? new Date(val) : null)}
             placeholder="Date input"
             firstDayOfWeek={0}
           />
