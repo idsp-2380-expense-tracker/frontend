@@ -29,17 +29,8 @@ export default function Budget() {
         <>
           <BudgetForm 
             onSubmit={async (data) => {
-              const distro = budgetService.calculateDistribution(data.income);
-              await budgetService.saveBudgetData({
-                age: 0,                 //TEST    
-                goalAmount: 0,          //TEST
-                needs: distro.needs,    //TEST
-                save: distro.save,      //TEST
-                wants: distro.wants,    //TEST
-                income:      data.income,
-                periodRange: data.periodRange,
-                // ...distro,
-              });
+              const budgetData = budgetService.calculateBudgetData(data.income, data.periodRange);
+              await budgetService.saveBudgetData(budgetData);
               setStage("main");
             }}
             onBack={() => setStage("main")}
