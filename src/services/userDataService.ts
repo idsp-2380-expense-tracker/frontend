@@ -43,6 +43,8 @@ export class UserDataService extends ApiService {
             ...partialPayload
         };
 
+        console.log(`${endpoint}_Post: ${Object.entries(fullPayload)}`);
+
         try {
             await this.postData(endpoint, fullPayload);
             this.updateLocalData(endpoint, fullPayload);

@@ -31,9 +31,14 @@ export default function Budget() {
             onSubmit={(data) => {
               const distro = budgetService.calculateDistribution(data.income);
               budgetService.saveBudgetData({
+                age: 0,             //TEST    
+                goalAmount: 0,    //TEST
                 income:      data.income,
+                needs: distro.needs,
                 periodRange: data.periodRange,
-                ...distro,
+                save: distro.save,
+                wants: distro.wants
+                // ...distro,
               });
               setStage("main");
             }}
