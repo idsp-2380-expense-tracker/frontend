@@ -17,7 +17,6 @@
   // Set Navigation icon height
   .react-datepicker__navigation {
     margin: 0.3rem 1rem;
-    // margin: 0.5rem 1rem;
   }
 
   // Header config
@@ -211,10 +210,7 @@
 }
 
 hr {
-  border: none;
-  height: 2px;
-  background-color: variables.$handle-colour;
-  margin: 20px 0;
+  @include mixins.hr;
 }
 
 .mantine-Slider-track {
@@ -345,37 +341,26 @@ hr {
       }
     }
   }
+
+  #trans-category {
+    h4 {
+      margin-bottom: 0.5rem;
+    }
+  }
 }
 
 // Drop down button for category
 .control {
-  width: 200px;
+  width: 100%;
+  height: 48px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--mantine-spacing-xs) var(--mantine-spacing-md);
-  border-radius: var(--mantine-radius-md);
-  border: 1px solid
-    light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-6));
+  color: variables.$tag-colour !important;
+  padding: var(--mantine-spacing-xs) 1rem !important;
+  border-radius: var(--mantine-radius-sm);
   transition: background-color 150ms ease;
-  background-color: light-dark(
-    var(--mantine-color-white),
-    var(--mantine-color-dark-6)
-  );
-
-  &[data-expanded] {
-    background-color: light-dark(
-      var(--mantine-color-gray-0),
-      var(--mantine-color-dark-5)
-    );
-  }
-
-  @mixin hover {
-    background-color: light-dark(
-      var(--mantine-color-gray-0),
-      var(--mantine-color-dark-5)
-    );
-  }
+  background-color: variables.$input-box-colour !important;
 }
 
 .label {
@@ -383,11 +368,66 @@ hr {
   font-size: var(--mantine-font-size-sm);
 }
 
-.icon {
-  transition: transform 150ms ease;
-  transform: rotate(0deg);
+.mantine-Menu-dropdown {
+  border: 0;
+  background-color: variables.$input-box-colour;
+}
 
-  [data-expanded] & {
-    transform: rotate(180deg);
+.mantine-Menu-itemLabel {
+  color: variables.$tag-colour;
+  padding: 0.5rem;
+}
+
+.mantine-Menu-item:hover,
+.mantine-Menu-itemLabel:hover {
+  color: white;
+  background-color: variables.$tertiary-colour;
+}
+
+// Amount form input
+.mantine-NumberInput-input,
+.mantine-DateInput-input {
+  border: 0;
+  background-color: variables.$input-box-colour;
+  height: 48px;
+  color: variables.$tag-colour;
+}
+
+.mantine-NumberInput-control {
+  color: variables.$tag-colour;
+}
+
+.mantine-NumberInput-control:active {
+  color: variables.$tag-colour;
+  background-color: variables.$tertiary-colour;
+}
+
+#payment-amount {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+
+  #payment-method,
+  #amount {
+    width: 50%;
+  }
+}
+
+// Date of Payment input
+.mantine-CloseButton-root {
+  color: variables.$tag-colour;
+}
+
+#repeat-payment {
+  @include mixins.box(48px);
+  border-radius: variables.$border-radius-sm;
+  display: flex;
+  align-items: center;
+
+  .mantine-Checkbox-input {
+    border-radius: 4px;
+    background-color: variables.$input-box-colour;
+    border: 1px solid variables.$primary-colour;
   }
 }

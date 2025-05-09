@@ -57,3 +57,10 @@
   border-top-right-radius: $radius;
   border-top-left-radius: $radius;
 }
+
+@mixin hr {
+  border: none;
+  height: 2px;
+  background-color: variables.$handle-colour;
+  margin: 20px 0;
+}
