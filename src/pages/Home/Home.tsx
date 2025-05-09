@@ -2,8 +2,7 @@ import Header from "../../components/Header";
 import NavBar from "../../components/NavBar";
 import SpendingStatsBar from "../../components/SpendingStatsBar";
 import ArticleCarousel from "../../components/ArticleCarousel";
-
-// Image Sources
+// Image Source
 import insightIcon from "../../assets/party.svg";
 import rightArrow from "../../assets/right_arrow.svg";
 import arrowInCircleGrey from "../../assets/arrow_in_circle_grey.svg";

@@ -6,7 +6,7 @@ import LoginChallenge, { Status } from "./RewardsLoginChallenge";
 
 export default function Rewards() {
   const rewardsData = rewardsService.getRewardsData()!;
-  const { 
+  const {
     points: userPoints = 0,
     dailyLoginCount = 0,
     weeklyLoginCount = 0,
@@ -14,12 +14,12 @@ export default function Rewards() {
     dailyCollected,
     weeklyCollected,
     monthlyCollected,
-    streakStartDate
+    streakStartDate,
   } = rewardsData;
 
   const start = dayjs(streakStartDate);
-  const tomorrow  = formatOffsetDate(start, "day");
-  const nextWeek  = formatOffsetDate(start, "week");
+  const tomorrow = formatOffsetDate(start, "day");
+  const nextWeek = formatOffsetDate(start, "week");
   const nextMonth = formatOffsetDate(start, "month", 1);
   const daysInMonth = calcTotalDaysInMonth(start);
 
@@ -42,7 +42,13 @@ export default function Rewards() {
         current={dailyLoginCount}
         total={1}
         openUntil={tomorrow}
-        status={dailyCollected ? Status.Collected : dailyLoginCount >= 1 ? Status.Ready : Status.Incomplete}
+        status={
+          dailyCollected
+            ? Status.Collected
+            : dailyLoginCount >= 1
+            ? Status.Ready
+            : Status.Incomplete
+        }
         onCollect={async () => await rewardsService.collectPoints("daily")}
       />
 
@@ -53,7 +59,13 @@ export default function Rewards() {
         current={weeklyLoginCount}
         total={7}
         openUntil={nextWeek}
-        status={weeklyCollected ? Status.Collected : weeklyLoginCount >= 7 ? Status.Ready : Status.Incomplete}
+        status={
+          weeklyCollected
+            ? Status.Collected
+            : weeklyLoginCount >= 7
+            ? Status.Ready
+            : Status.Incomplete
+        }
         onCollect={async () => await rewardsService.collectPoints("weekly")}
       />
 
@@ -64,7 +76,13 @@ export default function Rewards() {
         current={monthlyLoginCount}
         total={daysInMonth}
         openUntil={nextMonth}
-        status={monthlyCollected ? Status.Collected : monthlyLoginCount >= daysInMonth ? Status.Ready : Status.Incomplete}
+        status={
+          monthlyCollected
+            ? Status.Collected
+            : monthlyLoginCount >= daysInMonth
+            ? Status.Ready
+            : Status.Incomplete
+        }
         onCollect={async () => await rewardsService.collectPoints("monthly")}
       />
 

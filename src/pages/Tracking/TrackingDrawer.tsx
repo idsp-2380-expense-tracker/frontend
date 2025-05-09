@@ -1,7 +1,7 @@
 import { SwipeableDrawer } from "@mui/material";
 import { useState } from "react";
 import { Slider, Text, Box, Button } from "@mantine/core";
-// Image Sources
+// Image Source
 import walletIcon from "../../assets/wallet_icon.svg";
 
 interface TrackingDrawerProps {

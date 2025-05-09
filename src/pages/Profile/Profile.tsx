@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { SignOutButton, useAuthService } from "../../services/authService";
-// Image Sources
+// Image Source
 import { useState } from "react";
 import accountCircle from "../../assets/account_circle.svg";
 import arrowInCircleYellow from "../../assets/arrow_in_circle_yellow.svg";
@@ -32,14 +32,14 @@ export default function Profile() {
       <div className="content-background">
         <div className="content">
           <div className="profile">
-            <img 
+            <img
               src={user?.imageUrl}
               alt="Profile picture"
               style={{
                 cursor: "pointer",
                 width: 120,
                 height: 120,
-                borderRadius: "50%"
+                borderRadius: "50%",
               }}
             />
             <h1>{displayName}</h1>
