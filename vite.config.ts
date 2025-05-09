@@ -1,7 +1,43 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import react from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
 
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
-})
+  optimizeDeps: {
+    include: [
+      "react",
+      "react-dom",
+      "@clerk/clerk-react",
+      "@emotion/react",
+      "@emotion/styled",
+      "@mantine/core",
+      "@mantine/hooks",
+      "@mantine/dates",
+      "@mantine/carousel",
+      "@mantine/charts",
+      "@mantine/code-highlight",
+      "@mantine/dropzone",
+      "@mantine/form",
+      "@mantine/modals",
+      "@mantine/notifications",
+      "@mantine/nprogress",
+      "@mantine/spotlight",
+      "@mantine/tiptap",
+      "@mui/material",
+      "@tabler/icons-react",
+      "@tiptap/extension-link",
+      "@tiptap/react",
+      "@tiptap/starter-kit",
+      "axios",
+      "dayjs",
+      "embla-carousel",
+      "embla-carousel-react",
+      "react-datepicker",
+      "react-images-uploading",
+      "react-router-dom",
+      "recharts"
+    ]
+  },
+  plugins: [
+    react()
+  ]
+});
