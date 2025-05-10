@@ -50,7 +50,7 @@ export default function TrackingForm({ onBack, editItem }: TrackingFormProps) {
   );
   const [checked, setChecked] = useState(editItem?.repeat ?? false);
   const [date, setDate] = useState<Date | null>(
-    editItem?.dateOfPayment ? parseLocalDate(editItem.dateOfPayment) : parseLocalDate()
+    editItem?.dateOfPayment ? parseLocalDate(editItem.dateOfPayment) : new Date()
   );
   const [amount, setAmount] = useState<number>(editItem?.amount ?? 0);
 
@@ -60,7 +60,7 @@ export default function TrackingForm({ onBack, editItem }: TrackingFormProps) {
     setSelected(categoryData.find((c) => c.label === editItem.category) ?? categoryData[0]);
     setSelectedPayment(paymentOptions.find((p) => p.label === editItem.paymentMethod) ?? paymentOptions[0]);
     setChecked(editItem.repeat);
-    setDate(editItem.dateOfPayment ? parseLocalDate(editItem.dateOfPayment) : parseLocalDate());
+    setDate(editItem.dateOfPayment ? parseLocalDate(editItem.dateOfPayment) : new Date());
     setAmount(editItem.amount);
   }, [editItem]);
 
