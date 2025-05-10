@@ -1,4 +1,4 @@
-import { DB_User } from "../interfaces/dbStructure";
+import { DB_Tracking, DB_User } from "../interfaces/dbStructure";
 import { ApiService } from "./apiService";
 
 export class UserDataService extends ApiService {
@@ -31,7 +31,7 @@ export class UserDataService extends ApiService {
     //     await user.reload();
     // }
 
-    public async saveUserData<K extends keyof DB_User>(endpoint: K, partialPayload: Partial<DB_User[K]>) {
+    public async saveUserData<K extends keyof DB_User>(endpoint: K, partialPayload: Partial<DB_User[K] | DB_Tracking>) {
         const current = this._userData?.[endpoint];
 
         if (!current) {
@@ -46,8 +46,13 @@ export class UserDataService extends ApiService {
         console.log(`${endpoint}_Post: ${Object.entries(fullPayload)}`);
 
         try {
-            await this.postData(endpoint, fullPayload);
-            this.updateLocalData(endpoint, fullPayload);
+            if ("id" in partialPayload) {                                   // DB_Tracking
+                await this.postRaw(endpoint, partialPayload);
+                this.updateTrackingLocalData(fullPayload as DB_Tracking);
+            } else {                                                        // ELSE
+                await this.postData(endpoint, fullPayload);
+                this.updateLocalData(endpoint, fullPayload);
+            }
             console.log(`Saved ${endpoint} data successfully.`);
         } catch (error) {
             console.error(`Failed to save ${endpoint} data (${error})`);
@@ -58,6 +63,24 @@ export class UserDataService extends ApiService {
         if (this._userData) {
             this._userData[endpoint] = payload;
             console.log(`Local_Data_${endpoint} updated.`);
+        }
+    }
+
+    private updateTrackingLocalData(payload: DB_Tracking) {
+        if (this._userData) {
+            const trackingData = this._userData["tracking"];
+
+            if (payload.id === -1) {
+                trackingData.push(payload);
+            } else {
+                const index = trackingData.findIndex(item => item.id === payload.id);
+                if (index !== -1) {
+                    trackingData[index] = payload;
+                } else {
+                    console.error("Local_Data_tracking not found")
+                }
+            }
+            console.log("Local_Data_tracking updated.");
         }
     }
 

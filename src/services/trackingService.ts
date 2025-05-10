@@ -8,7 +8,7 @@ export class TrackingService extends ApiService {
     }
 
     public async saveTrackingData(payload: Partial<DB_Tracking>) {
-        await this.postRaw("tracking", payload);
+        await userDataService.saveUserData("tracking", payload);
     }
 }
 

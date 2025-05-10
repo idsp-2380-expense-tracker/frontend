@@ -14,7 +14,6 @@ export class RewardsService extends ApiService {
 
     public async collectPoints(type: ChallengeType) {
         await this.postRaw("rewards", { type });
-
     }
 }
 
