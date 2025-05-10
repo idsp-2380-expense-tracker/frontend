@@ -58,9 +58,39 @@
   border-top-left-radius: $radius;
 }
 
-@mixin hr {
+@mixin hr() {
   border: none;
   height: 2px;
   background-color: variables.$handle-colour;
   margin: 20px 0;
+}
+
+@mixin challenges() {
+  #challenge-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h3 {
+      font-size: variables.$font-size-body-bold;
+      margin-top: 0;
+    }
+
+    #gain-points {
+      margin-top: 0;
+    }
+  }
+
+  #collect-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #challenge-status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+  }
 }
