@@ -14,10 +14,16 @@ import classes from "./Tracking.module.scss";
 // Image Source
 import barcodeIcon from "../../assets/barcode_icon_white.svg";
 // import handDownGreyIcon from "../../assets/hand_arrow_down_grey.svg";
+import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
 import handUpYellowIcon from "../../assets/hand_arrow_up_yellow.svg";
 import leftArrow from "../../assets/left_arrow_2.svg";
 import { DB_Tracking } from "../../interfaces/dbStructure";
 import { trackingService } from "../../services/trackingService";
+import { formatVancouverDate } from "../../utils/helpers";
+
+dayjs.extend(utc); 
+dayjs.extend(timezone);
 
 interface TrackingFormProps {
   onBack: () => void;
@@ -84,7 +90,7 @@ export default function TrackingForm({ onBack, editItem }: TrackingFormProps) {
           category: selected.label,
           paymentMethod: selectedPayment.label,
           amount,
-          dateOfPayment: date ? dayjs(date).format("YYYY-MM-DD") : "",
+          dateOfPayment: date ? formatVancouverDate(date) : "",
           repeat: checked
         });
         onBack();
