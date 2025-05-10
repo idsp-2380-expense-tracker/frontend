@@ -214,7 +214,9 @@ export default function TrackingForm({ onBack, editItem }: TrackingFormProps) {
           </div>
         </section>
         <hr />
-        <Button type="submit" className="spending-add" disabled={amount <= 0}>Add</Button>
+        <Button type="submit" className="spending-add" disabled={amount <= 0}>
+          {editItem ? "Update" : "Add"}
+        </Button>
       </div>
     </form>
   );

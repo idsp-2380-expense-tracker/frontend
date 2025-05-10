@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { useState } from "react";
 import NavBar from "../../components/NavBar";
 import { DB_Tracking } from "../../interfaces/dbStructure";
@@ -14,14 +15,17 @@ export default function Tracking() {
   const [drawerExpanded, setDrawerExpanded] = useState(false);
   const [editItem, setEditItem] = useState<DB_Tracking | null>(null);
 
+  const selectedDay = dayjs(selectedDate).date();
+  
   const trackingData = trackingService.getTrackingData() ?? [];
-  const markedDates = trackingData.map((item) => item.dateOfPayment);
-
-  const selectedDateString = selectedDate?.toISOString().split("T")[0] ?? "";
-  const filteredData = trackingData.filter(
-    (item) => item.dateOfPayment === selectedDateString
-  );
-
+  const filteredData = trackingData.filter((item) => {
+    if (item.repeat) {
+      const itemDay = dayjs(item.dateOfPayment).date();
+      return itemDay === selectedDay;
+    }
+    return item.dateOfPayment === dayjs(selectedDate).format("YYYY-MM-DD");
+  });
+  
   if (showManualForm) {
     return (
       <TrackingForm
@@ -40,7 +44,7 @@ export default function Tracking() {
       <TrackingCalendar
         selectedDate={selectedDate}
         onDateChange={setSelectedDate}
-        markedDates={markedDates}
+        trackingData={trackingData}
         wrapperClassName={!drawerExpanded ? "above-drawer" : "under-drawer"}
       />
       <TrackingDrawer
