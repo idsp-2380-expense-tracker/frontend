@@ -14,16 +14,11 @@ import classes from "./Tracking.module.scss";
 // Image Source
 import barcodeIcon from "../../assets/barcode_icon_white.svg";
 // import handDownGreyIcon from "../../assets/hand_arrow_down_grey.svg";
-import timezone from "dayjs/plugin/timezone";
-import utc from "dayjs/plugin/utc";
 import handUpYellowIcon from "../../assets/hand_arrow_up_yellow.svg";
 import leftArrow from "../../assets/left_arrow_2.svg";
 import { DB_Tracking } from "../../interfaces/dbStructure";
 import { trackingService } from "../../services/trackingService";
-import { formatVancouverDate } from "../../utils/helpers";
-
-dayjs.extend(utc); 
-dayjs.extend(timezone);
+import { parseLocalDate } from "../../utils/helpers";
 
 interface TrackingFormProps {
   onBack: () => void;
@@ -55,7 +50,7 @@ export default function TrackingForm({ onBack, editItem }: TrackingFormProps) {
   );
   const [checked, setChecked] = useState(editItem?.repeat ?? false);
   const [date, setDate] = useState<Date | null>(
-    editItem?.dateOfPayment ? new Date(editItem.dateOfPayment) : new Date()
+    editItem?.dateOfPayment ? parseLocalDate(editItem.dateOfPayment) : parseLocalDate()
   );
   const [amount, setAmount] = useState<number>(editItem?.amount ?? 0);
 
@@ -65,7 +60,7 @@ export default function TrackingForm({ onBack, editItem }: TrackingFormProps) {
     setSelected(categoryData.find((c) => c.label === editItem.category) ?? categoryData[0]);
     setSelectedPayment(paymentOptions.find((p) => p.label === editItem.paymentMethod) ?? paymentOptions[0]);
     setChecked(editItem.repeat);
-    setDate(editItem.dateOfPayment ? new Date(editItem.dateOfPayment) : new Date());
+    setDate(editItem.dateOfPayment ? parseLocalDate(editItem.dateOfPayment) : parseLocalDate());
     setAmount(editItem.amount);
   }, [editItem]);
 
@@ -90,7 +85,7 @@ export default function TrackingForm({ onBack, editItem }: TrackingFormProps) {
           category: selected.label,
           paymentMethod: selectedPayment.label,
           amount,
-          dateOfPayment: date ? formatVancouverDate(date) : "",
+          dateOfPayment: date ? dayjs(date).format("YYYY-MM-DD") : "",
           repeat: checked
         });
         onBack();
@@ -206,7 +201,7 @@ export default function TrackingForm({ onBack, editItem }: TrackingFormProps) {
           <DateInput
             clearable
             value={date}
-            onChange={(val) => setDate(val ? new Date(val) : null)}
+            onChange={(val) => setDate(val ? parseLocalDate(val) : null)}
             placeholder="Date input"
             firstDayOfWeek={0}
           />

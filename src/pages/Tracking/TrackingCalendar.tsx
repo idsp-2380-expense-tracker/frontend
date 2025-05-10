@@ -35,10 +35,8 @@ export default function TrackingCalendar({
         onMonthChange={(date) => setVisibleMonth(date)}
         onYearChange={(date) => setVisibleMonth(date)}
         inline
-        dayClassName={(date) => {
-          const formatted = date.toLocaleDateString("en-CA");
-          return markedDates.includes(formatted) ? "marked-day" : "";
-        }}
+        dayClassName={(date) => 
+          markedDates.includes(dayjs(date).format("YYYY-MM-DD")) ? "marked-day" : ""}
       />
     </div>
   );
