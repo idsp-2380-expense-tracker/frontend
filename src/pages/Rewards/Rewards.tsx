@@ -3,6 +3,8 @@ import NavBar from "../../components/NavBar";
 import { rewardsService } from "../../services/rewardsService";
 import { calcTotalDaysInMonth, formatOffsetDate } from "../../utils/helpers";
 import LoginChallenge, { Status } from "./RewardsLoginChallenge";
+// Image Source
+import trophyIcon from "../../assets/trophy.svg";
 
 export default function Rewards() {
   const rewardsData = rewardsService.getRewardsData()!;
@@ -24,69 +26,79 @@ export default function Rewards() {
   const daysInMonth = calcTotalDaysInMonth(start);
 
   return (
-    <>
-      <div>
-        IMAGE
-        <div>
-          <p>Points Earned</p>
+    <div id="rewards-container">
+      <div id="rewards-header">
+        <img src={trophyIcon} alt="Trophy icon" />
+        <div id="points-earned">
+          <p id="points-earned-title">Points Earned</p>
           <h1>{userPoints}</h1>
         </div>
       </div>
 
-      <h2>Challenges</h2>
+      <h2>CHALLENGES</h2>
 
-      <LoginChallenge
-        type="daily"
-        title="Daily Login"
-        gain={10}
-        current={dailyLoginCount}
-        total={1}
-        openUntil={tomorrow}
-        status={
-          dailyCollected
-            ? Status.Collected
-            : dailyLoginCount >= 1
-            ? Status.Ready
-            : Status.Incomplete
-        }
-        onCollect={async () => await rewardsService.collectPoints("daily")}
-      />
+      <div id="challenges-container">
+        <div id="daily-login">
+          <LoginChallenge
+            type="daily"
+            title="Daily Login"
+            gain={10}
+            current={dailyLoginCount}
+            total={1}
+            openUntil={tomorrow}
+            status={
+              dailyCollected
+                ? Status.Collected
+                : dailyLoginCount >= 1
+                ? Status.Ready
+                : Status.Incomplete
+            }
+            onCollect={async () => await rewardsService.collectPoints("daily")}
+          />
+        </div>
 
-      <LoginChallenge
-        type="weekly"
-        title="Weekly Streak"
-        gain={300}
-        current={weeklyLoginCount}
-        total={7}
-        openUntil={nextWeek}
-        status={
-          weeklyCollected
-            ? Status.Collected
-            : weeklyLoginCount >= 7
-            ? Status.Ready
-            : Status.Incomplete
-        }
-        onCollect={async () => await rewardsService.collectPoints("weekly")}
-      />
+        <div id="weekly-streak">
+          <LoginChallenge
+            type="weekly"
+            title="Weekly Streak"
+            gain={300}
+            current={weeklyLoginCount}
+            total={7}
+            openUntil={nextWeek}
+            status={
+              weeklyCollected
+                ? Status.Collected
+                : weeklyLoginCount >= 7
+                ? Status.Ready
+                : Status.Incomplete
+            }
+            onCollect={async () => await rewardsService.collectPoints("weekly")}
+          />
+        </div>
 
-      <LoginChallenge
-        type="monthly"
-        title="Monthly Streak"
-        gain={500}
-        current={monthlyLoginCount}
-        total={daysInMonth}
-        openUntil={nextMonth}
-        status={
-          monthlyCollected
-            ? Status.Collected
-            : monthlyLoginCount >= daysInMonth
-            ? Status.Ready
-            : Status.Incomplete
-        }
-        onCollect={async () => await rewardsService.collectPoints("monthly")}
-      />
+        <div id="monthly-streak">
+          <LoginChallenge
+            type="monthly"
+            title="Monthly Streak"
+            gain={500}
+            current={monthlyLoginCount}
+            total={daysInMonth}
+            openUntil={nextMonth}
+            status={
+              monthlyCollected
+                ? Status.Collected
+                : monthlyLoginCount >= daysInMonth
+                ? Status.Ready
+                : Status.Incomplete
+            }
+            onCollect={async () =>
+              await rewardsService.collectPoints("monthly")
+            }
+          />
+        </div>
+      </div>
 
       <NavBar />
-    </>
+    </div>
   );
 }
