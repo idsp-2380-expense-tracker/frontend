@@ -46,21 +46,33 @@ export default function TrackingForm({ onBack, editItem }: TrackingFormProps) {
     categoryData.find((c) => c.label === editItem?.category) ?? categoryData[0]
   );
   const [selectedPayment, setSelectedPayment] = useState(
-    paymentOptions.find((p) => p.label === editItem?.paymentMethod) ?? paymentOptions[0]
+    paymentOptions.find((p) => p.label === editItem?.paymentMethod) ??
+      paymentOptions[0]
   );
   const [checked, setChecked] = useState(editItem?.repeat ?? false);
   const [date, setDate] = useState<Date | null>(
-    editItem?.dateOfPayment ? parseLocalDate(editItem.dateOfPayment) : new Date()
+    editItem?.dateOfPayment
+      ? parseLocalDate(editItem.dateOfPayment)
+      : new Date()
   );
   const [amount, setAmount] = useState<number>(editItem?.amount ?? 0);
 
   useEffect(() => {
     if (!editItem) return;
 
-    setSelected(categoryData.find((c) => c.label === editItem.category) ?? categoryData[0]);
-    setSelectedPayment(paymentOptions.find((p) => p.label === editItem.paymentMethod) ?? paymentOptions[0]);
+    setSelected(
+      categoryData.find((c) => c.label === editItem.category) ?? categoryData[0]
+    );
+    setSelectedPayment(
+      paymentOptions.find((p) => p.label === editItem.paymentMethod) ??
+        paymentOptions[0]
+    );
     setChecked(editItem.repeat);
-    setDate(editItem.dateOfPayment ? parseLocalDate(editItem.dateOfPayment) : new Date());
+    setDate(
+      editItem.dateOfPayment
+        ? parseLocalDate(editItem.dateOfPayment)
+        : new Date()
+    );
     setAmount(editItem.amount);
   }, [editItem]);
 
@@ -77,7 +89,8 @@ export default function TrackingForm({ onBack, editItem }: TrackingFormProps) {
   ));
 
   return (
-    <form onSubmit={async (e) => {
+    <form
+      onSubmit={async (e) => {
         e.preventDefault();
         if (amount <= 0) return;
         await trackingService.saveTrackingData({
@@ -86,7 +99,7 @@ export default function TrackingForm({ onBack, editItem }: TrackingFormProps) {
           paymentMethod: selectedPayment.label,
           amount,
           dateOfPayment: date ? dayjs(date).format("YYYY-MM-DD") : "",
-          repeat: checked
+          repeat: checked,
         });
         onBack();
       }}
@@ -168,7 +181,9 @@ export default function TrackingForm({ onBack, editItem }: TrackingFormProps) {
                   data-expanded={paymentMenuOpened || undefined}
                 >
                   <Group gap="xs">
-                    <span className={classes.label}>{selectedPayment.label}</span>
+                    <span className={classes.label}>
+                      {selectedPayment.label}
+                    </span>
                   </Group>
                   <IconChevronDown
                     size={16}
@@ -208,14 +223,19 @@ export default function TrackingForm({ onBack, editItem }: TrackingFormProps) {
           <br />
           <div id="repeat-payment">
             <Checkbox
-              label="Repeating Payment (Rent, Income, etc...)"
+              label="Repeating Payment (Rent, Bills, etc...)"
               checked={checked}
               onChange={(event) => setChecked(event.currentTarget.checked)}
             />
           </div>
         </section>
         <hr />
-        <Button type="submit" className="spending-add" disabled={amount <= 0}>
+        <Button
+          id="add-trans-btn"
+          type="submit"
+          className="spending-add"
+          disabled={amount <= 0}
+        >
           {editItem ? "Update" : "Add"}
         </Button>
       </div>
