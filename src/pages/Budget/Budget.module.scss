@@ -1,6 +1,9 @@
 @use "../../styles/utils/mixins";
 @use "../../styles/utils/variables";
 
+// ------------------------------
+// Budget Popup
+// ------------------------------
 .budget-popup {
   display: flex;
   flex-direction: column;
@@ -70,6 +73,97 @@
 
     #later-btn {
       background-color: white !important;
+    }
+  }
+}
+
+// ------------------------------
+// Budget Form
+// ------------------------------
+#budget-form-container {
+  margin: 0 1rem;
+
+  #budget-form-header {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    img {
+      cursor: pointer;
+    }
+
+    h1 {
+      color: white;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+  }
+
+  #budget-setup-contents {
+    @include mixins.box(660px);
+    margin-top: 1.5rem;
+    padding: 1rem 1rem;
+
+    p {
+      text-align: center;
+
+      span {
+        color: variables.$primary-colour;
+        font-weight: bold;
+      }
+    }
+
+    hr {
+      background-color: variables.$bg-colour;
+      margin-bottom: 0;
+    }
+
+    #ring-progress-graph {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  #income-form {
+    form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h2 {
+      font-weight: 600;
+      text-align: center;
+    }
+
+    #period-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      width: 270px;
+      height: 32px;
+      border-radius: variables.$border-radius-overlay;
+      background-color: variables.$bg-colour;
+      margin-bottom: 1rem;
+    }
+
+    .income-input {
+      width: 270px;
+      height: 60px;
+      background-color: variables.$btn-background;
+      border: 0;
+      border-radius: variables.$border-radius-md;
+    }
+
+    .submit-btn {
+      width: 192px;
+      height: 48px;
+      color: black;
+      border-radius: variables.$border-radius-overlay;
+      margin-top: 1rem;
     }
   }
 }
