@@ -438,3 +438,10 @@ hr {
   width: 100%;
   color: black;
 }
+
+// Add button in Manual Transaction
+#add-trans-btn {
+  border-radius: 50px;
+  background-color: variables.$primary-colour;
+  height: 48px;
+}

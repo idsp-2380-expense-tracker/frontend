@@ -30,13 +30,14 @@
     @include mixins.box(156px);
     display: flex;
     flex-direction: column;
+    justify-content: center;
 
     #spent-stats {
       display: flex;
       justify-content: space-between;
       align-items: center;
       width: 100%;
-      padding: 1rem 0;
+      padding-bottom: 1rem;
 
       #percentage-spending {
         color: variables.$primary-colour;
@@ -109,9 +110,10 @@
     width: 100%;
 
     #challenge-progress {
-      @include mixins.box(203px);
+      @include mixins.box(200px);
       display: flex;
       flex-direction: column;
+      justify-content: space-evenly;
       align-items: center;
       text-align: left;
     }
@@ -121,7 +123,6 @@
       justify-content: space-between;
       align-items: center;
       width: 100%;
-      margin-top: 1rem;
     }
 
     #streak {
@@ -140,9 +141,11 @@
     }
 
     #earned-points {
-      @include mixins.box(203px);
+      @include mixins.box(200px);
       display: flex;
       flex-direction: column;
+      justify-content: center;
+      align-items: center;
       width: 100%;
 
       #coins-btn {
@@ -150,7 +153,6 @@
         justify-content: space-between;
         align-items: center;
         width: 100%;
-        margin-top: 1rem;
       }
 
       h2 {
@@ -166,6 +168,7 @@
         margin-block-start: 0.5em;
         margin-block-end: 0;
         text-align: center;
+        margin: 0;
 
         span {
           color: white;
@@ -208,7 +211,7 @@
 
 // Spending Progress Card
 .progressTrack {
-  background-color: var(--mantine-color-gray-6) !important;
+  background-color: variables.$bg-colour !important;
 }
 
 .progressSection {

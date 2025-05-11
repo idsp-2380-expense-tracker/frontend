@@ -1,24 +1,60 @@
-interface BudgetPopupProps { onStart(): void; onLater(): void; }
+import { RingProgress, Text } from "@mantine/core";
+
+interface BudgetPopupProps {
+  onStart(): void;
+  onLater(): void;
+}
 
 export default function BudgetPopup({ onStart, onLater }: BudgetPopupProps) {
   return (
     <div className="budget-popup">
-      <h1>Guide to set up your budget</h1>
-      <p>There is a widely used approach to managing a personal budget.</p>
+      <div id="budget-header">
+        <h1>Guide to set up your budget</h1>
+        <br />
+        <p>There is a widely used approach to managing a personal budget.</p>
+      </div>
 
+      <br />
       <div className="rule-box">
-        <h2>50/30/20 Rule</h2>
-        <p>The 50/30/20 rule involves allocating 50% of your income to essential expenses, 30% to discretionary spending, and 20% to savings.</p>
+        <h3>50/30/20 Rule</h3>
+        <p>
+          <span>The 50/30/20 rule</span> involves allocating <span>50%</span> of
+          your income to essential expenses, <span>30%</span> to discretionary
+          spending, and <span>20%</span> to savings.
+        </p>
       </div>
 
       <div className="chart-placeholder">
-        IMAGE
-      <p>Get a custom budget by entering income and goals</p>
+        <RingProgress
+          size={250}
+          thickness={35}
+          label={
+            <Text
+              size="xs"
+              ta="center"
+              px="xs"
+              style={{ pointerEvents: "none" }}
+            >
+              Tap sections to see breakdown
+            </Text>
+          }
+          sections={[
+            { value: 50, color: "#6B21DD", tooltip: "Needs (50%)" },
+            { value: 30, color: "#A36CF7", tooltip: "Wants (30%)" },
+            { value: 20, color: "#D5BBFB", tooltip: "Saving (20%)" },
+          ]}
+        />
+        <p>Get a custom budget by entering income and goals</p>
       </div>
 
+      <br />
       <div className="popup-buttons">
-        <button onClick={onStart}>Start Setting your Budget</button>
-        <button onClick={onLater}>Later</button>
+        <button id="start-budget-btn" onClick={onStart}>
+          Start Setting your Budget
+        </button>
+        <button id="later-btn" onClick={onLater}>
+          Later
+        </button>
       </div>
     </div>
   );
