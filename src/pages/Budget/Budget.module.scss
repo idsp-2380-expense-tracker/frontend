@@ -174,11 +174,17 @@
 // Budget Main
 // ------------------------------
 #budget-main-container {
-  margin: 0 1rem 1rem 1rem;
+  // margin: 0 1rem 1rem 1rem;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+  padding: 0 1rem;
+  background-color: variables.$input-box-colour;
+  border-radius: variables.$border-radius-md;
+  width: 92%;
   height: 100vh;
 
   #budget-main-contents {
-    @include mixins.box(auto);
+    // @include mixins.box(auto);
     display: flex;
     flex-direction: column;
     align-items: center;

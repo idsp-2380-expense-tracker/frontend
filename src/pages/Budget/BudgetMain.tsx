@@ -18,7 +18,6 @@ export default function BudgetMain({ onStart }: BudgetMainProps) {
   const [hasBudget, setHasBudget] = useState<boolean>(false);
   const [budget, setBudget] = useState<DB_Budget | null>(null);
   const [currentMonth, setCurrentMonth] = useState(dayjs());
-  const isClient = typeof window !== "undefined";
 
   const handleMonthChange = (diff: number) => {
     setCurrentMonth((prev) => prev.add(diff, "month"));
@@ -44,7 +43,7 @@ export default function BudgetMain({ onStart }: BudgetMainProps) {
     ? "Edit the Budget"
     : "Start Setting your Budget";
 
-  return isClient ? (
+  return (
     <div id="budget-main-container">
       <div id="budget-main-contents">
         <h1>Budget</h1>
@@ -157,5 +156,5 @@ export default function BudgetMain({ onStart }: BudgetMainProps) {
         <NavBar />
       </div>
     </div>
-  ) : null;
+  );
 }
