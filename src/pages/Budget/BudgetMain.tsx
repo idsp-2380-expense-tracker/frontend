@@ -74,7 +74,7 @@ export default function BudgetMain({ onStart }: BudgetMainProps) {
             withLabels
             withTooltip
             mx="auto"
-            size={190}
+            size={150}
             data={[
               { name: "Needs", value: needs ?? 0, color: "#6B21DD" },
               { name: "Wants", value: wants ?? 0, color: "#A36CF7" },
