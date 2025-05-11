@@ -167,3 +167,75 @@
     }
   }
 }
+
+// ------------------------------
+// Budget Main
+// ------------------------------
+#budget-main-container {
+  margin: 0 1rem;
+
+  #budget-main-contents {
+    @include mixins.box(900px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+      margin-top: 1rem;
+    }
+
+    #month-year {
+      border: 1px solid variables.$primary-colour;
+      border-radius: 20px;
+      height: 70px;
+      width: 100%;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 1rem;
+
+      img {
+        cursor: pointer;
+      }
+    }
+
+    #income-stats {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  #divider {
+    width: 100%;
+    border: 1px dashed variables.$tag-colour;
+    margin: 1rem 0;
+  }
+
+  .mantine-PieChart-root {
+    --chart-stroke-color: #181626;
+    --chart-labels-color: white;
+  }
+
+  #sm-charts {
+    p {
+      font-weight: bold;
+      text-align: center;
+      margin-top: 0;
+    }
+  }
+
+  #sm-charts {
+    display: flex;
+    flex-direction: row;
+  }
+
+  #edit-budget-btn {
+    border-radius: variables.$border-radius-overlay;
+    width: 208px;
+    height: 48px;
+    color: black;
+    margin-top: 1rem;
+  }
+}

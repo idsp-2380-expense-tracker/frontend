@@ -44,7 +44,7 @@ export default function BudgetForm({ onSubmit, onBack }: BudgetFormProps) {
                 px="xs"
                 style={{ pointerEvents: "none" }}
               >
-                Tap sections to see breakdown
+                <em>Tap sections to see breakdown</em>
               </Text>
             }
             sections={[
