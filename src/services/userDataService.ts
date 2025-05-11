@@ -47,8 +47,9 @@ export class UserDataService extends ApiService {
 
         try {
             if ("id" in partialPayload) {                                   // DB_Tracking
-                await this.postRaw(endpoint, partialPayload);
-                this.updateTrackingLocalData(fullPayload as DB_Tracking);
+                const isNew: boolean = partialPayload.id === -1;
+                const trackingDB: DB_Tracking = await this.postRaw(endpoint, partialPayload);
+                this.updateTrackingLocalData(trackingDB, isNew);
             } else {                                                        // ELSE
                 await this.postData(endpoint, fullPayload);
                 this.updateLocalData(endpoint, fullPayload);
@@ -66,11 +67,11 @@ export class UserDataService extends ApiService {
         }
     }
 
-    private updateTrackingLocalData(payload: DB_Tracking) {
+    private updateTrackingLocalData(payload: DB_Tracking, isNew: boolean) {
         if (this._userData) {
             const trackingData = this._userData["tracking"];
 
-            if (payload.id === -1) {
+            if (isNew) {
                 trackingData.push(payload);
             } else {
                 const index = trackingData.findIndex(item => item.id === payload.id);
