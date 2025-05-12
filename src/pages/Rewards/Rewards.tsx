@@ -5,6 +5,7 @@ import { calcTotalDaysInMonth, formatOffsetDate } from "../../utils/helpers";
 import LoginChallenge, { Status } from "./RewardsLoginChallenge";
 // Image Source
 import trophyIcon from "../../assets/trophy.svg";
+import Header from "../../components/Header";
 
 export default function Rewards() {
   const rewardsData = rewardsService.getRewardsData()!;
@@ -26,79 +27,82 @@ export default function Rewards() {
   const daysInMonth = calcTotalDaysInMonth(start);
 
   return (
-    <div id="rewards-container">
-      <div id="rewards-header">
-        <img src={trophyIcon} alt="Trophy icon" />
-        <div id="points-earned">
-          <p id="points-earned-title">Points Earned</p>
-          <h1>{userPoints}</h1>
+    <>
+      <Header />
+      <div id="rewards-container">
+        <div id="rewards-header">
+          <img src={trophyIcon} alt="Trophy icon" />
+          <div id="points-earned">
+            <p id="points-earned-title">Points Earned</p>
+            <h1>{userPoints}</h1>
+          </div>
         </div>
+
+        <h2>CHALLENGES</h2>
+
+        <div id="challenges-container">
+          <div id="daily-login">
+            <LoginChallenge
+              type="daily"
+              title="Daily Login"
+              gain={10}
+              current={dailyLoginCount}
+              total={1}
+              openUntil={tomorrow}
+              status={
+                dailyCollected
+                  ? Status.Collected
+                  : dailyLoginCount >= 1
+                  ? Status.Ready
+                  : Status.Incomplete
+              }
+              onCollect={async () => await rewardsService.collectPoints("daily")}
+            />
+          </div>
+
+          <div id="weekly-streak">
+            <LoginChallenge
+              type="weekly"
+              title="Weekly Streak"
+              gain={300}
+              current={weeklyLoginCount}
+              total={7}
+              openUntil={nextWeek}
+              status={
+                weeklyCollected
+                  ? Status.Collected
+                  : weeklyLoginCount >= 7
+                  ? Status.Ready
+                  : Status.Incomplete
+              }
+              onCollect={async () => await rewardsService.collectPoints("weekly")}
+            />
+          </div>
+
+          <div id="monthly-streak">
+            <LoginChallenge
+              type="monthly"
+              title="Monthly Streak"
+              gain={500}
+              current={monthlyLoginCount}
+              total={daysInMonth}
+              openUntil={nextMonth}
+              status={
+                monthlyCollected
+                  ? Status.Collected
+                  : monthlyLoginCount >= daysInMonth
+                  ? Status.Ready
+                  : Status.Incomplete
+              }
+              onCollect={async () =>
+                await rewardsService.collectPoints("monthly")
+              }
+            />
+          </div>
+        </div>
+
+        <NavBar />
       </div>
-
-      <h2>CHALLENGES</h2>
-
-      <div id="challenges-container">
-        <div id="daily-login">
-          <LoginChallenge
-            type="daily"
-            title="Daily Login"
-            gain={10}
-            current={dailyLoginCount}
-            total={1}
-            openUntil={tomorrow}
-            status={
-              dailyCollected
-                ? Status.Collected
-                : dailyLoginCount >= 1
-                ? Status.Ready
-                : Status.Incomplete
-            }
-            onCollect={async () => await rewardsService.collectPoints("daily")}
-          />
-        </div>
-
-        <div id="weekly-streak">
-          <LoginChallenge
-            type="weekly"
-            title="Weekly Streak"
-            gain={300}
-            current={weeklyLoginCount}
-            total={7}
-            openUntil={nextWeek}
-            status={
-              weeklyCollected
-                ? Status.Collected
-                : weeklyLoginCount >= 7
-                ? Status.Ready
-                : Status.Incomplete
-            }
-            onCollect={async () => await rewardsService.collectPoints("weekly")}
-          />
-        </div>
-
-        <div id="monthly-streak">
-          <LoginChallenge
-            type="monthly"
-            title="Monthly Streak"
-            gain={500}
-            current={monthlyLoginCount}
-            total={daysInMonth}
-            openUntil={nextMonth}
-            status={
-              monthlyCollected
-                ? Status.Collected
-                : monthlyLoginCount >= daysInMonth
-                ? Status.Ready
-                : Status.Incomplete
-            }
-            onCollect={async () =>
-              await rewardsService.collectPoints("monthly")
-            }
-          />
-        </div>
-      </div>
-
-      <NavBar />
-    </div>
+    </>
   );
 }

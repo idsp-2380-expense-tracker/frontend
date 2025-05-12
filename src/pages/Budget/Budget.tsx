@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { budgetService } from "../../services/budgetService";
 
+import Header from "../../components/Header";
 import NavBar from "../../components/NavBar";
 import BudgetForm from "./BudgetForm";
 import BudgetMain from "./BudgetMain";
@@ -20,6 +21,7 @@ export default function Budget() {
 
       {stage === "main" && (
         <>
+          <Header />
           <BudgetMain onStart={() => setStage("form")} />
           <NavBar />
         </>

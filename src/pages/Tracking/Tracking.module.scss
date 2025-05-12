@@ -112,7 +112,7 @@
   padding: 1rem 2rem;
 
   &.collapsed {
-    height: 35%;
+    height: 30%;
     background-color: variables.$btn-background;
     @include mixins.top-border-radius(variables.$border-radius-overlay);
     position: fixed;

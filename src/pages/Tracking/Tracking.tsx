@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
 import { useState } from "react";
+import Header from "../../components/Header";
 import NavBar from "../../components/NavBar";
 import { DB_Tracking } from "../../interfaces/dbStructure";
 import { trackingService } from "../../services/trackingService";
@@ -41,6 +42,7 @@ export default function Tracking() {
 
   return (
     <>
+      <Header />
       <TrackingCalendar
         selectedDate={selectedDate}
         onDateChange={setSelectedDate}
