@@ -96,7 +96,7 @@ export default function TrackingForm({ onBack, editItem }: TrackingFormProps) {
         e.preventDefault();
         if (!isValid) return;
         await trackingService.saveTrackingData({
-          id: editItem?.id ?? -1,
+          id: editItem?.id ?? 0,
           category: selected.label,
           paymentMethod: selectedPayment.label,
           amount,
@@ -240,6 +240,19 @@ export default function TrackingForm({ onBack, editItem }: TrackingFormProps) {
         >
           {editItem ? "Update" : "Add"}
         </Button>
+        {editItem && (
+          <Button
+            id="add-trans-btn"
+            type="submit"
+            className="spending-add"
+            onClick={async () => {
+              await trackingService.deleteTrackingData({ id: -1, idForDelete: editItem.id });
+              onBack();
+            }}
+          >
+            Delete
+          </Button>
+        )}
       </div>
     </form>
   );

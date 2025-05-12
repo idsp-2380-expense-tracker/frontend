@@ -38,6 +38,7 @@ export class ApiService {
 
     try {
       const response = await axios.post(path, payload, { headers });
+      console.log(`${endpoint}_Post: ${JSON.stringify(payload, null, 2)}`);
       return response.data;
     } catch (error) {
       console.error(`Failed to post to ${endpoint} (${error})`);
@@ -50,9 +51,8 @@ export class ApiService {
     const headers = await this.checkToken();
 
     try {
-      const response = await axios.post(`${this.apiBase}/${path}`, payload, {
-        headers,
-      });
+      const response = await axios.post(`${this.apiBase}/${path}`, payload, { headers });
+      console.log(`${path}_Post: ${JSON.stringify(payload, null, 2)}`);
       return response.data;
     } catch (error) {
       console.error(`Failed to post to ${path} (${error})`);

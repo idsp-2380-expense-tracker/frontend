@@ -1,4 +1,4 @@
-import { DB_Tracking, DB_User } from "../interfaces/dbStructure";
+import { DB_Rewards_Delete, DB_Rewards_Response_New, DB_Tracking, DB_User } from "../interfaces/dbStructure";
 import { ApiService } from "./apiService";
 
 export class UserDataService extends ApiService {
@@ -43,20 +43,41 @@ export class UserDataService extends ApiService {
             ...partialPayload
         };
 
-        console.log(`${endpoint}_Post: ${Object.entries(fullPayload)}`);
-
         try {
-            if ("id" in partialPayload) {                                   // DB_Tracking
-                const isNew: boolean = partialPayload.id === -1;
-                const trackingDB: DB_Tracking = await this.postRaw(endpoint, partialPayload);
-                this.updateTrackingLocalData(trackingDB, isNew);
-            } else {                                                        // ELSE
+            if (endpoint === "tracking") {
+                const payload = partialPayload as DB_Tracking;
+                const isNew = payload.id === 0;
+
+                const isHosted = import.meta.env.VITE_IS_HOSTED === "true";
+                if (isNew) {
+                    let newId: number;
+                    if (!isHosted) {       // Random Id for Dev
+                        newId = Math.floor(Math.random() * 100000) + 1;
+                        console.log(newId);
+                    } else {
+                        const response: DB_Rewards_Response_New = await this.postRaw(endpoint, partialPayload);
+                        newId = response.id;
+                    }
+                    payload.id = newId;
+                }
+                this.updateTrackingLocalData(payload, isNew);
+            } else {
                 await this.postData(endpoint, fullPayload);
                 this.updateLocalData(endpoint, fullPayload);
             }
             console.log(`Saved ${endpoint} data successfully.`);
         } catch (error) {
             console.error(`Failed to save ${endpoint} data (${error})`);
+        }
+    }
+
+    public async deleteTrackingData(payload: DB_Rewards_Delete) {
+        await this.postRaw("tracking", payload);
+        const trackingData = userDataService.userData?.tracking;
+        if (trackingData) {
+            userDataService.userData!.tracking = trackingData.filter(
+                item => item.id !== payload.idForDelete
+            );
         }
     }
 
@@ -68,18 +89,13 @@ export class UserDataService extends ApiService {
     }
 
     private updateTrackingLocalData(payload: DB_Tracking, isNew: boolean) {
-        if (this._userData) {
-            const trackingData = this._userData["tracking"];
-
+        const trackingData = this.userData?.tracking;
+        if (trackingData) {
             if (isNew) {
                 trackingData.push(payload);
             } else {
                 const index = trackingData.findIndex(item => item.id === payload.id);
-                if (index !== -1) {
-                    trackingData[index] = payload;
-                } else {
-                    console.error("Local_Data_tracking not found")
-                }
+                trackingData[index] = payload;
             }
             console.log("Local_Data_tracking updated.");
         }

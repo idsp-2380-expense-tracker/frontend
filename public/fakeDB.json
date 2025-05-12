@@ -1,7 +1,7 @@
 {
     "tracking": [
         {
-            "id": 0,
+            "id": 1,
             "category": "Food",
             "paymentMethod": "Cash",
             "amount": 100,
