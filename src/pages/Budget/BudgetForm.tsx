@@ -1,7 +1,7 @@
+import { Button, RingProgress, Text } from "@mantine/core";
 import { useState } from "react";
 import { DB_Budget } from "../../interfaces/dbStructure";
 import { PeriodRange } from "../../interfaces/types";
-import { RingProgress, Text, Button } from "@mantine/core";
 // Image Source
 import leftArrow from "../../assets/left_arrow_2.svg";
 
@@ -95,7 +95,7 @@ export default function BudgetForm({ onSubmit, onBack }: BudgetFormProps) {
               <span style={{ color: "white" }}>Monthly Budget</span>.
             </p>
 
-            <Button className="submit-btn" type="submit">
+            <Button className="submit-btn" type="submit" disabled={Number(income) < 0}>
               Submit
             </Button>
           </form>

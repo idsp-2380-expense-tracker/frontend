@@ -19,10 +19,10 @@
     ],
     "budget": {
         "periodRange": "weekly",
-        "income": 1000,
-        "needs": 2000,
-        "wants": 1200,
-        "save": 800
+        "income": 0,
+        "needs": 0,
+        "wants": 0,
+        "save": 0
     },
     "rewards": {
         "points": 300,

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { budgetService } from "../../services/budgetService";
 
 import Header from "../../components/Header";
@@ -8,7 +8,18 @@ import BudgetMain from "./BudgetMain";
 import BudgetPopup from "./BudgetPopup";
 
 export default function Budget() {
-  const [stage, setStage] = useState<"popup" | "main" | "form">("popup");
+  const budgetData = budgetService.getBudgetData();
+  const [stage, setStage] = useState<"popup" | "main" | "form">(() => {
+    if (!budgetData || budgetData.income === 0) {
+      return "popup";
+    }
+    return "main";
+  });
+
+  useEffect(() => {
+    const data = budgetService.getBudgetData();
+    setStage(!data || data.income === 0 ? "popup" : "main");
+  }, []);
 
   return (
     <>

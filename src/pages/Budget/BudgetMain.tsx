@@ -1,11 +1,11 @@
+import { PieChart } from "@mantine/charts";
+import { Button, RingProgress } from "@mantine/core";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import NavBar from "../../components/NavBar";
 import { DB_Budget } from "../../interfaces/dbStructure";
 import { userDataService } from "../../services/userDataService";
 import { formatNumber } from "../../utils/helpers";
-import { PieChart } from "@mantine/charts";
-import { RingProgress, Button } from "@mantine/core";
 // Image Source
 import leftArrow from "../../assets/left_arrow.png";
 import rightArrow from "../../assets/right_arrow.svg";
@@ -18,7 +18,7 @@ export default function BudgetMain({ onStart }: BudgetMainProps) {
   const [hasBudget, setHasBudget] = useState<boolean>(false);
   const [budget, setBudget] = useState<DB_Budget | null>(null);
   const [currentMonth, setCurrentMonth] = useState(dayjs());
-
+  const trackingData = userDataService.userData?.tracking ?? [];
   const handleMonthChange = (diff: number) => {
     setCurrentMonth((prev) => prev.add(diff, "month"));
   };
@@ -35,13 +35,25 @@ export default function BudgetMain({ onStart }: BudgetMainProps) {
   const needs = hasBudget ? budget?.needs : 0;
   const wants = hasBudget ? budget?.wants : 0;
   const save = hasBudget ? budget?.save : 0;
-  const daysLeft = dayjs()
-    .add(1, "month")
-    .startOf("month")
-    .diff(dayjs(), "day");
-  const buttonLabel = hasBudget
-    ? "Edit the Budget"
-    : "Start Setting your Budget";
+  const daysLeft = dayjs().add(1, "month").startOf("month").diff(dayjs(), "day");
+  const buttonLabel = hasBudget ? "Edit the Budget" : "Start Setting your Budget";
+
+  const oneTimeSpending = trackingData
+    .filter(t => !t.repeat && dayjs(t.dateOfPayment).isSame(currentMonth, "month"))
+    .reduce((sum, t) => sum + t.amount, 0);
+
+  const recurringSpending = trackingData
+    .filter(t => t.repeat)
+    .reduce((sum, t) => sum + t.amount, 0);
+
+  const thisMonthSpending = oneTimeSpending + recurringSpending;
+
+  let remainingToAllocate = thisMonthSpending;
+  const needsLeft = Math.max(Number(needs) - remainingToAllocate, 0);
+  remainingToAllocate = Math.max(remainingToAllocate - Number(needs), 0);
+  const wantsLeft = Math.max(Number(wants) - remainingToAllocate, 0);
+  remainingToAllocate = Math.max(remainingToAllocate - Number(wants), 0);
+  const saveLeft = Math.max(Number(save) - remainingToAllocate, 0);
 
   return (
     <div id="budget-main-container">
@@ -93,7 +105,7 @@ export default function BudgetMain({ onStart }: BudgetMainProps) {
             <RingProgress
               sections={[
                 {
-                  value: ((needs ?? 0) / (income ?? 1)) * 100,
+                  value: ((needsLeft ?? 0) / (needs ?? 1)) * 100,
                   color: "#cef24a",
                 },
               ]}
@@ -103,7 +115,7 @@ export default function BudgetMain({ onStart }: BudgetMainProps) {
               rootColor="#636087"
             />
             <p>
-              Needs <br />${formatNumber(needs)} left
+              Needs <br />${formatNumber(needsLeft)} left
             </p>
           </div>
 
@@ -111,7 +123,7 @@ export default function BudgetMain({ onStart }: BudgetMainProps) {
             <RingProgress
               sections={[
                 {
-                  value: ((wants ?? 0) / (income ?? 1)) * 100,
+                  value: ((wantsLeft ?? 0) / (wants ?? 1)) * 100,
                   color: "#cef24a",
                 },
               ]}
@@ -121,7 +133,7 @@ export default function BudgetMain({ onStart }: BudgetMainProps) {
               rootColor="#636087"
             />
             <p>
-              Wants <br />${formatNumber(wants)} left
+              Wants <br />${formatNumber(wantsLeft)} left
             </p>
           </div>
 
@@ -129,7 +141,7 @@ export default function BudgetMain({ onStart }: BudgetMainProps) {
             <RingProgress
               sections={[
                 {
-                  value: ((save ?? 0) / (income ?? 1)) * 100,
+                  value: ((saveLeft ?? 0) / (save ?? 1)) * 100,
                   color: "#cef24a",
                 },
               ]}
@@ -139,14 +151,14 @@ export default function BudgetMain({ onStart }: BudgetMainProps) {
               rootColor="#636087"
             />
             <p>
-              Save <br />${formatNumber(save)} left
+              Save <br />${formatNumber(saveLeft)} left
             </p>
           </div>
         </div>
 
         <p>
           <span style={{ color: "#A36CF7", fontWeight: "bold" }}>
-            ${daysLeft} days
+            {daysLeft} days
           </span>{" "}
           {` left to next month`}
         </p>
