@@ -17,12 +17,10 @@ export class ApiService {
     const path = this.isHosted ? `${this.apiBase}/user/data` : "/fakeDB.json";
 
     const headers =
-      this.isHosted && token
-        ? { Authorization: `Bearer ${token}`, withCredentials: true }
-        : undefined;
-
+      this.isHosted && token ? { Authorization: `Bearer ${token}` } : undefined;
+    const config = { withCredentials: true, headers };
     try {
-      const response = await axios.get(path, { headers });
+      const response = await axios.get(path, config);
       return response.data;
     } catch (error) {
       console.error(`Failed to fetch userData (${error})`);
