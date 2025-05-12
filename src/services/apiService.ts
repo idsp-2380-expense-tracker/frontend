@@ -18,9 +18,9 @@ export class ApiService {
 
     const headers =
       this.isHosted && token ? { Authorization: `Bearer ${token}` } : undefined;
-    const config = { withCredentials: true, headers };
+
     try {
-      const response = await axios.get(path, config);
+      const response = await axios.get(path, { headers });
       return response.data;
     } catch (error) {
       console.error(`Failed to fetch userData (${error})`);
