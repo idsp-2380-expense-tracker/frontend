@@ -8,17 +8,18 @@ export class ApiService {
   private apiBase: string = import.meta.env.VITE_API_BASE;
 
   private static getToken: TokenGetter = async () => null;
-  public static setToken(tokenGetter: TokenGetter) { ApiService.getToken = tokenGetter; }
+  public static setToken(tokenGetter: TokenGetter) {
+    ApiService.getToken = tokenGetter;
+  }
 
   protected async getData() {
     const token = await ApiService.getToken();
-    const path = this.isHosted
-      ? `${this.apiBase}/user/data`
-      : "/fakeDB.json";
+    const path = this.isHosted ? `${this.apiBase}/user/data` : "/fakeDB.json";
 
-    const headers = this.isHosted && token
-      ? { Authorization: `Bearer ${token}` }
-      : undefined;
+    const headers =
+      this.isHosted && token
+        ? { Authorization: `Bearer ${token}`, withCredentials: true }
+        : undefined;
 
     try {
       const response = await axios.get(path, { headers });
@@ -28,7 +29,10 @@ export class ApiService {
     }
   }
 
-  protected async postData<K extends keyof DB_User>(endpoint: K, payload: DB_User[K]) {
+  protected async postData<K extends keyof DB_User>(
+    endpoint: K,
+    payload: DB_User[K]
+  ) {
     if (!this.isHosted) return;
 
     const headers = await this.checkToken();
@@ -48,7 +52,9 @@ export class ApiService {
     const headers = await this.checkToken();
 
     try {
-      const response = await axios.post(`${this.apiBase}/${path}`, payload, { headers });
+      const response = await axios.post(`${this.apiBase}/${path}`, payload, {
+        headers,
+      });
       return response.data;
     } catch (error) {
       console.error(`Failed to post to ${path} (${error})`);
