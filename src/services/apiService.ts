@@ -43,7 +43,7 @@ export class ApiService {
   }
 
   protected async postRaw(path: string, payload: any) {
-    if (!this.isHosted) return;
+    if (!this.isHosted) return payload;
 
     const headers = await this.checkToken();
 

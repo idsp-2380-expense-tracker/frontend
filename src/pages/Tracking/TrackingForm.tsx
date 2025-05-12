@@ -76,6 +76,8 @@ export default function TrackingForm({ onBack, editItem }: TrackingFormProps) {
     setAmount(editItem.amount);
   }, [editItem]);
 
+  const isValid = amount > 0 && date instanceof Date;
+
   const categoryItems = categoryData.map((item) => (
     <Menu.Item onClick={() => setSelected(item)} key={item.label}>
       {item.label}
@@ -92,7 +94,7 @@ export default function TrackingForm({ onBack, editItem }: TrackingFormProps) {
     <form
       onSubmit={async (e) => {
         e.preventDefault();
-        if (amount <= 0) return;
+        if (!isValid) return;
         await trackingService.saveTrackingData({
           id: editItem?.id ?? -1,
           category: selected.label,
@@ -234,7 +236,7 @@ export default function TrackingForm({ onBack, editItem }: TrackingFormProps) {
           id="add-trans-btn"
           type="submit"
           className="spending-add"
-          disabled={amount <= 0}
+          disabled={!isValid}
         >
           {editItem ? "Update" : "Add"}
         </Button>
