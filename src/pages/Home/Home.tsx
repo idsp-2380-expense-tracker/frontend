@@ -1,14 +1,48 @@
+import ArticleCarousel from "../../components/ArticleCarousel";
 import Header from "../../components/Header";
 import NavBar from "../../components/NavBar";
 import SpendingStatsBar from "../../components/SpendingStatsBar";
-import ArticleCarousel from "../../components/ArticleCarousel";
 // Image Source
-import insightIcon from "../../assets/party.svg";
-import rightArrow from "../../assets/right_arrow.svg";
+import dayjs from "dayjs";
+import { useNavigate } from "react-router-dom";
 import arrowInCircleGrey from "../../assets/arrow_in_circle_grey.svg";
+import insightIcon from "../../assets/party.svg";
 import coinsIcon from "../../assets/reward_icon.svg";
+import rightArrow from "../../assets/right_arrow.svg";
+import { useAuthService } from "../../services/authService";
+import { budgetService } from "../../services/budgetService";
+import { rewardsService } from "../../services/rewardsService";
+import { trackingService } from "../../services/trackingService";
 
 export default function Home() {
+  const navigate = useNavigate();
+  const { user } = useAuthService();
+  const streakDays = Number(user?.publicMetadata.loginStreak) ?? 0;
+  
+  const { points = 0 } = rewardsService.getRewardsData() ?? {};
+
+  const { needs = 0, wants = 0 } = budgetService.getBudgetData() ?? {};
+  const totalBudget = needs + wants;
+
+  const trackingData = trackingService.getTrackingData() ?? [];
+  const today = dayjs().startOf("day");
+  const thisMonth = dayjs().month();
+
+  const recentExpenses = trackingData
+    .filter(item => !dayjs(item.dateOfPayment).isAfter(today, "day"))
+    .sort((a, b) => dayjs(b.dateOfPayment).diff(dayjs(a.dateOfPayment)))
+    .slice(0, 2);
+
+  const monthExpenses = trackingData.reduce((sum, item) => {
+    if (item.repeat) {
+      return sum + item.amount;
+    }
+    return sum + (dayjs(item.dateOfPayment).month() === thisMonth ? item.amount : 0);
+  }, 0);
+
+  const remaining = totalBudget - monthExpenses;
+  const percentLeft = Math.round((remaining / totalBudget) * 100);
+
   return (
     <>
       <Header />
@@ -24,56 +58,59 @@ export default function Home() {
         <section id="spending-limit">
           <div id="spent-stats">
             <h1 id="percentage-spending">
-              71% <span>left</span>
+              {percentLeft}% <span>left</span>
             </h1>
 
             <div id="spending-description">
               <p style={{ color: "#e8f9ac" }}>Your spending limit</p>
               <p id="spent">
-                $450 <span>on food</span>
+               ${remaining.toFixed(2)}
+                {/* <span>on food</span> */}
               </p>
             </div>
           </div>
 
-          <SpendingStatsBar />
+          <SpendingStatsBar percentLeft={percentLeft} remaining={remaining}/>
         </section>
 
-        <section id="spending-summary">
+        {/* <section id="spending-summary">
           <p>
             You spent <span>18% less</span> on party this month. Keep it up! 😉
           </p>
-        </section>
+        </section> */}
 
         <section id="recent-expenses">
           <h1 style={{ paddingBottom: "1rem" }}>Recent Expenses</h1>
 
-          <div id="expense-list">
-            <div id="expense-list-title">
-              <h1 id="expense-list-price" className="text-price">
-                $35.20
-              </h1>
-              <p id="expense-list-category">Eat-out</p>
-            </div>
+          {recentExpenses.map(item => {
+            const d = dayjs(item.dateOfPayment);
+            const label = d.isSame(today, "day")
+              ? "Today"
+              : d.isSame(today.subtract(1, "day"), "day")
+              ? "Yesterday"
+              : d.format("MMM D, YYYY");
 
-            <div id="expense-list-btn">
-              <img src={arrowInCircleGrey} alt="Arrow in circle" />
-              <p id="expense-date">Today, 12:42PM</p>
-            </div>
-          </div>
-
-          <div id="expense-list">
-            <div id="expense-list-title">
-              <h1 id="expense-list-price" className="text-price">
-                $117.95
-              </h1>
-              <p id="expense-list-category">Hydro bill</p>
-            </div>
-
-            <div id="expense-list-btn">
-              <img src={arrowInCircleGrey} alt="Arrow in circle" />
-              <p id="expense-date">Yesterday, 8:09PM</p>
-            </div>
-          </div>
+            return (
+              <div id="expense-list" key={item.id}>
+                <div id="expense-list-title">
+                  <h1 id="expense-list-price" className="text-price">
+                    ${item.amount.toFixed(2)}
+                  </h1>
+                  <p id="expense-list-category">{item.category}</p>
+                </div>
+                <div
+                  id="expense-list-btn"
+                  onClick={() =>
+                    navigate("/tracking", { state: { date: item.dateOfPayment } })
+                  }
+                  style={{ cursor: "pointer" }}
+                >
+                  <img src={arrowInCircleGrey} alt="Arrow in circle" />
+                  <p id="expense-date">{label}</p>
+                </div>
+              </div>
+            );
+          })}
         </section>
 
         {/* <div id="recent-expenses">
@@ -114,20 +151,20 @@ export default function Home() {
             </div>
 
             <div id="streak">
-              <h1>15</h1>
+              <h1>{streakDays}</h1>
               <p>days in a row!</p>
             </div>
           </div>
 
           <div id="earned-points">
-            <div id="coins-btn">
+            <div id="coins-btn" onClick={() => navigate("/rewards")}>
               <img src={coinsIcon} alt="Reward coins" />
               <img src={rightArrow} alt="Right arrow" />
             </div>
 
             <h2>Earned Points</h2>
             <h1>
-              230 <span>pt</span>
+              {points} <span>pt</span>
             </h1>
           </div>
         </section>

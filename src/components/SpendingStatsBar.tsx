@@ -1,11 +1,16 @@
 import { Progress } from "@mantine/core";
 import classes from "../pages/Home/Home.module.scss";
 
-export default function SpendingStatsBar() {
+interface SpendingStatsBarProps {
+  percentLeft: number;
+  remaining: number;
+}
+
+export default function SpendingStatsBar({ percentLeft, remaining }: SpendingStatsBarProps) {
   return (
     <div style={{ position: "relative" }}>
       <Progress
-        value={71}
+        value={percentLeft}
         mt="md"
         size={52}
         radius="18"
@@ -28,7 +33,7 @@ export default function SpendingStatsBar() {
           fontWeight: "bold",
         }}
       >
-        $319.50
+        ${remaining.toFixed(2)}
       </div>
     </div>
   );
