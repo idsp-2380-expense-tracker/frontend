@@ -1,4 +1,4 @@
-import { DB_Rewards_Delete, DB_Rewards_Response_New, DB_Tracking, DB_User } from "../interfaces/dbStructure";
+import { DB_Tracking, DB_Tracking_Delete, DB_Tracking_Response_New, DB_User } from "../interfaces/dbStructure";
 import { ApiService } from "./apiService";
 
 export class UserDataService extends ApiService {
@@ -55,7 +55,7 @@ export class UserDataService extends ApiService {
                         newId = Math.floor(Math.random() * 100000) + 1;
                         console.log(newId);
                     } else {
-                        const response: DB_Rewards_Response_New = await this.postRaw(endpoint, partialPayload);
+                        const response: DB_Tracking_Response_New = await this.postRaw(endpoint, partialPayload);
                         newId = response.id;
                     }
                     payload.id = newId;
@@ -71,7 +71,7 @@ export class UserDataService extends ApiService {
         }
     }
 
-    public async deleteTrackingData(payload: DB_Rewards_Delete) {
+    public async deleteTrackingData(payload: DB_Tracking_Delete) {
         await this.postRaw("tracking", payload);
         const trackingData = userDataService.userData?.tracking;
         if (trackingData) {

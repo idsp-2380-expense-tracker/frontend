@@ -14,7 +14,7 @@ import Splash from '../pages/Splash/Splash';
 import Tracking from '../pages/Tracking/Tracking';
 
 export default function AppRouter() {
-  const { getToken, isSignedIn, user } = useAuthService();
+  const { getToken, isSignedIn } = useAuthService();
   const [dataLoaded, setDataLoaded] = useState(false);
   const routeStage =
     !isSignedIn ? "guest":

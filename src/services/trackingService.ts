@@ -1,4 +1,4 @@
-import { DB_Rewards_Delete, DB_Tracking } from "../interfaces/dbStructure";
+import { DB_Tracking, DB_Tracking_Delete } from "../interfaces/dbStructure";
 import { ApiService } from "./apiService";
 import { userDataService } from "./userDataService";
 
@@ -11,7 +11,7 @@ export class TrackingService extends ApiService {
         await userDataService.saveUserData("tracking", payload);
     }
 
-    public async deleteTrackingData(payload: DB_Rewards_Delete) {
+    public async deleteTrackingData(payload: DB_Tracking_Delete) {
         await userDataService.deleteTrackingData(payload);
     }
 }
