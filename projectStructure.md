@@ -3,7 +3,6 @@
 - **Tech**: Vite + React + TypeScript + SASS + PWA
 - **Render**: Static Site
 - **Authentication**: Clerk (Frontend Integration)
-- **Image Uploader**: react-images-uploading
 - **Calendar Feature**: react-datepicker
 - **Drawer UI**: MUI `SwipeableDrawer`
 
@@ -22,7 +21,7 @@
 ## API Router (Front + Back)
 
 - **GET**: `/api/user/data` – retrieves the full user dataset
-- **POST**: `/api/user/login-streak`, `/api/budget`, `/api/tracking`, `/api/rewards`
+- **POST**: `/api/budget`, `/api/tracking`, `/api/rewards`
 
 ## Flow Structure
 
