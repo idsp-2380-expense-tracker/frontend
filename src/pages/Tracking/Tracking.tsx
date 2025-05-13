@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import Header from "../../components/Header";
 import NavBar from "../../components/NavBar";
 import { DB_Tracking } from "../../interfaces/dbStructure";
@@ -10,14 +11,24 @@ import TrackingForm from "./TrackingForm";
 import TrackingOptions from "./TrackingOptions";
 
 export default function Tracking() {
+  const location = useLocation();
+  const { date: dateString } = (location.state as { date?: string }) ?? {};
+
   const [showManualForm, setShowManualForm] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
-  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [drawerExpanded, setDrawerExpanded] = useState(false);
   const [editItem, setEditItem] = useState<DB_Tracking | null>(null);
+  const [selectedDate, setSelectedDate] = useState<Date>(
+    dateString ? dayjs(dateString).toDate() : new Date()
+  );
+
+  useEffect(() => {
+    if (dateString) {
+      setSelectedDate(dayjs(dateString).toDate());
+    }
+  }, [dateString]);
 
   const selectedDay = dayjs(selectedDate).date();
-  
   const trackingData = trackingService.getTrackingData() ?? [];
   const filteredData = trackingData.filter((item) => {
     if (item.repeat) {
@@ -26,7 +37,7 @@ export default function Tracking() {
     }
     return item.dateOfPayment === dayjs(selectedDate).format("YYYY-MM-DD");
   });
-  
+
   if (showManualForm) {
     return (
       <TrackingForm
