@@ -28,9 +28,7 @@ export default function Home() {
   const streakDays = Number(user?.publicMetadata.loginStreak) ?? 0;
 
   const { points = 0 } = rewardsService.getRewardsData() ?? {};
-
   const { needs = 0, wants = 0 } = budgetService.getBudgetData() ?? {};
-  const totalBudget = needs + wants;
 
   const trackingData = trackingService.getTrackingData() ?? [];
   const today = dayjs().startOf("day");
@@ -50,8 +48,12 @@ export default function Home() {
     );
   }, 0);
 
-  const remaining = totalBudget - monthExpenses;
-  const percentLeft = Math.round((remaining / totalBudget) * 100);
+  const totalBudget = needs + wants;
+  const remaining = Math.max(totalBudget - monthExpenses, 0);
+  const percentLeft =
+    totalBudget > 0
+      ? Math.max(Math.round((remaining / totalBudget) * 100), 0)
+      : 0;
 
   return (
     <>
