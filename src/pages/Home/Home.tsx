@@ -4,6 +4,7 @@ import NavBar from "../../components/NavBar";
 import SpendingStatsBar from "../../components/SpendingStatsBar";
 // Image Source
 import dayjs from "dayjs";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import arrowInCircleGrey from "../../assets/arrow_in_circle_grey.svg";
 import insightIcon from "../../assets/party.svg";
@@ -13,12 +14,19 @@ import { useAuthService } from "../../services/authService";
 import { budgetService } from "../../services/budgetService";
 import { rewardsService } from "../../services/rewardsService";
 import { trackingService } from "../../services/trackingService";
+import Insight from "./Insight";
 
 export default function Home() {
   const navigate = useNavigate();
+  const [view, setView] = useState<"home" | "insight">("home");
   const { user } = useAuthService();
+
+  if (view === "insight") {
+    return <Insight onBack={() => setView("home")} />;
+  }
+
   const streakDays = Number(user?.publicMetadata.loginStreak) ?? 0;
-  
+
   const { points = 0 } = rewardsService.getRewardsData() ?? {};
 
   const { needs = 0, wants = 0 } = budgetService.getBudgetData() ?? {};
@@ -29,7 +37,7 @@ export default function Home() {
   const thisMonth = dayjs().month();
 
   const recentExpenses = trackingData
-    .filter(item => !dayjs(item.dateOfPayment).isAfter(today, "day"))
+    .filter((item) => !dayjs(item.dateOfPayment).isAfter(today, "day"))
     .sort((a, b) => dayjs(b.dateOfPayment).diff(dayjs(a.dateOfPayment)))
     .slice(0, 2);
 
@@ -37,7 +45,9 @@ export default function Home() {
     if (item.repeat) {
       return sum + item.amount;
     }
-    return sum + (dayjs(item.dateOfPayment).month() === thisMonth ? item.amount : 0);
+    return (
+      sum + (dayjs(item.dateOfPayment).month() === thisMonth ? item.amount : 0)
+    );
   }, 0);
 
   const remaining = totalBudget - monthExpenses;
@@ -52,7 +62,12 @@ export default function Home() {
             <img src={insightIcon} alt="Insight icon" id="insightIcon" />
             <span>Check your March insights! </span>
           </div>
-          <img src={rightArrow} alt="Right arrow" />
+          <img
+            src={rightArrow}
+            alt="Right arrow"
+            style={{ cursor: "pointer" }}
+            onClick={() => setView("insight")}
+          />
         </section>
 
         <section id="spending-limit">
@@ -64,13 +79,13 @@ export default function Home() {
             <div id="spending-description">
               <p style={{ color: "#e8f9ac" }}>Your spending limit</p>
               <p id="spent">
-               ${remaining.toFixed(2)}
+                ${remaining.toFixed(2)}
                 {/* <span>on food</span> */}
               </p>
             </div>
           </div>
 
-          <SpendingStatsBar percentLeft={percentLeft} remaining={remaining}/>
+          <SpendingStatsBar percentLeft={percentLeft} remaining={remaining} />
         </section>
 
         {/* <section id="spending-summary">
@@ -82,7 +97,7 @@ export default function Home() {
         <section id="recent-expenses">
           <h1 style={{ paddingBottom: "1rem" }}>Recent Expenses</h1>
 
-          {recentExpenses.map(item => {
+          {recentExpenses.map((item) => {
             const d = dayjs(item.dateOfPayment);
             const label = d.isSame(today, "day")
               ? "Today"
@@ -101,7 +116,9 @@ export default function Home() {
                 <div
                   id="expense-list-btn"
                   onClick={() =>
-                    navigate("/tracking", { state: { date: item.dateOfPayment } })
+                    navigate("/tracking", {
+                      state: { date: item.dateOfPayment },
+                    })
                   }
                   style={{ cursor: "pointer" }}
                 >
@@ -157,9 +174,14 @@ export default function Home() {
           </div>
 
           <div id="earned-points">
-            <div id="coins-btn" onClick={() => navigate("/rewards")}>
+            <div id="coins-btn">
               <img src={coinsIcon} alt="Reward coins" />
-              <img src={rightArrow} alt="Right arrow" />
+              <img
+                src={rightArrow}
+                alt="Right arrow"
+                style={{ cursor: "pointer" }}
+                onClick={() => navigate("/rewards")}
+              />
             </div>
 
             <h2>Earned Points</h2>
