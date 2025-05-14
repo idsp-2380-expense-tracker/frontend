@@ -29,21 +29,28 @@ export default function BudgetMain({ onStart }: BudgetMainProps) {
       setHasBudget(!!b);
       setBudget(b);
     }
-  }, [userDataService.isInitialized, userDataService.userData]);
+  }, [userDataService.isInitialized]);
 
   const income = hasBudget ? budget?.income : 0;
   const needs = hasBudget ? budget?.needs : 0;
   const wants = hasBudget ? budget?.wants : 0;
   const save = hasBudget ? budget?.save : 0;
-  const daysLeft = dayjs().add(1, "month").startOf("month").diff(dayjs(), "day");
-  const buttonLabel = hasBudget ? "Edit the Budget" : "Start Setting your Budget";
+  const daysLeft = dayjs()
+    .add(1, "month")
+    .startOf("month")
+    .diff(dayjs(), "day");
+  const buttonLabel = hasBudget
+    ? "Edit the Budget"
+    : "Start Setting your Budget";
 
   const oneTimeSpending = trackingData
-    .filter(t => !t.repeat && dayjs(t.dateOfPayment).isSame(currentMonth, "month"))
+    .filter(
+      (t) => !t.repeat && dayjs(t.dateOfPayment).isSame(currentMonth, "month")
+    )
     .reduce((sum, t) => sum + t.amount, 0);
 
   const recurringSpending = trackingData
-    .filter(t => t.repeat)
+    .filter((t) => t.repeat)
     .reduce((sum, t) => sum + t.amount, 0);
 
   const thisMonthSpending = oneTimeSpending + recurringSpending;
