@@ -54,6 +54,7 @@ export default function Home() {
     totalBudget > 0
       ? Math.max(Math.round((remaining / totalBudget) * 100), 0)
       : 0;
+  const safeRemaining = isNaN(remaining) ? 0 : remaining;
 
   return (
     <>
@@ -80,13 +81,16 @@ export default function Home() {
             <div id="spending-description">
               <p style={{ color: "#e8f9ac" }}>Your spending limit</p>
               <p id="spent">
-                ${remaining.toFixed(2)}
+                ${safeRemaining.toFixed(2)}
                 {/* <span>on food</span> */}
               </p>
             </div>
           </div>
 
-          <SpendingStatsBar percentLeft={percentLeft} remaining={remaining} />
+          <SpendingStatsBar
+            percentLeft={percentLeft}
+            remaining={safeRemaining}
+          />
         </section>
 
         {/* <section id="spending-summary">
