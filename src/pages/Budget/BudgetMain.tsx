@@ -95,7 +95,8 @@ export default function BudgetMain({ onStart }: BudgetMainProps) {
 
         <span>
           <p id="income-stats">
-            Income <span style={{ fontWeight: "bold" }}>${income}</span>
+            Income{" "}
+            <span style={{ fontWeight: "bold" }}>${income.toFixed(2)}</span>
           </p>
           <PieChart
             withLabelsLine
@@ -135,7 +136,7 @@ export default function BudgetMain({ onStart }: BudgetMainProps) {
               rootColor="#636087"
             />
             <p>
-              Needs <br />${needsLeft} left
+              Needs <br />${needsLeft.toFixed(2)} left
             </p>
           </div>
 
@@ -153,7 +154,7 @@ export default function BudgetMain({ onStart }: BudgetMainProps) {
               rootColor="#636087"
             />
             <p>
-              Wants <br />${wantsLeft} left
+              Wants <br />${wantsLeft.toFixed(2)} left
             </p>
           </div>
 
@@ -171,7 +172,7 @@ export default function BudgetMain({ onStart }: BudgetMainProps) {
               rootColor="#636087"
             />
             <p>
-              Save <br />${saveLeft} left
+              Save <br />${saveLeft.toFixed(2)} left
             </p>
           </div>
         </div>

@@ -16,7 +16,7 @@ export default function Budget() {
 
   useEffect(() => {
     const data = budgetService.getBudgetData();
-    setStage(!data || data.income === 0 ? "popup" : "main");
+    setStage(!data || !data.income ? "popup" : "main");
   }, []);
 
   return (
