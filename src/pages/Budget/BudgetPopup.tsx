@@ -49,10 +49,14 @@ export default function BudgetPopup({ onStart, onLater }: BudgetPopupProps) {
 
       <br />
       <div className="popup-buttons">
-        <button id="start-budget-btn" onClick={onStart}>
+        <button
+          id="start-budget-btn"
+          style={{ cursor: "pointer" }}
+          onClick={onStart}
+        >
           Start Setting your Budget
         </button>
-        <button id="later-btn" onClick={onLater}>
+        <button id="later-btn" style={{ cursor: "pointer" }} onClick={onLater}>
           Later
         </button>
       </div>

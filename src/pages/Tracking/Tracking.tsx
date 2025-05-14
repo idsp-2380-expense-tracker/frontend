@@ -53,7 +53,9 @@ export default function Tracking() {
 
   return (
     <>
-      <Header />
+      <div className="tracking-header">
+        <Header />
+      </div>
       <TrackingCalendar
         selectedDate={selectedDate}
         onDateChange={setSelectedDate}
