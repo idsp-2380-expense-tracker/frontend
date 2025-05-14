@@ -62,6 +62,18 @@ export default function BudgetMain({ onStart }: BudgetMainProps) {
   remainingToAllocate = Math.max(remainingToAllocate - Number(wants), 0);
   const saveLeft = Math.max(Number(save) - remainingToAllocate, 0);
 
+  const pieChartData = [
+    { name: "Needs", value: Number(needs) || 0, color: "#6B21DD" },
+    { name: "Wants", value: Number(wants) || 0, color: "#A36CF7" },
+    { name: "Save", value: Number(save) || 0, color: "#D5BBFB" },
+  ];
+
+  const total = pieChartData.reduce((sum, item) => sum + item.value, 0);
+
+  if (total === 0) {
+    pieChartData.push({ name: "No data", value: 1, color: "#D5BBFB" });
+  }
+
   return (
     <div id="budget-main-container">
       <div id="budget-main-contents">
@@ -93,12 +105,14 @@ export default function BudgetMain({ onStart }: BudgetMainProps) {
             withLabels
             withTooltip
             mx="auto"
-            size={150}
-            data={[
-              { name: "Needs", value: needs ?? 0, color: "#6B21DD" },
-              { name: "Wants", value: wants ?? 0, color: "#A36CF7" },
-              { name: "Save", value: save ?? 0, color: "#D5BBFB" },
-            ]}
+            size={180}
+            data={pieChartData}
+
+            // data={[
+            //   { name: "Needs", value: needs ?? 0, color: "#6B21DD" },
+            //   { name: "Wants", value: wants ?? 0, color: "#A36CF7" },
+            //   { name: "Save", value: save ?? 0, color: "#D5BBFB" },
+            // ]}
           />
           <em>Tap on the Pie Chart to reveal legend</em>
           {/* <p>Needs ${formatNumber(needs)}</p>

@@ -176,6 +176,8 @@
 // ------------------------------
 #budget-main-container {
   margin: 1rem 1rem;
+  height: 100%;
+  min-height: 100vh;
 
   #budget-main-contents {
     @include mixins.box(auto);
