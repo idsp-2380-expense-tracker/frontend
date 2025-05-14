@@ -10,6 +10,7 @@ export default function Loading() {
         alignItems: "center",
         width: "100%",
         height: "100dvh",
+        paddingTop: "0",
         gap: "1rem",
       }}
     >
