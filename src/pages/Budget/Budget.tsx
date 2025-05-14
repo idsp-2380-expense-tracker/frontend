@@ -10,9 +10,7 @@ import BudgetPopup from "./BudgetPopup";
 export default function Budget() {
   const budgetData = budgetService.getBudgetData();
   const [stage, setStage] = useState<"popup" | "main" | "form">(() => {
-    if (!budgetData || budgetData.income === 0) {
-      return "popup";
-    }
+    if (!budgetData || !budgetData.income) return "popup";
     return "main";
   });
 
@@ -40,9 +38,12 @@ export default function Budget() {
 
       {stage === "form" && (
         <>
-          <BudgetForm 
+          <BudgetForm
             onSubmit={async (data) => {
-              const budgetData = budgetService.calculateBudgetData(data.income, data.periodRange);
+              const budgetData = budgetService.calculateBudgetData(
+                data.income,
+                data.periodRange
+              );
               await budgetService.saveBudgetData(budgetData);
               setStage("main");
             }}

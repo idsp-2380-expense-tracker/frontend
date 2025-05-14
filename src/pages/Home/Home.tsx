@@ -25,7 +25,7 @@ export default function Home() {
     return <Insight onBack={() => setView("home")} />;
   }
 
-  const streakDays = Number(user?.publicMetadata.loginStreak) ?? 0;
+  const streakDays = Number(user?.publicMetadata.loginStreak) || 0;
 
   const { points = 0 } = rewardsService.getRewardsData() ?? {};
   const { needs = 0, wants = 0 } = budgetService.getBudgetData() ?? {};
