@@ -85,6 +85,9 @@
 // ------------------------------
 #budget-form-container {
   margin: 0 1rem;
+  height: 100%;
+  min-height: 100vh;
+  margin-bottom: 70px;
 
   #budget-form-header {
     display: grid;
