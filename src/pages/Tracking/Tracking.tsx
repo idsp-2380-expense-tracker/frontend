@@ -35,7 +35,10 @@ export default function Tracking() {
       const itemDay = dayjs(item.dateOfPayment).date();
       return itemDay === selectedDay;
     }
-    return item.dateOfPayment === dayjs(selectedDate).format("YYYY-MM-DD");
+    return (
+      dayjs(item.dateOfPayment).format("YYYY-MM-DD") ===
+      dayjs(selectedDate).format("YYYY-MM-DD")
+    );
   });
 
   if (showManualForm) {

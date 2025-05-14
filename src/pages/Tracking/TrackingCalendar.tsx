@@ -19,14 +19,14 @@ export default function TrackingCalendar({
 }: TrackingCalendarProps) {
   const [visibleMonth, setVisibleMonth] = useState(selectedDate ?? new Date());
   const markedDates = trackingData.flatMap((item) => {
-    if (!item.repeat) return [item.dateOfPayment];
+    if (!item.repeat) return [dayjs(item.dateOfPayment).format("YYYY-MM-DD")];
 
     const base = dayjs(visibleMonth);
     const repeatDay = dayjs(item.dateOfPayment).date();
     const date = base.date(repeatDay);
     return [date.format("YYYY-MM-DD")];
   });
-  
+
   return (
     <div id="tracking-calendar" className={wrapperClassName}>
       <DatePicker
@@ -35,8 +35,11 @@ export default function TrackingCalendar({
         onMonthChange={(date) => setVisibleMonth(date)}
         onYearChange={(date) => setVisibleMonth(date)}
         inline
-        dayClassName={(date) => 
-          markedDates.includes(dayjs(date).format("YYYY-MM-DD")) ? "marked-day" : ""}
+        dayClassName={(date) =>
+          markedDates.includes(dayjs(date).format("YYYY-MM-DD"))
+            ? "marked-day"
+            : ""
+        }
       />
     </div>
   );
