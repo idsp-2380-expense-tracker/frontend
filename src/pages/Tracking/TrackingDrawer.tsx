@@ -17,7 +17,7 @@ export default function TrackingDrawer({
   onToggle,
   selectedDate,
   data,
-  onEdit
+  onEdit,
 }: TrackingDrawerProps) {
   // const [value, setValue] = useState(50);
   // const [endValue, setEndValue] = useState(50);
@@ -76,7 +76,13 @@ export default function TrackingDrawer({
           <div id="spending-title">
             <h3>{item.category}</h3>
             <h3>${item.amount}</h3>
-            <button onClick={() => onEdit(item)}>Edit</button>
+            <button
+              id="edit-btn"
+              onClick={() => onEdit(item)}
+              style={{ cursor: "pointer" }}
+            >
+              Edit
+            </button>
           </div>
           <div className="tag-payment">
             <div id="tag-btn">
