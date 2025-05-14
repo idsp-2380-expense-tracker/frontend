@@ -23,10 +23,10 @@
 - **GET**: `/api/user/data` – retrieves the full user dataset
 - **POST**: `/api/budget`, `/api/tracking`, `/api/rewards`
 
-## Flow Structure
+### Frontend Build & Preview
 
-Frontend (Render Static Site)  
-↓ fetch real API or fallback to `/public/fakeDB.json`  
-Backend (Render Web Service)  
-↓  
-Aiven MySQL Database
+```bash
+$ rm -rf dist
+$ npm run build
+$ npm run preview
+```
