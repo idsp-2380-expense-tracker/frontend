@@ -112,11 +112,16 @@ export default function TrackingForm({ onBack, editItem }: TrackingFormProps) {
             className="back-btn"
             src={leftArrow}
             alt="Back button"
+            style={{ cursor: "pointer" }}
             onClick={onBack}
           />
 
           <h2>{editItem ? "EDIT TRANSACTION" : "ADD TRANSACTION"}</h2>
-          <img src={barcodeIcon} alt="Barcode icon" />
+          <img
+            src={barcodeIcon}
+            alt="Barcode icon"
+            style={{ cursor: "pointer" }}
+          />
         </section>
 
         <section id="trans-btn">

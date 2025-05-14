@@ -91,11 +91,15 @@ export default function BudgetForm({ onSubmit, onBack }: BudgetFormProps) {
               style={{ textAlign: "center", fontSize: "24px", color: "white" }}
             />
             <p style={{ fontSize: "10px", margin: "1rem" }}>
-              If you input monthly income, it will be set up{" "}
-              <span style={{ color: "white" }}>Monthly Budget</span>.
+              Income entered as weekly, biweekly, or monthly will be used to
+              create a <span style={{ color: "white" }}>Monthly Budget</span>.
             </p>
 
-            <Button className="submit-btn" type="submit" disabled={Number(income) < 0}>
+            <Button
+              className="submit-btn"
+              type="submit"
+              disabled={Number(income) < 0}
+            >
               Submit
             </Button>
           </form>

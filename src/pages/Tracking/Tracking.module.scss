@@ -338,7 +338,7 @@ hr {
     #spendings-earnings-btn {
       display: flex;
       justify-content: center;
-      cursor: pointer;
+      // cursor: pointer;
 
       h3 {
         font-weight: bold;
@@ -477,4 +477,9 @@ hr {
   font-weight: bold;
   height: 48px;
   width: 280px;
+}
+
+.tracking-header {
+  position: relative;
+  z-index: 1300;
 }
