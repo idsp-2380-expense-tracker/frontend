@@ -85,7 +85,7 @@
     .react-datepicker__day {
       width: 12%;
       color: white;
-      padding: 12px 0px;
+      padding: 10px 0px;
       border-radius: 15px;
       align-items: center;
 
@@ -117,7 +117,8 @@
   padding: 1rem 2rem;
 
   &.collapsed {
-    height: 27%;
+    height: 50px;
+    // height: 27%;
     background-color: variables.$btn-background;
     @include mixins.top-border-radius(variables.$border-radius-overlay);
     position: fixed;
