@@ -31,6 +31,7 @@ export class ApiService {
     endpoint: K,
     payload: DB_User[K]
   ) {
+    console.log(`Trying to ${endpoint}_Post: ${JSON.stringify(payload, null, 2)}`);
     if (!this.isHosted) return;
 
     const headers = await this.checkToken();
@@ -38,7 +39,7 @@ export class ApiService {
 
     try {
       const response = await axios.post(path, payload, { headers });
-      console.log(`${endpoint}_Post: ${JSON.stringify(payload, null, 2)}`);
+      console.log(`${endpoint}_Post Done`);
       return response.data;
     } catch (error) {
       console.error(`Failed to post to ${endpoint} (${error})`);
@@ -46,13 +47,14 @@ export class ApiService {
   }
 
   protected async postRaw(path: string, payload: any) {
+    console.log(`Trying to ${path}_Post: ${JSON.stringify(payload, null, 2)}`);
     if (!this.isHosted) return payload;
 
     const headers = await this.checkToken();
 
     try {
       const response = await axios.post(`${this.apiBase}/${path}`, payload, { headers });
-      console.log(`${path}_Post: ${JSON.stringify(payload, null, 2)}`);
+      console.log(`${path}_Post Done`);
       return response.data;
     } catch (error) {
       console.error(`Failed to post to ${path} (${error})`);
