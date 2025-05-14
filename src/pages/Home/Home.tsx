@@ -59,17 +59,16 @@ export default function Home() {
     <>
       <Header />
       <div id="home-layout">
-        <section id="insights">
+        <section
+          id="insights"
+          style={{ cursor: "pointer" }}
+          onClick={() => setView("insight")}
+        >
           <div id="insights-title">
             <img src={insightIcon} alt="Insight icon" id="insightIcon" />
             <span>Check your March insights! </span>
           </div>
-          <img
-            src={rightArrow}
-            alt="Right arrow"
-            style={{ cursor: "pointer" }}
-            onClick={() => setView("insight")}
-          />
+          <img src={rightArrow} alt="Right arrow" />
         </section>
 
         <section id="spending-limit">
@@ -176,14 +175,13 @@ export default function Home() {
           </div>
 
           <div id="earned-points">
-            <div id="coins-btn">
+            <div
+              id="coins-btn"
+              style={{ cursor: "pointer" }}
+              onClick={() => navigate("/rewards")}
+            >
               <img src={coinsIcon} alt="Reward coins" />
-              <img
-                src={rightArrow}
-                alt="Right arrow"
-                style={{ cursor: "pointer" }}
-                onClick={() => navigate("/rewards")}
-              />
+              <img src={rightArrow} alt="Right arrow" />
             </div>
 
             <h2>Earned Points</h2>
