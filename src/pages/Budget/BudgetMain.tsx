@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import NavBar from "../../components/NavBar";
 import { DB_Budget } from "../../interfaces/dbStructure";
 import { userDataService } from "../../services/userDataService";
-import { formatNumber } from "../../utils/helpers";
+import {} from "../../utils/helpers";
 // Image Source
 import leftArrow from "../../assets/left_arrow.png";
 import rightArrow from "../../assets/right_arrow.svg";
@@ -31,10 +31,10 @@ export default function BudgetMain({ onStart }: BudgetMainProps) {
     }
   }, [userDataService.isInitialized]);
 
-  const income = hasBudget ? budget?.income : 0;
-  const needs = hasBudget ? budget?.needs : 0;
-  const wants = hasBudget ? budget?.wants : 0;
-  const save = hasBudget ? budget?.save : 0;
+  const income = Number(budget?.income) || 0;
+  const needs = Number(budget?.needs) || 0;
+  const wants = Number(budget?.wants) || 0;
+  const save = Number(budget?.save) || 0;
   const daysLeft = dayjs()
     .add(1, "month")
     .startOf("month")
@@ -95,8 +95,7 @@ export default function BudgetMain({ onStart }: BudgetMainProps) {
 
         <span>
           <p id="income-stats">
-            Income{" "}
-            <span style={{ fontWeight: "bold" }}>${formatNumber(income)}</span>
+            Income <span style={{ fontWeight: "bold" }}>${income}</span>
           </p>
           <PieChart
             withLabelsLine
@@ -115,9 +114,9 @@ export default function BudgetMain({ onStart }: BudgetMainProps) {
             // ]}
           />
           <em>Tap on the Pie Chart to reveal legend</em>
-          {/* <p>Needs ${formatNumber(needs)}</p>
-          <p>Wants ${formatNumber(wants)}</p>
-          <p>Save ${formatNumber(save)}</p> */}
+          {/* <p>Needs ${needs)}</p>
+          <p>Wants ${wants)}</p>
+          <p>Save ${save)}</p> */}
         </span>
 
         <div id="divider"></div>
@@ -126,7 +125,7 @@ export default function BudgetMain({ onStart }: BudgetMainProps) {
             <RingProgress
               sections={[
                 {
-                  value: ((needsLeft ?? 0) / (needs ?? 1)) * 100,
+                  value: needs > 0 ? (needsLeft / needs) * 100 : 0,
                   color: "#cef24a",
                 },
               ]}
@@ -136,7 +135,7 @@ export default function BudgetMain({ onStart }: BudgetMainProps) {
               rootColor="#636087"
             />
             <p>
-              Needs <br />${formatNumber(needsLeft)} left
+              Needs <br />${needsLeft} left
             </p>
           </div>
 
@@ -144,7 +143,7 @@ export default function BudgetMain({ onStart }: BudgetMainProps) {
             <RingProgress
               sections={[
                 {
-                  value: ((wantsLeft ?? 0) / (wants ?? 1)) * 100,
+                  value: wants > 0 ? (wantsLeft / wants) * 100 : 0,
                   color: "#cef24a",
                 },
               ]}
@@ -154,7 +153,7 @@ export default function BudgetMain({ onStart }: BudgetMainProps) {
               rootColor="#636087"
             />
             <p>
-              Wants <br />${formatNumber(wantsLeft)} left
+              Wants <br />${wantsLeft} left
             </p>
           </div>
 
@@ -162,7 +161,7 @@ export default function BudgetMain({ onStart }: BudgetMainProps) {
             <RingProgress
               sections={[
                 {
-                  value: ((saveLeft ?? 0) / (save ?? 1)) * 100,
+                  value: save > 0 ? (saveLeft / save) * 100 : 0,
                   color: "#cef24a",
                 },
               ]}
@@ -172,7 +171,7 @@ export default function BudgetMain({ onStart }: BudgetMainProps) {
               rootColor="#636087"
             />
             <p>
-              Save <br />${formatNumber(saveLeft)} left
+              Save <br />${saveLeft} left
             </p>
           </div>
         </div>
