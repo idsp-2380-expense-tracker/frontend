@@ -221,3 +221,102 @@
 .mantine-Progress-root {
   margin-top: 0 !important;
 }
+
+// ------------------------------
+// Insight Summary
+// ------------------------------
+#insights-container {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+
+#insights-container > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+#insights-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 250vh;
+  width: 100vw;
+  overflow: hidden;
+  z-index: 2;
+}
+
+#insights-top img {
+  position: absolute;
+  top: 0;
+  height: 250px;
+  width: 100vw;
+  object-fit: cover;
+  z-index: 2;
+}
+
+#insights-top h1 {
+  position: relative;
+  margin-top: 3.5rem;
+  margin-left: 1rem;
+  z-index: 2;
+  color: variables.$bg-colour;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+#insights-top p {
+  position: relative;
+  margin-top: 1.2rem;
+  margin-left: 1rem;
+  z-index: 2;
+  color: variables.$bg-colour;
+  font-size: 1rem;
+}
+
+#insights-top .close-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  z-index: 2;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+#insights-contents {
+  position: relative;
+  margin-left: 1rem;
+  z-index: 0;
+
+  h1 {
+    color: white;
+    font-weight: normal;
+    margin-top: 15rem;
+    z-index: 0;
+  }
+}
+
+.insights-subtitle {
+  font-weight: normal;
+  margin-bottom: 0;
+  color: variables.$primary-colour;
+}
+
+.insights-amount {
+  color: variables.$insights-colour;
+  margin-top: 5px;
+}
+
+#top-3-cat {
+  font-size: variables.$font-size-title-main;
+  margin-top: 3rem;
+}
