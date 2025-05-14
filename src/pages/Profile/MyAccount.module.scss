@@ -2,36 +2,9 @@
 @use "../../styles/utils/variables";
 
 .profile {
-  @include mixins.center-flex(column);
-  margin-bottom: 3rem;
-
   a {
     text-decoration: underline;
   }
-}
-
-.back-button {
-  margin: 0rem 1rem;
-  cursor: pointer;
-}
-
-.content-background {
-  background-color: variables.$secondary-colour;
-  margin-top: 5rem;
-  width: 100%;
-  min-height: 86vh;
-  height: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-
-.content {
-  position: absolute;
-  width: 90%;
-  margin: 0 auto;
-  top: -5rem;
 }
 
 #my-account-header {
