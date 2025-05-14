@@ -21,7 +21,9 @@ export default function Splash() {
   return (
     <>
       <div className="splash-logo bounce-in-fwd">
-        <img src={logo} alt="Montro logo" />
+        <div id="logo-container">
+          <img src={logo} alt="Montro logo" />
+        </div>
         <h1>Budgeting, made interesting.</h1>
       </div>
     </>

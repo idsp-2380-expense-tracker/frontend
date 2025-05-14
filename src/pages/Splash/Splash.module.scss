@@ -4,17 +4,29 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+  margin: 0 1rem;
 
-  img {
+  #logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 145px;
     height: 145px;
+    border-radius: 25px;
+    padding: 16px;
+    gap: 10px;
+    background-color: #212127;
+  }
+
+  #logo-container img {
+    width: 113px;
+    height: 87.38px;
   }
 
   h1 {
     text-align: center;
     align-items: center;
     margin-top: 2rem;
-    line-height: 1.5;
   }
 }
 
