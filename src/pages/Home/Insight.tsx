@@ -5,7 +5,7 @@ import { budgetService } from "../../services/budgetService";
 import { trackingService } from "../../services/trackingService";
 // Image Source
 import backgroundBottom from "../../assets/backgrounds/background_bottom.png";
-import backgroundTop from "../../assets/backgrounds/background_top.png";
+import backgroundTop from "../../assets/backgrounds/backgound_top.png";
 import closeButtonIcon from "../../assets/close_button.svg";
 
 export default function Insight({ onBack }: OnBackProps) {
