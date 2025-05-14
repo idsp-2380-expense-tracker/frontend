@@ -76,11 +76,7 @@ export default function TrackingDrawer({
           <div id="spending-title">
             <h3>{item.category}</h3>
             <h3>${item.amount}</h3>
-            <button
-              id="edit-btn"
-              onClick={() => onEdit(item)}
-              style={{ cursor: "pointer" }}
-            >
+            <button id="edit-btn" onClick={() => onEdit(item)}>
               Edit
             </button>
           </div>

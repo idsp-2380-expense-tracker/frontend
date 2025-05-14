@@ -232,30 +232,33 @@ export default function TrackingForm({ onBack, editItem }: TrackingFormProps) {
           </div>
         </section>
         <hr />
-        <Button
-          id="add-trans-btn"
-          type="submit"
-          className="spending-add"
-          disabled={!isValid}
-        >
-          {editItem ? "Update" : "Add"}
-        </Button>
-        {editItem && (
+
+        <div id="trans-btns">
           <Button
-            id="delete-trans-btn"
+            id="add-trans-btn"
             type="submit"
             className="spending-add"
-            onClick={async () => {
-              await trackingService.deleteTrackingData({
-                id: -1,
-                idForDelete: editItem.id,
-              });
-              onBack();
-            }}
+            disabled={!isValid}
           >
-            Delete
+            {editItem ? "Update" : "Add"}
           </Button>
-        )}
+          {editItem && (
+            <Button
+              id="delete-trans-btn"
+              type="submit"
+              className="spending-add"
+              onClick={async () => {
+                await trackingService.deleteTrackingData({
+                  id: -1,
+                  idForDelete: editItem.id,
+                });
+                onBack();
+              }}
+            >
+              DELETE
+            </Button>
+          )}
+        </div>
       </div>
     </form>
   );

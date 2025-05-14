@@ -252,6 +252,7 @@ hr {
       width: 50px;
       border-radius: 50px;
       background-color: variables.$primary-colour;
+      cursor: pointer;
     }
   }
 
@@ -452,15 +453,26 @@ hr {
 }
 
 // Add button in Manual Transaction
+#trans-btns {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
 #add-trans-btn {
   border-radius: 50px;
   background-color: variables.$primary-colour;
   height: 48px;
+  width: 280px;
 }
 
 #delete-trans-btn {
   border-radius: 50px;
-  border: 1px solid red;
+  background-color: red;
   color: white;
+  font-weight: bold;
   height: 48px;
+  width: 280px;
 }
