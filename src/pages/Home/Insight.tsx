@@ -4,7 +4,7 @@ import { useAuthService } from "../../services/authService";
 import { budgetService } from "../../services/budgetService";
 import { trackingService } from "../../services/trackingService";
 // Image Source
-import backgroundBottom from "../../assets/backgrounds/background_bottom.png";
+import backgroundBottom from "../../assets/backgrounds/background_bottom.jpg";
 import backgroundTop from "../../assets/backgrounds/backgound_top.png";
 import closeButtonIcon from "../../assets/close_button.svg";
 
