@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { SignOutButton, useAuthService } from "../../services/authService";
 // Image Source
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import accountCircle from "../../assets/account_circle.svg";
 import arrowInCircleYellow from "../../assets/arrow_in_circle_yellow.svg";
 import leftArrow from "../../assets/left_arrow.png";
@@ -19,6 +19,10 @@ export default function Profile() {
   if (view === "myAccount") {
     return <MyAccount onBack={() => setView("profile")} />;
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [view]);
 
   return (
     <div id="profile-layout">

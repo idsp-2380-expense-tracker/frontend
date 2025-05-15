@@ -4,6 +4,7 @@ import { rewardsService } from "../../services/rewardsService";
 import { calcTotalDaysInMonth, formatOffsetDate } from "../../utils/helpers";
 import LoginChallenge, { Status } from "./RewardsLoginChallenge";
 // Image Source
+import { useEffect } from "react";
 import trophyIcon from "../../assets/trophy.svg";
 import Header from "../../components/Header";
 
@@ -25,6 +26,10 @@ export default function Rewards() {
   const nextWeek = formatOffsetDate(start, "week");
   const nextMonth = formatOffsetDate(start, "month", 1);
   const daysInMonth = calcTotalDaysInMonth(start);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
@@ -56,7 +61,9 @@ export default function Rewards() {
                   ? Status.Ready
                   : Status.Incomplete
               }
-              onCollect={async () => await rewardsService.collectPoints("daily")}
+              onCollect={async () =>
+                await rewardsService.collectPoints("daily")
+              }
             />
           </div>
 
@@ -75,7 +82,9 @@ export default function Rewards() {
                   ? Status.Ready
                   : Status.Incomplete
               }
-              onCollect={async () => await rewardsService.collectPoints("weekly")}
+              onCollect={async () =>
+                await rewardsService.collectPoints("weekly")
+              }
             />
           </div>
 

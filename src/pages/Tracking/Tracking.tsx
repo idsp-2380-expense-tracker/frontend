@@ -23,6 +23,10 @@ export default function Tracking() {
   );
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     if (dateString) {
       setSelectedDate(dayjs(dateString).toDate());
     }

@@ -4,7 +4,7 @@ import NavBar from "../../components/NavBar";
 import SpendingStatsBar from "../../components/SpendingStatsBar";
 // Image Source
 import dayjs from "dayjs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import arrowInCircleGrey from "../../assets/arrow_in_circle_grey.svg";
 import insightIcon from "../../assets/party.svg";
@@ -20,6 +20,10 @@ export default function Home() {
   const navigate = useNavigate();
   const [view, setView] = useState<"home" | "insight">("home");
   const { user } = useAuthService();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [view]);
 
   if (view === "insight") {
     return <Insight onBack={() => setView("home")} />;

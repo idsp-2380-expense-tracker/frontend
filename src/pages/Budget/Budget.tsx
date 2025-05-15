@@ -15,6 +15,10 @@ export default function Budget() {
   });
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [stage]);
+
+  useEffect(() => {
     const data = budgetService.getBudgetData();
     setStage(!data || !data.income ? "popup" : "main");
   }, []);
