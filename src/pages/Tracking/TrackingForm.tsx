@@ -23,6 +23,8 @@ import { parseLocalDate } from "../../utils/helpers";
 interface TrackingFormProps {
   onBack: () => void;
   editItem?: DB_Tracking | null;
+  initialDate?: Date | null;
+  onDateChange?: (date: Date | null) => void;
 }
 
 const categoryData = [
@@ -39,7 +41,12 @@ const categoryData = [
 
 const paymentOptions = [{ label: "Cash" }, { label: "Card" }];
 
-export default function TrackingForm({ onBack, editItem }: TrackingFormProps) {
+export default function TrackingForm({
+  onBack,
+  editItem,
+  initialDate,
+  onDateChange,
+}: TrackingFormProps) {
   const [categoryMenuOpened, setCategoryMenuOpened] = useState(false);
   const [paymentMenuOpened, setPaymentMenuOpened] = useState(false);
   const [selected, setSelected] = useState(
@@ -53,9 +60,15 @@ export default function TrackingForm({ onBack, editItem }: TrackingFormProps) {
   const [date, setDate] = useState<Date | null>(
     editItem?.dateOfPayment
       ? parseLocalDate(editItem.dateOfPayment)
-      : new Date()
+      : initialDate ?? new Date()
   );
   const [amount, setAmount] = useState<number>(editItem?.amount ?? 0);
+
+  useEffect(() => {
+    if (date) {
+      onDateChange?.(date);
+    }
+  }, [date, onDateChange]);
 
   useEffect(() => {
     if (!editItem) return;
@@ -90,6 +103,12 @@ export default function TrackingForm({ onBack, editItem }: TrackingFormProps) {
     </Menu.Item>
   ));
 
+  const handleDateChange = (val: string | null) => {
+    const parsed = val ? parseLocalDate(val) : null;
+    setDate(parsed);
+    onDateChange?.(parsed);
+  };
+
   return (
     <form
       onSubmit={async (e) => {
@@ -103,6 +122,7 @@ export default function TrackingForm({ onBack, editItem }: TrackingFormProps) {
           dateOfPayment: date ? dayjs(date).format("YYYY-MM-DD") : "",
           repeat: checked,
         });
+        onDateChange?.(date);
         onBack();
       }}
     >
@@ -222,8 +242,9 @@ export default function TrackingForm({ onBack, editItem }: TrackingFormProps) {
           <h4>Date of Payment</h4>
           <DateInput
             clearable
-            value={date}
-            onChange={(val) => setDate(val ? parseLocalDate(val) : null)}
+            value={date ? dayjs(date).format("YYYY-MM-DD") : null}
+            onChange={handleDateChange}
+            valueFormat="YYYY-MM-DD"
             placeholder="Date input"
             firstDayOfWeek={0}
           />

@@ -54,6 +54,10 @@ export default function Tracking() {
           setShowManualForm(false);
         }}
         editItem={editItem}
+        initialDate={selectedDate}
+        onDateChange={(date) => {
+          if (date) setSelectedDate(date);
+        }}
       />
     );
   }
