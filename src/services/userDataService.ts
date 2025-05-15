@@ -51,18 +51,17 @@ export class UserDataService extends ApiService {
                 const isNew = payload.id === 0;
 
                 const isHosted = import.meta.env.VITE_IS_HOSTED === "true";
-                let newId: number;
 
-                if (isNew) {
-                    if (!isHosted) {  // Random Id for Dev
-                        newId = Math.floor(Math.random() * 100000) + 1;
-                        console.log(newId);
-                    } else {
-                        const response: DB_Tracking_Response_New = await this.postRaw(endpoint, partialPayload);
-                        newId = response.id;
-                    }
-                    payload.id = newId;
+                if (isNew && !isHosted) {   // Random Id for Dev
+                    payload.id = Math.floor(Math.random() * 100000) + 1;
                 }
+
+                const response = await this.postRaw(endpoint, payload);
+
+                if (isNew && isHosted) {
+                    payload.id = (response as DB_Tracking_Response_New).id;
+                }
+
                 this.updateTrackingLocalData(payload, isNew);
             } else {
                 await this.postData(endpoint, fullPayload);
