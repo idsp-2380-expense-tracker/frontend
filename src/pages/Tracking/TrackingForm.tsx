@@ -250,7 +250,6 @@ export default function TrackingForm({ onBack, editItem }: TrackingFormProps) {
           {editItem && (
             <Button
               id="delete-trans-btn"
-              type="submit"
               className="spending-add"
               onClick={async () => {
                 await trackingService.deleteTrackingData({
