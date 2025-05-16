@@ -18,13 +18,12 @@ import handUpYellowIcon from "../../assets/hand_arrow_up_yellow.svg";
 import leftArrow from "../../assets/left_arrow_2.svg";
 import { DB_Tracking } from "../../interfaces/dbStructure";
 import { trackingService } from "../../services/trackingService";
-import { parseLocalDate } from "../../utils/helpers";
 
 interface TrackingFormProps {
   onBack: () => void;
   editItem?: DB_Tracking | null;
   initialDate?: Date | null;
-  onDateChange?: (date: Date | null) => void;
+  onDateChange?: (date: string | null) => void;
 }
 
 const categoryData = [
@@ -57,10 +56,9 @@ export default function TrackingForm({
       paymentOptions[0]
   );
   const [checked, setChecked] = useState(editItem?.repeat ?? false);
-  const [date, setDate] = useState<Date | null>(
-    editItem?.dateOfPayment
-      ? parseLocalDate(editItem.dateOfPayment)
-      : initialDate ?? new Date()
+  const [date, setDate] = useState<string | null>(
+    editItem?.dateOfPayment ??
+      (initialDate ? dayjs(initialDate).format("YYYY-MM-DD") : null)
   );
   const [amount, setAmount] = useState<number>(editItem?.amount ?? 0);
 
@@ -81,15 +79,11 @@ export default function TrackingForm({
         paymentOptions[0]
     );
     setChecked(editItem.repeat);
-    setDate(
-      editItem.dateOfPayment
-        ? parseLocalDate(editItem.dateOfPayment)
-        : new Date()
-    );
+    setDate(editItem.dateOfPayment ?? null);
     setAmount(editItem.amount);
   }, [editItem]);
 
-  const isValid = amount > 0 && date instanceof Date;
+  const isValid = amount > 0 && !!date;
 
   const categoryItems = categoryData.map((item) => (
     <Menu.Item onClick={() => setSelected(item)} key={item.label}>
@@ -103,12 +97,6 @@ export default function TrackingForm({
     </Menu.Item>
   ));
 
-  const handleDateChange = (val: string | null) => {
-    const parsed = val ? parseLocalDate(val) : null;
-    setDate(parsed);
-    onDateChange?.(parsed);
-  };
-
   return (
     <form
       onSubmit={async (e) => {
@@ -119,7 +107,7 @@ export default function TrackingForm({
           category: selected.label,
           paymentMethod: selectedPayment.label,
           amount,
-          dateOfPayment: date ? dayjs(date).format("YYYY-MM-DD") : undefined,
+          dateOfPayment: date ?? undefined,
           repeat: checked,
         });
         onDateChange?.(date);
@@ -242,8 +230,8 @@ export default function TrackingForm({
           <h4>Date of Payment</h4>
           <DateInput
             clearable
-            value={date ? dayjs(date).format("YYYY-MM-DD") : null}
-            onChange={handleDateChange}
+            value={date}
+            onChange={setDate}
             valueFormat="YYYY-MM-DD"
             placeholder="Date input"
             firstDayOfWeek={0}

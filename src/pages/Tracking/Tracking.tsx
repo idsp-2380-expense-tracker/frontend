@@ -52,8 +52,10 @@ export default function Tracking() {
         }}
         editItem={editItem}
         initialDate={selectedDate}
-        onDateChange={(date) => {
-          if (date) setSelectedDate(date);
+        onDateChange={(dateString) => {
+          if (dateString) {
+            setSelectedDate(dayjs(dateString).toDate());
+          }
         }}
       />
     );
