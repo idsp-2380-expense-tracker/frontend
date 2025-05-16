@@ -87,7 +87,7 @@ export default function Tracking() {
         showOptions={showOptions}
         onToggleOptions={() => setShowOptions((prev) => !prev)}
         onManualFormOpen={() => setShowManualForm(true)}
-        onScan={() => {}}
+        // onScan={() => {}}
       />
       <NavBar />
     </>

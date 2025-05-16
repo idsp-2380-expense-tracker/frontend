@@ -12,7 +12,7 @@ import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import classes from "./Tracking.module.scss";
 // Image Source
-import barcodeIcon from "../../assets/barcode_icon_white.svg";
+// import barcodeIcon from "../../assets/barcode_icon_white.svg";
 // import handDownGreyIcon from "../../assets/hand_arrow_down_grey.svg";
 import handUpYellowIcon from "../../assets/hand_arrow_up_yellow.svg";
 import leftArrow from "../../assets/left_arrow_2.svg";
@@ -136,12 +136,12 @@ export default function TrackingForm({
             onClick={onBack}
           />
 
-          <h2>{editItem ? "EDIT TRANSACTION" : "ADD TRANSACTION"}</h2>
+          {/* <h2>{editItem ? "EDIT TRANSACTION" : "ADD TRANSACTION"}</h2>
           <img
             src={barcodeIcon}
             alt="Barcode icon"
             style={{ cursor: "pointer" }}
-          />
+          /> */}
         </section>
 
         <section id="trans-btn">

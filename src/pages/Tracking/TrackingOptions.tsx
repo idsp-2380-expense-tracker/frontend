@@ -1,23 +1,23 @@
 // Image Sources
-import barcodeIcon from "../../assets/barcode_icon.svg";
+// import barcodeIcon from "../../assets/barcode_icon.svg";
 import notePencilIcon from "../../assets/note_pencil_icon.svg";
 
 interface TrackingOptionsProps {
   showOptions: boolean;
   onToggleOptions: () => void;
   onManualFormOpen: () => void;
-  onScan?: () => void;
+  // onScan?: () => void;
 }
 
 export default function TrackingOptions({
   showOptions,
   onToggleOptions,
   onManualFormOpen,
-  onScan,
-}: TrackingOptionsProps) {
+}: // onScan
+TrackingOptionsProps) {
   return (
     <div id="tracking-option" className={showOptions ? "show" : ""}>
-      <button
+      {/* <button
         id="tracking-btn"
         className={showOptions ? "show" : ""}
         onClick={() => onScan && onScan()}
@@ -25,7 +25,7 @@ export default function TrackingOptions({
       >
         <span>Scan to Track</span>
         <img src={barcodeIcon} alt="Barcode icon" />
-      </button>
+      </button> */}
       <button
         id="tracking-btn"
         className={showOptions ? "show" : ""}
