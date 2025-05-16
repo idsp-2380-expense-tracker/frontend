@@ -136,8 +136,8 @@ export default function TrackingForm({
             onClick={onBack}
           />
 
-          {/* <h2>{editItem ? "EDIT TRANSACTION" : "ADD TRANSACTION"}</h2>
-          <img
+          <h2>{editItem ? "EDIT TRANSACTION" : "ADD TRANSACTION"}</h2>
+          {/* <img
             src={barcodeIcon}
             alt="Barcode icon"
             style={{ cursor: "pointer" }}

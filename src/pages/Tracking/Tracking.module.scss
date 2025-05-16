@@ -337,8 +337,13 @@ hr {
   margin: 0 1rem;
 
   #trans-header {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+
+    h2 {
+      margin-top: 0;
+      text-align: center;
+    }
   }
 
   #trans-btn {
