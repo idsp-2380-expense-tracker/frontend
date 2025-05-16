@@ -119,7 +119,7 @@ export default function TrackingForm({
           category: selected.label,
           paymentMethod: selectedPayment.label,
           amount,
-          dateOfPayment: date ? dayjs(date).format("YYYY-MM-DD") : "",
+          dateOfPayment: date ? dayjs(date).format("YYYY-MM-DD") : undefined,
           repeat: checked,
         });
         onDateChange?.(date);
