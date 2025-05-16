@@ -162,6 +162,10 @@
   }
 }
 
+// ------------------------------
+// Tracking Options
+// ------------------------------
+
 #tracking-option {
   position: fixed;
   right: 1rem;
@@ -171,6 +175,7 @@
   flex-direction: column;
   align-items: end;
   gap: 0.5rem;
+  pointer-events: none;
 
   #options-btn {
     width: 60px;
@@ -179,6 +184,7 @@
     border: 0;
     color: #92ac35;
     background-color: variables.$btn-primary-disabled;
+    pointer-events: auto;
   }
 
   #tracking-btn {
