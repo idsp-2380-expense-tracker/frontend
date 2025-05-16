@@ -16,13 +16,13 @@ export default function Profile() {
 
   const [view, setView] = useState<"profile" | "myAccount">("profile");
 
-  if (view === "myAccount") {
-    return <MyAccount onBack={() => setView("profile")} />;
-  }
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [view]);
+
+  if (view === "myAccount") {
+    return <MyAccount onBack={() => setView("profile")} />;
+  }
 
   return (
     <div id="profile-layout">
