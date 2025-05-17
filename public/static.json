@@ -1,0 +1,15 @@
+{
+    "routes": [
+        {
+            "src": "/.well-known/.*",
+            "headers": {
+                "Access-Control-Allow-Origin": "*"
+            },
+            "dest": "/.well-known/:splat"
+        },
+        {
+            "src": "/.*",
+            "dest": "/index.html"
+        }
+    ]
+}
