@@ -82,7 +82,7 @@ export class UserDataService extends ApiService {
         }
     }
 
-    private updateLocalData<K extends keyof DB_User>(endpoint: K, payload: DB_User[K]) {
+    public updateLocalData<K extends keyof DB_User>(endpoint: K, payload: DB_User[K]) {
         const data = this.userData;
         if (data) {
             const updated: DB_User = { ...data, [endpoint]: payload };
