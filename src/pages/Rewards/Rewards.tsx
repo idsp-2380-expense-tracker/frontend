@@ -4,12 +4,14 @@ import { rewardsService } from "../../services/rewardsService";
 import { calcTotalDaysInMonth, formatOffsetDate } from "../../utils/helpers";
 import LoginChallenge, { Status } from "./RewardsLoginChallenge";
 // Image Source
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import trophyIcon from "../../assets/trophy.svg";
 import Header from "../../components/Header";
 
 export default function Rewards() {
-  const rewardsData = rewardsService.getRewardsData()!;
+  const [rewardsData, setRewardsData] = useState(
+    rewardsService.getRewardsData()!
+  );
   const {
     points: userPoints = 0,
     dailyLoginCount = 0,
@@ -30,6 +32,14 @@ export default function Rewards() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const handleCollect = async (type: "daily" | "weekly" | "monthly") => {
+    await rewardsService.collectPoints(type);
+    const updated = rewardsService.getRewardsData();
+    if (updated) {
+      setRewardsData({ ...updated });
+    }
+  };
 
   return (
     <>
@@ -61,9 +71,7 @@ export default function Rewards() {
                   ? Status.Ready
                   : Status.Incomplete
               }
-              onCollect={async () =>
-                await rewardsService.collectPoints("daily")
-              }
+              onCollect={handleCollect}
             />
           </div>
 
@@ -82,9 +90,7 @@ export default function Rewards() {
                   ? Status.Ready
                   : Status.Incomplete
               }
-              onCollect={async () =>
-                await rewardsService.collectPoints("weekly")
-              }
+              onCollect={handleCollect}
             />
           </div>
 
@@ -103,9 +109,7 @@ export default function Rewards() {
                   ? Status.Ready
                   : Status.Incomplete
               }
-              onCollect={async () =>
-                await rewardsService.collectPoints("monthly")
-              }
+              onCollect={handleCollect}
             />
           </div>
         </div>
