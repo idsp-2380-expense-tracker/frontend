@@ -62,11 +62,6 @@
 
       @include mixins.box(110px);
       @include mixins.challenges();
-
-      .mantine-Button-root {
-        color: black;
-        border-radius: 50px;
-      }
     }
 
     #monthly-streak {

@@ -38,9 +38,9 @@ export default function LoginChallenge(c: LoginChallengeProps) {
       )}
 
       {c.status === Status.Ready && (
-        <div id="collect-btn">
+        <div id="collect-points-status">
           <p>Completed!</p>
-          <Button id="challenge-status" onClick={() => c.onCollect?.(c.type)}>
+          <Button id="collect-points-btn" onClick={() => c.onCollect?.(c.type)}>
             Collect Points
           </Button>
         </div>
