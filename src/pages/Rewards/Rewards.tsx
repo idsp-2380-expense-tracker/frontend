@@ -12,6 +12,7 @@ export default function Rewards() {
   const [rewardsData, setRewardsData] = useState(
     rewardsService.getRewardsData()!
   );
+
   const {
     points: userPoints = 0,
     dailyLoginCount = 0,
@@ -20,14 +21,19 @@ export default function Rewards() {
     dailyCollected,
     weeklyCollected,
     monthlyCollected,
-    streakStartDate,
   } = rewardsData;
 
-  const start = dayjs(streakStartDate);
-  const tomorrow = formatOffsetDate(start, "day");
-  const nextWeek = formatOffsetDate(start, "week");
-  const nextMonth = formatOffsetDate(start, "month", 1);
-  const daysInMonth = calcTotalDaysInMonth(start);
+  const today = dayjs();
+  const daysInMonth = calcTotalDaysInMonth(today);
+  const tomorrow = formatOffsetDate(today, "day");
+
+  const dayOfWeek = today.day();
+  const daysUntilSunday = dayOfWeek === 0 ? 0 : 7 - dayOfWeek;
+  const endOfWeek = today.add(daysUntilSunday, "day");
+  const nextWeek = formatOffsetDate(endOfWeek, "day");
+
+  const endOfMonth = today.endOf("month");
+  const nextMonth = formatOffsetDate(endOfMonth, "day");
 
   useEffect(() => {
     window.scrollTo(0, 0);
