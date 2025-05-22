@@ -1,0 +1,18 @@
+[
+  {
+    "periodRange": "weekly",
+    "income": 1000,
+    "needs": 2000,
+    "wants": 1200,
+    "save": 800,
+    "userid": "user_id_0"
+  },
+  {
+    "periodRange": "monthly",
+    "income": 6200,
+    "needs": 3100,
+    "wants": 1860,
+    "save": 1240,
+    "userid": "user_id_1"
+  }
+]

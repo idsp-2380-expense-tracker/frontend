@@ -1,0 +1,23 @@
+{
+    "name": "Montro - Personal Expense Tracker",
+    "short_name": "Montro",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "background_color": "#181626",
+    "theme_color": "#cef24a",
+    "icons": [
+        {
+            "src": "/icons/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable monochrome"
+        },
+        {
+            "src": "/icons/icon-512_2.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        }
+    ]
+}

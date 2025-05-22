@@ -1,0 +1,69 @@
+@use "../../styles/utils/mixins";
+@use "../../styles/utils/variables";
+
+.profile {
+  a {
+    text-decoration: underline;
+  }
+}
+
+#my-account-header {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  h1 {
+    color: variables.$text-menu-colour;
+    font-size: 1.3rem;
+    text-align: center;
+  }
+}
+
+#edit-profile {
+  @include mixins.box(400px);
+  background-color: #1f1d32;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 320px;
+  padding: 1rem;
+
+  form {
+    input {
+      box-sizing: border-box;
+      padding-left: 1rem;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+      width: 100%;
+      height: 50px;
+      background-color: variables.$input-box-colour;
+      border-radius: 8px;
+      color: #7a7891;
+      font-size: 14px;
+      border: 1px solid #37355b;
+
+      &:read-only {
+        color: white;
+        cursor: not-allowed;
+
+        &:focus {
+          outline: none;
+          box-shadow: none;
+        }
+      }
+    }
+
+    label {
+      margin-top: 20px;
+    }
+
+    #email-label,
+    #register-btn {
+      margin-top: 1rem;
+    }
+
+    #register-btn {
+      @include mixins.button(48px);
+      background-color: variables.$primary-colour;
+      width: 100%;
+    }
+  }
+}

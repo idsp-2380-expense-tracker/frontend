@@ -1,0 +1,511 @@
+@use "../../styles/utils/variables";
+@use "../../styles/utils/mixins";
+
+#tracking-calendar {
+  position: relative;
+  z-index: 1300;
+
+  &.under-drawer {
+    z-index: 0;
+  }
+
+  // Set Navigation icon colour
+  .react-datepicker__navigation-icon::before {
+    border-color: white;
+  }
+
+  // Set Navigation icon height
+  .react-datepicker__navigation {
+    margin: 1rem 1rem;
+  }
+
+  // Header config
+  .react-datepicker__header {
+    background-color: variables.$bg-colour;
+    padding-top: 3px;
+
+    h2 {
+      color: white;
+      font-size: 1.2rem;
+    }
+
+    .react-datepicker__day-name {
+      color: #a3a2b4;
+    }
+
+    .react-datepicker__day-name:nth-child(1) {
+      // Set Sunday to red
+      color: red;
+    }
+  }
+
+  .react-datepicker__month {
+    color: white;
+  }
+
+  .react-datepicker__week {
+    .react-datepicker__day {
+      &:hover {
+        color: white;
+        background-color: variables.$btn-background;
+      }
+
+      &.react-datepicker__day--selected,
+      &.react-datepicker__day--keyboard-selected {
+        color: black !important;
+        background-color: variables.$primary-colour !important;
+
+        &:hover {
+          color: black !important;
+          background-color: variables.$primary-colour !important;
+        }
+      }
+    }
+  }
+
+  .react-datepicker {
+    width: 100%;
+    border: 0;
+
+    // Month Title
+    .react-datepicker__month-container {
+      background-color: variables.$bg-colour;
+      width: 100%;
+      padding-top: 1rem;
+    }
+
+    // Week Title
+    .react-datepicker__day-names {
+      display: flex;
+      margin-top: 1rem;
+      justify-content: space-evenly;
+    }
+
+    // Day Selector
+    .react-datepicker__day {
+      width: 12%;
+      color: white;
+      padding: 12px 0px;
+      border-radius: 15px;
+      align-items: center;
+
+      &.marked-day {
+        position: relative;
+
+        // Red Marker
+        &::before {
+          content: "";
+          position: absolute;
+          border-radius: 50%;
+          transform: translateX(-50%);
+          bottom: 25%;
+          left: 50%;
+          width: 4px;
+          height: 4px;
+          background: red;
+        }
+      }
+    }
+  }
+}
+
+// ------------------------------
+// Tracking Drawer
+// ------------------------------
+
+.tracking-drawer {
+  padding: 1rem 2rem;
+
+  &.collapsed {
+    height: 50px;
+    background-color: variables.$btn-background;
+    @include mixins.top-border-radius(variables.$border-radius-overlay);
+    position: fixed;
+    z-index: 2000;
+    color: white;
+    margin-bottom: 70px;
+  }
+
+  &.expanded {
+    height: 90%;
+    background-color: variables.$btn-background;
+    @include mixins.top-border-radius(variables.$border-radius-overlay);
+    color: white;
+  }
+}
+
+.drawer-handle {
+  padding-top: 8px;
+  left: 50%;
+  position: fixed;
+  transform: translateX(-50%);
+  position: fixed;
+
+  #handle-bar {
+    width: 80px;
+    height: 5px;
+    background-color: variables.$handle-colour;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      bottom: -10px;
+      left: -20px;
+      right: -20px;
+      background: transparent;
+      cursor: pointer;
+    }
+  }
+}
+
+// ------------------------------
+// Tracking Options
+// ------------------------------
+
+#tracking-option {
+  position: fixed;
+  right: 1rem;
+  bottom: 80px;
+  z-index: 1300;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 0.5rem;
+  pointer-events: none;
+
+  #options-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 0;
+    color: #92ac35;
+    background-color: variables.$btn-primary-disabled;
+    pointer-events: auto;
+  }
+
+  #tracking-btn {
+    width: auto;
+    height: 60px;
+    border-radius: 50px;
+    border: 0;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+
+    img {
+      margin-left: 1rem;
+    }
+  }
+
+  &.show {
+    #tracking-btn {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+
+      &:nth-of-type(1) {
+        transition-delay: 0.2s;
+      }
+
+      &:nth-of-type(2) {
+        transition-delay: 0.1s;
+      }
+    }
+  }
+
+  &:not(.show) {
+    #tracking-btn {
+      &:nth-of-type(1) {
+        transition-delay: 0.1s;
+      }
+
+      &:nth-of-type(2) {
+        transition-delay: 0.2s;
+      }
+    }
+  }
+}
+
+hr {
+  @include mixins.hr;
+}
+
+.mantine-Slider-track {
+  height: 32px;
+  margin: 1rem 0;
+}
+
+.mantine-Slider-thumb {
+  height: 55px;
+  width: 20px;
+}
+
+.value-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+
+  .value-types {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.box-item {
+  #spending-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    #edit-btn {
+      height: 30px;
+      width: 50px;
+      border-radius: 50px;
+      border: 0;
+      color: black;
+      background-color: variables.$primary-colour;
+      cursor: pointer;
+    }
+  }
+
+  .tag-payment {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    #tag-btn {
+      .tag-types {
+        --button-height: 30px;
+        --button-radius: 5px;
+        background-color: white;
+        margin-right: 5px;
+
+        span {
+          color: black;
+        }
+      }
+
+      .tag-category {
+        --button-height: 30px;
+        --button-radius: 5px;
+        background-color: variables.$tag-colour;
+
+        span {
+          color: white;
+        }
+      }
+    }
+
+    #credit-debit-cash {
+      display: flex;
+
+      h3 {
+        color: variables.$payment-colour;
+      }
+
+      img {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  #spending-note {
+    color: variables.$payment-colour;
+  }
+}
+
+.box-size {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+// ------------------------------
+// Tracking Form
+// ------------------------------
+
+.trans-spendings {
+  margin: 0 1rem;
+  padding-bottom: 1rem;
+
+  #trans-header {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+
+    h2 {
+      margin-top: 0;
+      text-align: center;
+    }
+  }
+
+  #trans-btn {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); //2,1fr
+    width: 100%;
+
+    #trans-spendings-btn {
+      color: variables.$primary-colour;
+
+      #trans-underline {
+        border: 1px solid variables.$primary-colour;
+        margin-top: 0;
+      }
+    }
+
+    #spendings-earnings-btn {
+      display: flex;
+      justify-content: center;
+      // cursor: pointer;
+
+      h3 {
+        font-weight: bold;
+      }
+
+      img {
+        margin-left: 12px;
+      }
+    }
+
+    // #trans-earnings-btn {
+    //   color: variables.$tag-colour;
+
+    //   #trans-underline {
+    //     border: 1px solid variables.$tag-colour;
+    //     margin-top: 0;
+    //   }
+    // }
+  }
+
+  #trans-category {
+    h4 {
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+// Drop down button for category
+.control {
+  width: 100%;
+  height: 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: variables.$tag-colour !important;
+  padding: var(--mantine-spacing-xs) 1rem !important;
+  border-radius: var(--mantine-radius-sm);
+  transition: background-color 150ms ease;
+  background-color: variables.$input-box-colour !important;
+}
+
+.label {
+  font-weight: 500;
+  font-size: var(--mantine-font-size-sm);
+}
+
+.mantine-Menu-dropdown {
+  border: 0;
+  background-color: variables.$input-box-colour;
+}
+
+.mantine-Menu-itemLabel {
+  color: variables.$tag-colour;
+  padding: 0.5rem;
+}
+
+.mantine-Menu-item:hover,
+.mantine-Menu-itemLabel:hover {
+  color: white;
+  background-color: variables.$tertiary-colour;
+}
+
+// Amount form input
+.mantine-NumberInput-input,
+.mantine-DateInput-input {
+  border: 0;
+  background-color: variables.$input-box-colour;
+  height: 48px;
+  color: variables.$tag-colour;
+}
+
+.mantine-NumberInput-control {
+  color: variables.$tag-colour;
+}
+
+.mantine-NumberInput-control:active {
+  color: variables.$tag-colour;
+  background-color: variables.$tertiary-colour;
+}
+
+#payment-amount {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+
+  #payment-method,
+  #amount {
+    width: 50%;
+  }
+}
+
+// Date of Payment input
+.mantine-CloseButton-root {
+  color: variables.$tag-colour;
+}
+
+#repeat-payment {
+  @include mixins.box(48px);
+  border-radius: variables.$border-radius-sm;
+  display: flex;
+  align-items: center;
+
+  .mantine-Checkbox-input {
+    border-radius: 4px;
+    background-color: variables.$input-box-colour;
+    border: 1px solid variables.$primary-colour;
+  }
+}
+
+.spending-add {
+  width: 100%;
+  color: black;
+}
+
+// Add button in Manual Transaction
+#trans-btns {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+#add-trans-btn {
+  border-radius: 50px;
+  background-color: variables.$primary-colour;
+  height: 48px;
+  width: 280px;
+}
+
+#delete-trans-btn {
+  border-radius: 50px;
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  height: 48px;
+  width: 280px;
+}
+
+.tracking-header {
+  position: relative;
+  z-index: 1300;
+}

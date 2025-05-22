@@ -1,0 +1,108 @@
+@use "../../styles/utils/mixins";
+@use "../../styles/utils/variables";
+
+.profile {
+  @include mixins.center-flex(column);
+  margin-bottom: 3rem;
+}
+
+.back-button {
+  margin: 0rem 1rem;
+  cursor: pointer;
+}
+
+.my-account {
+  @include mixins.border-line();
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  cursor: pointer;
+
+  .menu-item {
+    display: flex;
+    align-items: center;
+  }
+
+  #account-circle {
+    width: 24px;
+    height: 24px;
+    margin-right: 20px;
+  }
+
+  .body-bold {
+    color: variables.$text-menu-colour;
+  }
+
+  #arrow-in-circle {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.security-settings {
+  @include mixins.border-line();
+  border-top: 0;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  cursor: pointer;
+
+  .menu-item {
+    display: flex;
+    align-items: center;
+  }
+
+  #account-circle {
+    width: 24px;
+    height: 24px;
+    margin-right: 20px;
+  }
+
+  .body-bold {
+    color: variables.$text-menu-colour;
+  }
+
+  #arrow-in-circle {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+#log-out {
+  @include mixins.logout-border-line();
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  cursor: pointer;
+
+  #log-out-icon {
+    margin-right: 20px;
+  }
+}
+
+.content-background {
+  background-color: variables.$secondary-colour;
+  margin-top: 5rem;
+  width: 100%;
+  min-height: 100vh;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.content {
+  position: absolute;
+  width: 90%;
+  margin: 0;
+  top: -5rem;
+}

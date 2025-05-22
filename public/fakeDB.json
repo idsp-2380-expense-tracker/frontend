@@ -1,0 +1,37 @@
+{
+    "tracking": [
+        {
+            "id": 1,
+            "category": "Food",
+            "paymentMethod": "Cash",
+            "amount": 100,
+            "dateOfPayment": "2025-05-10",
+            "repeat": false
+        },
+        {
+            "id": 3,
+            "category": "Groceries",
+            "paymentMethod": "Card",
+            "amount": 200,
+            "dateOfPayment": "2025-05-11",
+            "repeat": true
+        }
+    ],
+    "budget": {
+        "periodRange": "weekly",
+        "income": 0,
+        "needs": 0,
+        "wants": 0,
+        "save": 0
+    },
+    "rewards": {
+        "points": 300,
+        "streakStartDate": "2025-04-10",
+        "dailyCollected": true,
+        "weeklyCollected": false,
+        "monthlyCollected": false,
+        "dailyLoginCount": 1,
+        "weeklyLoginCount": 7,
+        "monthlyLoginCount": 15
+    }
+}

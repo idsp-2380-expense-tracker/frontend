@@ -1,0 +1,71 @@
+@use "../utils/variables";
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+
+// Headings
+h1,
+.h1 {
+  font-family: variables.$font-family-base;
+  font-size: variables.$font-size-title-main;
+  font-weight: variables.$font-weight-title-main;
+  line-height: variables.$line-height-title-main;
+}
+
+h2,
+.h2 {
+  font-family: variables.$font-family-base;
+  font-size: variables.$font-size-subtext-main;
+  font-weight: variables.$font-weight-subtext-main;
+  line-height: variables.$line-height-subtext-main;
+}
+
+h3,
+.h3 {
+  font-family: variables.$font-family-base;
+  font-size: variables.$font-size-section-headings;
+  font-weight: variables.$font-weight-section-headings;
+  line-height: variables.$line-height-section-headings;
+}
+
+// Body Text
+body,
+p {
+  font-family: variables.$font-family-base;
+  font-size: variables.$font-size-body;
+  font-weight: variables.$font-weight-body;
+  line-height: variables.$line-height-body;
+}
+
+// Utility Classes
+.body-bold {
+  font-family: variables.$font-family-base;
+  font-size: variables.$font-size-body-bold;
+  font-weight: variables.$font-weight-body-bold;
+  line-height: variables.$line-height-body-bold;
+}
+
+.subtext-bold {
+  font-family: variables.$font-family-base;
+  font-size: variables.$font-size-subtext-bold;
+  font-weight: variables.$font-weight-subtext-bold;
+  line-height: variables.$line-height-subtext-bold;
+}
+
+.subtext {
+  font-family: variables.$font-family-base;
+  font-size: variables.$font-size-subtext;
+  font-weight: variables.$font-weight-subtext;
+  line-height: variables.$line-height-subtext;
+}
+
+.navbar {
+  font-family: variables.$font-family-base;
+  font-size: variables.$font-size-navbar;
+  font-weight: variables.$font-weight-navbar;
+  line-height: variables.$line-height-navbar;
+}
+
+.text-price {
+  color: variables.$text-price-colour;
+  font-size: variables.$font-size-price;
+  font-weight: variables.$font-weight-price;
+}

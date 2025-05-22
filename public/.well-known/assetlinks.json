@@ -1,0 +1,14 @@
+[
+    {
+        "relation": [
+            "delegate_permission/common.handle_all_urls"
+        ],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "com.montro.tracker",
+            "sha256_cert_fingerprints": [
+                "85:EC:0B:12:36:4B:C3:44:E0:CE:A0:45:0D:3F:A5:44:7D:78:2E:EF:68:2D:D3:C2:3A:FF:83:16:97:7C:1A:C4"
+            ]
+        }
+    }
+]

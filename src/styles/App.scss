@@ -1,0 +1,25 @@
+@use "../styles/base/typography";
+@use "../styles/utils/variables";
+@use "../pages/Home/Home.module.scss";
+@use "../pages/Splash/Splash.module.scss";
+@use "../pages/Profile/Profile.module.scss";
+@use "../pages/Profile/MyAccount.module.scss";
+@use "../pages/Login/Login.module.scss";
+@use "../pages/Tracking/Tracking.module.scss";
+@use "../pages/Budget/Budget.module.scss";
+@use "../pages/Rewards/Rewards.module.scss";
+
+// html {
+//   background-color: variables.$bg-colour;
+//   color: variables.$text-colour;
+//   margin: 0;
+//   max-width: auto;
+// }
+
+// body {
+//   margin: 0;
+// }
+
+h1 {
+  margin: 0;
+}

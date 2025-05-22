@@ -1,0 +1,37 @@
+@use "../utils/variables";
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background-color: variables.$bg-colour;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 0;
+  z-index: 3000;
+
+  .nav-home,
+  .nav-tracking,
+  .nav-budget,
+  .nav-rewards {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+
+    img {
+      width: 28px;
+      height: 28px;
+    }
+  }
+}

@@ -1,0 +1,106 @@
+@use "./variables";
+
+@mixin center-flex($direction: column) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem 1rem;
+  gap: 1rem;
+}
+
+@mixin border-line() {
+  display: flex;
+  border-top: 1px solid variables.$border-line-colour;
+  border-bottom: 1px solid variables.$border-line-colour;
+  padding: 0px 20px;
+  height: 70px;
+  margin: 0 auto;
+}
+@mixin logout-border-line() {
+  display: flex;
+  border-top: 1px solid variables.$border-line-colour;
+  border-bottom: 1px solid variables.$border-line-colour;
+  padding: 0px 20px;
+  width: 90%;
+  height: 70px;
+  margin: 0 auto;
+}
+
+@mixin box($height: 60px) {
+  // display: flex;
+  // align-items: center;
+  padding: 0 1.5rem;
+  width: 100%;
+  height: $height;
+  background-color: variables.$input-box-colour;
+  border-radius: variables.$border-radius-md;
+}
+
+@mixin button($height: 60px) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: variables.$font-size-body-bold;
+  font-weight: variables.$font-weight-body-bold;
+  color: black;
+  padding: 0 1.5rem;
+  width: 90%;
+  height: $height;
+  background-color: variables.$input-box-colour;
+  border: 0;
+  border-radius: variables.$border-radius-overlay;
+}
+
+@mixin top-border-radius($radius: 0px) {
+  border-top-right-radius: $radius;
+  border-top-left-radius: $radius;
+}
+
+@mixin hr() {
+  border: none;
+  height: 2px;
+  background-color: variables.$handle-colour;
+  margin: 20px 0;
+}
+
+@mixin challenges() {
+  #challenge-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h3 {
+      font-size: variables.$font-size-body-bold;
+      margin-top: 0;
+    }
+
+    #gain-points {
+      margin-top: 0;
+    }
+  }
+
+  #collect-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #challenge-status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+  }
+
+  #collect-points-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .mantine-Button-root {
+      color: black;
+      border-radius: 50px;
+    }
+  }
+}
